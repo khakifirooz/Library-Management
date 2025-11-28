@@ -1,8 +1,9 @@
-﻿namespace Library_Manegment_Domain.Entities.Books
+﻿using Library_Manegment_Domain.Common;
+
+namespace Library_Manegment_Domain.Entities.Books
 {
-    public class Book
+    public class Book : BaseEntity<int>
     {
-        public int Id { get; private set; }
         public string Titlt { get; private set; }
         public string Author { get; private set; }
         public string Language { get; private set; }
