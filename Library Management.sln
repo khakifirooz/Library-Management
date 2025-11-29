@@ -1,11 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36717.8 d17.14
+VisualStudioVersion = 17.14.36717.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library Manegment Domain", "Library Manegment Domain\Library Manegment Domain.csproj", "{3E4D7AC0-B463-4429-8FBB-A45542019A2D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{811CFFAC-0591-4A2E-8FF3-753B4ACE30ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "Contracts\Contracts.csproj", "{C3542247-07B0-4C24-AE6A-17D533E9103D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,12 +21,17 @@ Global
 		{3E4D7AC0-B463-4429-8FBB-A45542019A2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E4D7AC0-B463-4429-8FBB-A45542019A2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E4D7AC0-B463-4429-8FBB-A45542019A2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3542247-07B0-4C24-AE6A-17D533E9103D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3542247-07B0-4C24-AE6A-17D533E9103D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3542247-07B0-4C24-AE6A-17D533E9103D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3542247-07B0-4C24-AE6A-17D533E9103D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{3E4D7AC0-B463-4429-8FBB-A45542019A2D} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{C3542247-07B0-4C24-AE6A-17D533E9103D} = {811CFFAC-0591-4A2E-8FF3-753B4ACE30ED}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EE173786-107C-4293-8482-E9EF3D606921}
