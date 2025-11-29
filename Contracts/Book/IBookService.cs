@@ -1,10 +1,12 @@
-﻿namespace Contracts.Book
+﻿using FrameworkApplication;
+
+namespace Contracts.Book
 {
     public interface IBookService
     {
-        Task CreateAsync(BookDTO command);
-        Task UpdateAsync(BookDTO command);
-        Task DeleteAsync(int id);
+        Task<OperationResult> CreateAsync(BookDTO command);
+        Task<OperationResult> UpdateAsync(BookDTO command);
+        Task<OperationResult> DeleteAsync(int id);
         Task<BookDTO> GetByIdAsync(int id);
         Task<List<BookDTO>> GetAllAsync();
     }
