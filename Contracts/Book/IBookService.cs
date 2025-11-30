@@ -1,4 +1,5 @@
 ﻿using FrameworkApplication;
+using LibraryManagementContracts.Book;
 
 namespace Contracts.Book
 {

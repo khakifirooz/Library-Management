@@ -1,11 +1,11 @@
-﻿namespace Contracts.Book
+﻿namespace LibraryManagementContracts.Book
 {
     public class BookDTO  // data transform object
     {
         public int Id { get; set; }
-        public string Titlt { get; private set; }
-        public string Author { get; private set; }
-        public string Language { get; private set; }
-        public byte[] Image { get; private set; }
+        public string Title { get;  set; }
+        public string Author { get;  set; }
+        public string Language { get;  set; }
+        public byte[] Image { get;  set; }
     }
 }
