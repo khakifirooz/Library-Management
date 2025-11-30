@@ -1,4 +1,5 @@
-﻿using Contracts.Book;
+﻿using System.Runtime.InteropServices;
+using Contracts.Book;
 using FrameworkApplication;
 using Library_Manegment_Domain.Entities.Books;
 using LibraryManagementContracts.Book;
@@ -18,7 +19,7 @@ namespace LibraryManagementApplication
             try
             {
                 if (await _bookRepository.ExistAsync(x => x.Title == command.Title))
-                    return result.Failed();
+                    return result.Failed(ApplicationMessages.DublicateRecord);
                 var book = new Book(command.Title, command.Author, command.Language, command.Image);
                 await _bookRepository.CreateAsync(book);
                 await _bookRepository.SavaChangesAsync();
@@ -38,7 +39,7 @@ namespace LibraryManagementApplication
             {
                 var book = await _bookRepository.GetByIdAsync(id);
                 if (book is null)
-                    return result.Failed();
+                    return result.Failed(ApplicationMessages.RecordNotFound);
                 book.Delete();
                 await _bookRepository.SavaChangesAsync();
                 return result.Succeded();
@@ -89,10 +90,10 @@ namespace LibraryManagementApplication
             {
                 var book = await _bookRepository.GetByIdAsync(command.Id);
                 if (book is null)
-                    return result.Failed();
+                    return result.Failed(ApplicationMessages.RecordNotFound);
 
                 if (await _bookRepository.ExistAsync(x => x.Title == command.Title && x.Id != command.Id))
-                    result.Failed();
+                    result.Failed(ApplicationMessages.DublicateRecord);
 
                 book.Update(command.Title, command.Author, command.Language, command.Image);
                 await _bookRepository.UpdateAsync(book);
