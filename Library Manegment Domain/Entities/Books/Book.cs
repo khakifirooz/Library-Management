@@ -1,5 +1,5 @@
 ﻿using Library_Manegment_Domain.Common;
-using Library_Manegment_Domain.Entities.Members;
+using Library_Manegment_Domain.Entities.Loans;
 
 namespace Library_Manegment_Domain.Entities.Books
 {

@@ -1,4 +1,5 @@
 ﻿using Library_Manegment_Domain.Common;
+using Library_Manegment_Domain.Entities.Loans;
 using Library_Manegment_Domain.Exeptions;
 
 namespace Library_Manegment_Domain.Entities.Members

@@ -1,7 +1,8 @@
 ﻿using Library_Manegment_Domain.Common;
 using Library_Manegment_Domain.Entities.Books;
+using Library_Manegment_Domain.Entities.Members;
 
-namespace Library_Manegment_Domain.Entities.Members
+namespace Library_Manegment_Domain.Entities.Loans
 {
     public class Loan : BaseEntity<int>
     {
