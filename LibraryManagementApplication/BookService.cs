@@ -96,7 +96,7 @@ namespace LibraryManagementApplication
                     result.Failed(ApplicationMessages.DublicateRecord);
 
                 book.Update(command.Title, command.Author, command.Language, command.Image);
-                await _bookRepository.UpdateAsync(book);
+                _bookRepository.Update(book);
                 await _bookRepository.SavaChangesAsync();
                 return result.Succeded();
             }
