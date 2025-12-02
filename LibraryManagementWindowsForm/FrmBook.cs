@@ -103,5 +103,22 @@ namespace LibraryManagementWindowsForm
             dataGrid_books.DataSource = result;
             SetColumns();
         }
+
+        private async void btn_delete_Click(object sender, EventArgs e)
+        {
+            var result = await _bookService.DeleteAsync(Convert.ToInt32(lbl_id.Text));
+            if (result.Success)
+            {
+                txt_name.Text = "";
+                txt_author.Text = "";
+                txt_language.Text = "";
+                picture_book.Image = null;
+                MessageBox.Show(result.Message);
+            }
+            else
+                MessageBox.Show(result.Message);
+
+            FrmBook_Load(null, null);
+        }
     }
 }

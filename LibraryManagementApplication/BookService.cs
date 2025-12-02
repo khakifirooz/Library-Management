@@ -52,7 +52,7 @@ namespace LibraryManagementApplication
 
         public async Task<List<BookDTO>> GetAllAsync()
         {
-            var book = await _bookRepository.GetAllAsync();
+            var book = await _bookRepository.GetAllWithoutDeleted();
             return book.Select(x => new BookDTO
             {
                 Id = x.Id,

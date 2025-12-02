@@ -30,7 +30,7 @@
         {
             dataGrid_books = new DataGridView();
             groupBox1 = new GroupBox();
-            button3 = new Button();
+            btn_delete = new Button();
             btn_edite = new Button();
             btn_save = new Button();
             label5 = new Label();
@@ -65,7 +65,7 @@
             // groupBox1
             // 
             groupBox1.BackColor = Color.CornflowerBlue;
-            groupBox1.Controls.Add(button3);
+            groupBox1.Controls.Add(btn_delete);
             groupBox1.Controls.Add(btn_edite);
             groupBox1.Controls.Add(btn_save);
             groupBox1.Controls.Add(label5);
@@ -83,18 +83,19 @@
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             // 
-            // button3
+            // btn_delete
             // 
-            button3.BackColor = Color.PowderBlue;
-            button3.FlatAppearance.BorderColor = Color.Green;
-            button3.FlatAppearance.BorderSize = 4;
-            button3.Font = new Font("B Nazanin", 13.8F);
-            button3.Location = new Point(204, 201);
-            button3.Name = "button3";
-            button3.Size = new Size(94, 42);
-            button3.TabIndex = 10;
-            button3.Text = "حذف";
-            button3.UseVisualStyleBackColor = false;
+            btn_delete.BackColor = Color.PowderBlue;
+            btn_delete.FlatAppearance.BorderColor = Color.Green;
+            btn_delete.FlatAppearance.BorderSize = 4;
+            btn_delete.Font = new Font("B Nazanin", 13.8F);
+            btn_delete.Location = new Point(204, 201);
+            btn_delete.Name = "btn_delete";
+            btn_delete.Size = new Size(94, 42);
+            btn_delete.TabIndex = 10;
+            btn_delete.Text = "حذف";
+            btn_delete.UseVisualStyleBackColor = false;
+            btn_delete.Click += btn_delete_Click;
             // 
             // btn_edite
             // 
@@ -283,6 +284,7 @@
             lbl_id.RightToLeft = RightToLeft.Yes;
             lbl_id.Size = new Size(0, 29);
             lbl_id.TabIndex = 11;
+            lbl_id.Visible = false;
             // 
             // FrmBook
             // 
@@ -322,7 +324,7 @@
         private Label label4;
         private Label label5;
         private PictureBox picture_book;
-        private Button button3;
+        private Button btn_delete;
         private Button btn_edite;
         private Button btn_save;
         private GroupBox groupBox2;

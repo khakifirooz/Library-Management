@@ -12,9 +12,14 @@ namespace ClassLibraryInfrastructure.Repositories
             _context = context;
         }
 
+        public async Task<List<Book>> GetAllWithoutDeleted()
+        {
+            return await _context.Books.Where(x => x.IsDeleted == false).ToListAsync();
+        }
+
         public async Task<List<Book>> GetByTitleAsync(string title)
         {
-            return await _context.Books.Where(x => x.Title.Contains(title)).ToListAsync();
+            return await _context.Books.Where(x => x.Title.Contains(title) && x.IsDeleted == false).ToListAsync();
         }
     }
 }
