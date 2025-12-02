@@ -10,5 +10,6 @@ namespace Contracts.Book
         Task<OperationResult> DeleteAsync(int id);
         Task<BookDTO> GetByIdAsync(int id);
         Task<List<BookDTO>> GetAllAsync();
+        Task<List<BookDTO>> GetByTitleAsync(string title);
     }
 }

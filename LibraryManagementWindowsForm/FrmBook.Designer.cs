@@ -31,7 +31,7 @@
             dataGrid_books = new DataGridView();
             groupBox1 = new GroupBox();
             button3 = new Button();
-            button2 = new Button();
+            btn_edite = new Button();
             btn_save = new Button();
             label5 = new Label();
             picture_book = new PictureBox();
@@ -45,6 +45,7 @@
             groupBox2 = new GroupBox();
             txt_search = new TextBox();
             label6 = new Label();
+            lbl_id = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGrid_books).BeginInit();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picture_book).BeginInit();
@@ -59,12 +60,13 @@
             dataGrid_books.RowHeadersWidth = 51;
             dataGrid_books.Size = new Size(834, 216);
             dataGrid_books.TabIndex = 0;
+            dataGrid_books.CellClick += dataGrid_books_CellClick;
             // 
             // groupBox1
             // 
             groupBox1.BackColor = Color.CornflowerBlue;
             groupBox1.Controls.Add(button3);
-            groupBox1.Controls.Add(button2);
+            groupBox1.Controls.Add(btn_edite);
             groupBox1.Controls.Add(btn_save);
             groupBox1.Controls.Add(label5);
             groupBox1.Controls.Add(picture_book);
@@ -94,18 +96,19 @@
             button3.Text = "حذف";
             button3.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // btn_edite
             // 
-            button2.BackColor = Color.PowderBlue;
-            button2.FlatAppearance.BorderColor = Color.Green;
-            button2.FlatAppearance.BorderSize = 4;
-            button2.Font = new Font("B Nazanin", 13.8F);
-            button2.Location = new Point(304, 201);
-            button2.Name = "button2";
-            button2.Size = new Size(94, 42);
-            button2.TabIndex = 9;
-            button2.Text = "ویرایش";
-            button2.UseVisualStyleBackColor = false;
+            btn_edite.BackColor = Color.PowderBlue;
+            btn_edite.FlatAppearance.BorderColor = Color.Green;
+            btn_edite.FlatAppearance.BorderSize = 4;
+            btn_edite.Font = new Font("B Nazanin", 13.8F);
+            btn_edite.Location = new Point(304, 201);
+            btn_edite.Name = "btn_edite";
+            btn_edite.Size = new Size(94, 42);
+            btn_edite.TabIndex = 9;
+            btn_edite.Text = "ویرایش";
+            btn_edite.UseVisualStyleBackColor = false;
+            btn_edite.Click += btn_edite_Click;
             // 
             // btn_save
             // 
@@ -239,7 +242,7 @@
             groupBox2.Location = new Point(12, 12);
             groupBox2.Name = "groupBox2";
             groupBox2.RightToLeft = RightToLeft.Yes;
-            groupBox2.Size = new Size(320, 255);
+            groupBox2.Size = new Size(320, 220);
             groupBox2.TabIndex = 2;
             groupBox2.TabStop = false;
             groupBox2.Text = "جستجو :";
@@ -256,6 +259,7 @@
             txt_search.RightToLeft = RightToLeft.Yes;
             txt_search.Size = new Size(236, 30);
             txt_search.TabIndex = 11;
+            txt_search.TextChanged += txt_search_TextChanged;
             // 
             // label6
             // 
@@ -269,12 +273,24 @@
             label6.TabIndex = 11;
             label6.Text = " جستجو بر اساس عنوان کتاب :";
             // 
+            // lbl_id
+            // 
+            lbl_id.AutoSize = true;
+            lbl_id.Font = new Font("B Nazanin", 12F);
+            lbl_id.ForeColor = SystemColors.InactiveCaptionText;
+            lbl_id.Location = new Point(129, 241);
+            lbl_id.Name = "lbl_id";
+            lbl_id.RightToLeft = RightToLeft.Yes;
+            lbl_id.Size = new Size(0, 29);
+            lbl_id.TabIndex = 11;
+            // 
             // FrmBook
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.RoyalBlue;
             ClientSize = new Size(858, 495);
+            Controls.Add(lbl_id);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Controls.Add(dataGrid_books);
@@ -290,6 +306,7 @@
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -306,10 +323,11 @@
         private Label label5;
         private PictureBox picture_book;
         private Button button3;
-        private Button button2;
+        private Button btn_edite;
         private Button btn_save;
         private GroupBox groupBox2;
         private TextBox txt_search;
         private Label label6;
+        private Label lbl_id;
     }
 }

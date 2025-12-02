@@ -84,6 +84,19 @@ namespace LibraryManagementApplication
             }
         }
 
+        public async Task<List<BookDTO>> GetByTitleAsync(string title)
+        {
+            var books = await _bookRepository.GetByTitleAsync(title);
+            return books.Select(x => new BookDTO
+            {
+                Id = x.Id,
+                Title = x.Title,
+                Author = x.Author,
+                Language = x.Language,
+                Image = x.Image
+            }).ToList();
+        }
+
         public async Task<OperationResult> UpdateAsync(BookDTO command)
         {
             OperationResult result = new();
