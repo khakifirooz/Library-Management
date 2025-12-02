@@ -46,6 +46,7 @@
             btnBook.TabIndex = 0;
             btnBook.Text = "مدیریت کتاب ها";
             btnBook.UseVisualStyleBackColor = false;
+            btnBook.Click += btnBook_Click;
             // 
             // button1
             // 
@@ -84,6 +85,7 @@
             Controls.Add(button1);
             Controls.Add(btnBook);
             Name = "FrmMain";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "فرم اصلی";
             Load += FrmMain_Load;
             ResumeLayout(false);

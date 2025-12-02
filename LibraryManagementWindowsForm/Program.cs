@@ -16,9 +16,10 @@ namespace LibraryManagementWindowsForm
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             var host = CreateHostBuilder().Build();
-            var serviceProvider = host.Services;
-            Application.Run(serviceProvider.GetRequiredService<FrmMain>());
+            ServiceProvider = host.Services;
+            Application.Run(ServiceProvider.GetRequiredService<FrmMain>());
         }
+        public static IServiceProvider ServiceProvider { get; private set; }
 
         static IHostBuilder CreateHostBuilder()
         {
@@ -26,6 +27,7 @@ namespace LibraryManagementWindowsForm
             {
                 services.WireUp();
                 services.AddTransient<FrmMain>();
+                services.AddTransient<FrmBook>();
                 // ....
             });
         }

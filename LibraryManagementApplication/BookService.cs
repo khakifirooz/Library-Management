@@ -55,6 +55,7 @@ namespace LibraryManagementApplication
             var book = await _bookRepository.GetAllAsync();
             return book.Select(x => new BookDTO
             {
+                Id = x.Id,
                 Title = x.Title,
                 Author = x.Author,
                 Language = x.Language,
