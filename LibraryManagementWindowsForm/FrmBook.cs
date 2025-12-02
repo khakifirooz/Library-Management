@@ -23,6 +23,14 @@ namespace LibraryManagementWindowsForm
 
         private async void button1_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txt_name.Text) ||
+                  string.IsNullOrWhiteSpace(txt_author.Text) ||
+                  string.IsNullOrWhiteSpace(txt_language.Text) ||
+                  picture_book.Image == null)
+            {
+                MessageBox.Show("حتما همه مقادیر را پر کنید");
+                return;
+            }
             MemoryStream stream = new MemoryStream();
             picture_book.Image.Save(stream, picture_book.Image.RawFormat);
             var image = stream.GetBuffer();
@@ -73,6 +81,13 @@ namespace LibraryManagementWindowsForm
 
         private async void btn_edite_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txt_name.Text) ||
+                  string.IsNullOrWhiteSpace(txt_author.Text) ||
+                  string.IsNullOrWhiteSpace(txt_language.Text))
+            {
+                MessageBox.Show("حتما یک کتاب را انتخاب کنید");
+                return;
+            }
             MemoryStream stream = new MemoryStream();
             picture_book.Image.Save(stream, picture_book.Image.RawFormat);
             var image = stream.GetBuffer();
@@ -106,6 +121,11 @@ namespace LibraryManagementWindowsForm
 
         private async void btn_delete_Click(object sender, EventArgs e)
         {
+            if (dataGrid_books.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("حتما یک کتاب را انتخاب کنید");
+                return;
+            }
             var result = await _bookService.DeleteAsync(Convert.ToInt32(lbl_id.Text));
             if (result.Success)
             {
