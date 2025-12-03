@@ -36,7 +36,9 @@
             btn_search = new Button();
             button1 = new Button();
             button2 = new Button();
+            dataGrid_members = new DataGridView();
             groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGrid_members).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
@@ -97,35 +99,48 @@
             // 
             // button1
             // 
-            button1.Location = new Point(706, 147);
+            button1.Location = new Point(550, 156);
             button1.Name = "button1";
             button1.Size = new Size(126, 29);
             button1.TabIndex = 5;
-            button1.Text = "جستحو کاربر";
+            button1.Text = "ویرایش کاربر";
             button1.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
-            button2.Location = new Point(543, 147);
+            button2.Location = new Point(718, 156);
             button2.Name = "button2";
             button2.Size = new Size(126, 29);
             button2.TabIndex = 6;
             button2.Text = "ثبت کاربر";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
+            // dataGrid_members
+            // 
+            dataGrid_members.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGrid_members.Location = new Point(12, 322);
+            dataGrid_members.Name = "dataGrid_members";
+            dataGrid_members.RowHeadersWidth = 51;
+            dataGrid_members.Size = new Size(852, 234);
+            dataGrid_members.TabIndex = 7;
             // 
             // FrmManageMembers
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(876, 568);
+            Controls.Add(dataGrid_members);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(groupBox1);
             Name = "FrmManageMembers";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "مدیریت اعضا";
             Load += FrmManageMembers_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGrid_members).EndInit();
             ResumeLayout(false);
         }
 
@@ -139,5 +154,6 @@
         private Label label2;
         private Button button1;
         private Button button2;
+        private DataGridView dataGrid_members;
     }
 }

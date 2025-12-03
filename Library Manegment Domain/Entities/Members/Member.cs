@@ -15,15 +15,15 @@ namespace Library_Manegment_Domain.Entities.Members
         public byte[] Image { get; private set; }
         public List<Loan> Loans { get; set; }
 
-        public Member(string name, string family, string nationalCode, string mobile, bool isSpecial, bool status, byte[] image)
+        public Member(string name, string family, string nationalCode, string mobile, bool isSpecial, byte[] image)
         {
             Name = name;
             Family = family;
             NationalCode = nationalCode;
             Mobile = mobile;
             IsSpecial = isSpecial;
-            Status = status;
             Image = image;
+            Status = true;
         }
 
 

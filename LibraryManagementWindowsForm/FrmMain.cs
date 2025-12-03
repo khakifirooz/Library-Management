@@ -19,5 +19,11 @@ namespace LibraryManagementWindowsForm
             var FrmBook = Program.ServiceProvider.GetRequiredService<FrmBook>();
             FrmBook.Show();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var frmManageMember = Program.ServiceProvider.GetRequiredService<FrmManageMembers>();
+            frmManageMember.ShowDialog();
+        }
     }
 }

@@ -28,6 +28,8 @@ namespace LibraryManagementWindowsForm
                 services.WireUp();
                 services.AddTransient<FrmMain>();
                 services.AddTransient<FrmBook>();
+                services.AddTransient<FrmManageMembers>();
+                services.AddTransient<FrmRegisterMember>();
                 // ....
             });
         }
