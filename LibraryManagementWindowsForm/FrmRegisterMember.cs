@@ -11,5 +11,10 @@
         {
             this.Close();
         }
+
+        private void FrmRegisterMember_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
