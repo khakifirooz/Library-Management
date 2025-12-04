@@ -7,6 +7,7 @@ namespace LibraryManagementWindowsForm
     public partial class FrmManageMembers : Form
     {
         private readonly IMemberService _memberService;
+        public static int MemberId = 0;
 
         public FrmManageMembers(IMemberService memberService)
         {
@@ -45,6 +46,18 @@ namespace LibraryManagementWindowsForm
             dataGrid_members.DataBindings.Clear();
             dataGrid_members.DataSource = await _memberService.SearchAsync(id, nationalCode);
             SetColumns();
+        }
+
+        private void dataGrid_members_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            btn_update.Enabled = true;
+            MemberId = Convert.ToInt32(dataGrid_members.CurrentRow.Cells[0].Value);
+        }
+
+        private void btn_update_Click(object sender, EventArgs e)
+        {
+            var frmUpdateMember = Program.ServiceProvider.GetRequiredService<FrmUpdateMember>();
+            frmUpdateMember.ShowDialog();
         }
     }
 }

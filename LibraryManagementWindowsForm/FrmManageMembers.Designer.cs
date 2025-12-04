@@ -34,7 +34,7 @@
             label2 = new Label();
             txt_search_id = new TextBox();
             label1 = new Label();
-            button1 = new Button();
+            btn_update = new Button();
             button2 = new Button();
             dataGrid_members = new DataGridView();
             groupBox1.SuspendLayout();
@@ -109,18 +109,21 @@
             label1.TabIndex = 0;
             label1.Text = "شماره عضویت :";
             // 
-            // button1
+            // btn_update
             // 
-            button1.BackColor = Color.Goldenrod;
-            button1.FlatAppearance.BorderColor = Color.DarkOrange;
-            button1.FlatAppearance.BorderSize = 2;
-            button1.Font = new Font("B Nazanin", 12F, FontStyle.Regular, GraphicsUnit.Point, 178);
-            button1.Location = new Point(536, 151);
-            button1.Name = "button1";
-            button1.Size = new Size(175, 47);
-            button1.TabIndex = 5;
-            button1.Text = "ویرایش عضو";
-            button1.UseVisualStyleBackColor = false;
+            btn_update.BackColor = Color.Goldenrod;
+            btn_update.Enabled = false;
+            btn_update.FlatAppearance.BorderColor = Color.DarkOrange;
+            btn_update.FlatAppearance.BorderSize = 2;
+            btn_update.Font = new Font("B Nazanin", 12F, FontStyle.Regular, GraphicsUnit.Point, 178);
+            btn_update.Location = new Point(536, 151);
+            btn_update.Name = "btn_update";
+            btn_update.Padding = new Padding(1);
+            btn_update.Size = new Size(175, 47);
+            btn_update.TabIndex = 5;
+            btn_update.Text = "ویرایش عضو";
+            btn_update.UseVisualStyleBackColor = false;
+            btn_update.Click += btn_update_Click;
             // 
             // button2
             // 
@@ -146,6 +149,7 @@
             dataGrid_members.RowHeadersWidth = 51;
             dataGrid_members.Size = new Size(966, 314);
             dataGrid_members.TabIndex = 7;
+            dataGrid_members.CellClick += dataGrid_members_CellClick;
             // 
             // FrmManageMembers
             // 
@@ -154,7 +158,7 @@
             ClientSize = new Size(986, 538);
             Controls.Add(dataGrid_members);
             Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(btn_update);
             Controls.Add(groupBox1);
             Font = new Font("B Nazanin", 9F, FontStyle.Regular, GraphicsUnit.Point, 178);
             Name = "FrmManageMembers";
@@ -175,7 +179,7 @@
         private Button btn_search;
         private TextBox txt_search_national_code;
         private Label label2;
-        private Button button1;
+        private Button btn_update;
         private Button button2;
         private DataGridView dataGrid_members;
     }
