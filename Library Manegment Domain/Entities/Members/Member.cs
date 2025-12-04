@@ -1,4 +1,5 @@
-﻿using Library_Manegment_Domain.Common;
+﻿using System.Data;
+using Library_Manegment_Domain.Common;
 using Library_Manegment_Domain.Entities.Loans;
 using Library_Manegment_Domain.Exeptions;
 
@@ -24,6 +25,17 @@ namespace Library_Manegment_Domain.Entities.Members
             IsSpecial = isSpecial;
             Image = image;
             Status = true;
+        }
+
+        public void Update(string name, string family, string nationalCode, string mobile, bool isSpecial,bool status, byte[] image)
+        {
+            Name = name;
+            Family = family;
+            NationalCode = nationalCode;
+            Mobile = mobile;
+            IsSpecial = isSpecial;
+            Status = status;
+            Image = image;
         }
 
 

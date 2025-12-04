@@ -6,29 +6,105 @@ namespace LibraryManagementApplication
 {
     public class MemberService : IMemberService
     {
-        public Task<OperationResult> CreateAsync(MemberCreateModel command)
+        private readonly IMemberRepository _memberRepository;
+
+        public MemberService(IMemberRepository memberRepository)
         {
-            throw new NotImplementedException();
+            _memberRepository = memberRepository;
+        }
+        public async Task<OperationResult> CreateAsync(MemberCreateModel command)
+        {
+            OperationResult result = new();
+            try
+            {
+                if (await _memberRepository.ExistAsync(x => x.NationalCode == command.NationalCode))
+                    return result.Failed(ApplicationMessages.DublicateRecord);
+
+                var member = new Member(command.Name, command.Family, command.NationalCode,
+                    command.Mobile, command.IsSpecial, command.Image);
+
+                await _memberRepository.CreateAsync(member);
+                await _memberRepository.SavaChangesAsync();
+                return result.Succeded();
+            }
+            catch (Exception e)
+            {
+                return result.Failed(e.Message);
+            }
         }
 
-        public Task<List<MemberViewModel>> GetAllAsync()
+        public async Task<List<MemberViewModel>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var result = await _memberRepository.GetAllAsync();
+            return result.Select(x => new MemberViewModel()
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Family = x.Family,
+                NationalCode = x.NationalCode,
+                Mobile = x.Mobile,
+                IsSpecial = x.IsSpecial,
+                Status = x.Status,
+                Image = x.Image
+            }).ToList();
         }
 
-        public Task<MemberViewModel> GetByIdAsync(int id)
+        public async Task<MemberViewModel> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var result  = await _memberRepository.GetByIdAsync(id);
+            var member = new MemberViewModel()
+            {
+                Id = result.Id,
+                Name = result.Name,
+                Family = result.Family,
+                NationalCode = result.NationalCode,
+                Mobile = result.Mobile,
+                IsSpecial = result.IsSpecial,
+                Status = result.Status,
+                Image = result.Image
+            };
+            return member;
         }
 
-        public Task<List<MemberViewModel>> SearchAsync(int id, string? nationalCode)
+        public async Task<List<MemberViewModel>> SearchAsync(int id, string? nationalCode)
         {
-            throw new NotImplementedException();
+            var result = await _memberRepository.SearchAsync(id, nationalCode);
+            return result.Select(x => new MemberViewModel()
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Family = x.Family,
+                NationalCode = x.NationalCode,
+                Mobile = x.Mobile,
+                IsSpecial = x.IsSpecial,
+                Status = x.Status,
+                Image = x.Image
+            }).ToList();
         }
 
-        public Task<OperationResult> UpdateAsync(MemberUpdateModel command)
+        public async Task<OperationResult> UpdateAsync(MemberUpdateModel command)
         {
-            throw new NotImplementedException();
+            OperationResult result = new();
+            try
+            {
+                var member = await _memberRepository.GetByIdAsync(command.Id);
+                if (member is null)
+                    return result.Failed(ApplicationMessages.RecordNotFound);
+
+                if (await _memberRepository.ExistAsync(x => x.NationalCode == command.NationalCode && x.Id != command.Id))
+                    return result.Failed(ApplicationMessages.DublicateRecord);
+
+                member.Update(command.Name, command.Family, command.NationalCode,
+                    command.Mobile, command.IsSpecial, command.Status, command.Image);
+
+                _memberRepository.Update(member);
+                await _memberRepository.SavaChangesAsync();
+                return result.Succeded();
+            }
+            catch (Exception e)
+            {
+                return result.Failed(e.Message);
+            }
         }
     }
 }
