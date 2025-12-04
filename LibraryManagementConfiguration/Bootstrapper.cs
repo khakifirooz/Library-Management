@@ -7,6 +7,7 @@ using Library_Manegment_Domain.Entities.Books;
 using Library_Manegment_Domain.Entities.Loans;
 using Library_Manegment_Domain.Entities.Members;
 using LibraryManagementApplication;
+using LibraryManagementContracts.Member;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -21,6 +22,7 @@ namespace LibraryManagementConfiguration
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<IBookService, BookService>();
             services.AddScoped<IMemberRepository, MemberRepository>();
+            services.AddScoped<IMemberService, MemberService>();
             services.AddScoped<ILoanRepository, LoanRepository>();
             services.AddDbContext<LibraryMangementDbContext>(x =>
             x.UseSqlServer("Data Source=.; Initial Catalog = LibraryManagementDB; Integrated Security = True; encrypt = True; TrustServerCertificate = True;"));
