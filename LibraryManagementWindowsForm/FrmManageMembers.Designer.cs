@@ -67,6 +67,7 @@
             btn_search.TabIndex = 4;
             btn_search.Text = "جستحو";
             btn_search.UseVisualStyleBackColor = false;
+            btn_search.Click += btn_search_Click;
             // 
             // txt_search_national_code
             // 

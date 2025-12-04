@@ -37,5 +37,14 @@ namespace LibraryManagementWindowsForm
             dataGrid_members.Columns[6].HeaderText = "وضعیت";
             dataGrid_members.Columns[7].Visible = false;
         }
+
+        private async void btn_search_Click(object sender, EventArgs e)
+        {
+            var id = txt_search_id.Text == "" ? 0 : Convert.ToInt32(txt_search_id.Text);
+            var nationalCode = txt_search_national_code.Text;
+            dataGrid_members.DataBindings.Clear();
+            dataGrid_members.DataSource = await _memberService.SearchAsync(id, nationalCode);
+            SetColumns();
+        }
     }
 }
