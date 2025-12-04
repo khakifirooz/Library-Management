@@ -38,11 +38,11 @@
             txt_national_code = new TextBox();
             txt_mobile = new TextBox();
             checkBox_isSpecial = new CheckBox();
-            pictureBox1 = new PictureBox();
+            picture_member = new PictureBox();
             label6 = new Label();
-            button1 = new Button();
+            btn_save = new Button();
             button2 = new Button();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picture_member).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -106,8 +106,9 @@
             txt_name.BorderStyle = BorderStyle.FixedSingle;
             txt_name.Cursor = Cursors.IBeam;
             txt_name.Location = new Point(521, 65);
-            txt_name.Margin = new Padding(4, 4, 4, 4);
+            txt_name.Margin = new Padding(4);
             txt_name.Name = "txt_name";
+            txt_name.RightToLeft = RightToLeft.Yes;
             txt_name.Size = new Size(170, 33);
             txt_name.TabIndex = 5;
             // 
@@ -117,8 +118,9 @@
             txt_family.BorderStyle = BorderStyle.FixedSingle;
             txt_family.Cursor = Cursors.IBeam;
             txt_family.Location = new Point(521, 138);
-            txt_family.Margin = new Padding(4, 4, 4, 4);
+            txt_family.Margin = new Padding(4);
             txt_family.Name = "txt_family";
+            txt_family.RightToLeft = RightToLeft.Yes;
             txt_family.Size = new Size(170, 33);
             txt_family.TabIndex = 6;
             // 
@@ -128,8 +130,9 @@
             txt_national_code.BorderStyle = BorderStyle.FixedSingle;
             txt_national_code.Cursor = Cursors.IBeam;
             txt_national_code.Location = new Point(521, 216);
-            txt_national_code.Margin = new Padding(4, 4, 4, 4);
+            txt_national_code.Margin = new Padding(4);
             txt_national_code.Name = "txt_national_code";
+            txt_national_code.RightToLeft = RightToLeft.Yes;
             txt_national_code.Size = new Size(170, 33);
             txt_national_code.TabIndex = 7;
             // 
@@ -139,8 +142,9 @@
             txt_mobile.BorderStyle = BorderStyle.FixedSingle;
             txt_mobile.Cursor = Cursors.IBeam;
             txt_mobile.Location = new Point(521, 298);
-            txt_mobile.Margin = new Padding(4, 4, 4, 4);
+            txt_mobile.Margin = new Padding(4);
             txt_mobile.Name = "txt_mobile";
+            txt_mobile.RightToLeft = RightToLeft.Yes;
             txt_mobile.Size = new Size(170, 33);
             txt_mobile.TabIndex = 8;
             // 
@@ -150,51 +154,54 @@
             checkBox_isSpecial.BackColor = Color.Red;
             checkBox_isSpecial.Cursor = Cursors.Hand;
             checkBox_isSpecial.Location = new Point(668, 384);
-            checkBox_isSpecial.Margin = new Padding(4, 4, 4, 4);
+            checkBox_isSpecial.Margin = new Padding(4);
             checkBox_isSpecial.Name = "checkBox_isSpecial";
             checkBox_isSpecial.Size = new Size(18, 17);
             checkBox_isSpecial.TabIndex = 9;
             checkBox_isSpecial.UseVisualStyleBackColor = false;
             // 
-            // pictureBox1
+            // picture_member
             // 
-            pictureBox1.BorderStyle = BorderStyle.FixedSingle;
-            pictureBox1.Location = new Point(22, 65);
-            pictureBox1.Margin = new Padding(4, 4, 4, 4);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(320, 266);
-            pictureBox1.TabIndex = 10;
-            pictureBox1.TabStop = false;
+            picture_member.BorderStyle = BorderStyle.FixedSingle;
+            picture_member.Location = new Point(42, 65);
+            picture_member.Margin = new Padding(4);
+            picture_member.Name = "picture_member";
+            picture_member.Size = new Size(320, 266);
+            picture_member.SizeMode = PictureBoxSizeMode.StretchImage;
+            picture_member.TabIndex = 10;
+            picture_member.TabStop = false;
+            picture_member.Click += picture_member_Click;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(276, 20);
+            label6.Location = new Point(288, 35);
             label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
             label6.RightToLeft = RightToLeft.Yes;
-            label6.Size = new Size(76, 26);
+            label6.Size = new Size(74, 26);
             label6.TabIndex = 11;
-            label6.Text = "عکس کاربر :";
+            label6.Text = "عکس عضو :";
             // 
-            // button1
+            // btn_save
             // 
-            button1.BackColor = Color.Goldenrod;
-            button1.Font = new Font("B Nazanin", 12F);
-            button1.Location = new Point(562, 440);
-            button1.Margin = new Padding(4, 4, 4, 4);
-            button1.Name = "button1";
-            button1.Size = new Size(139, 38);
-            button1.TabIndex = 12;
-            button1.Text = "ذخیره";
-            button1.UseVisualStyleBackColor = false;
+            btn_save.BackColor = Color.Goldenrod;
+            btn_save.Font = new Font("B Nazanin", 12F);
+            btn_save.Location = new Point(562, 440);
+            btn_save.Margin = new Padding(4);
+            btn_save.Name = "btn_save";
+            btn_save.Size = new Size(139, 38);
+            btn_save.TabIndex = 12;
+            btn_save.Text = "ذخیره";
+            btn_save.UseVisualStyleBackColor = false;
+            btn_save.Click += btn_save_Click;
             // 
             // button2
             // 
             button2.BackColor = Color.Goldenrod;
             button2.Font = new Font("B Nazanin", 12F);
             button2.Location = new Point(213, 440);
-            button2.Margin = new Padding(4, 4, 4, 4);
+            button2.Margin = new Padding(4);
             button2.Name = "button2";
             button2.Size = new Size(139, 38);
             button2.TabIndex = 13;
@@ -209,9 +216,9 @@
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(884, 525);
             Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(btn_save);
             Controls.Add(label6);
-            Controls.Add(pictureBox1);
+            Controls.Add(picture_member);
             Controls.Add(checkBox_isSpecial);
             Controls.Add(txt_mobile);
             Controls.Add(txt_national_code);
@@ -222,14 +229,15 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
+            Cursor = Cursors.Hand;
             Font = new Font("B Nazanin", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 178);
-            Margin = new Padding(4, 4, 4, 4);
+            Margin = new Padding(4);
             Name = "FrmRegisterMember";
             RightToLeftLayout = true;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "ثبت کاربر";
+            Text = "ثبت عضو جدید";
             Load += FrmRegisterMember_Load;
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picture_member).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -246,9 +254,9 @@
         private TextBox txt_national_code;
         private TextBox txt_mobile;
         private CheckBox checkBox_isSpecial;
-        private PictureBox pictureBox1;
+        private PictureBox picture_member;
         private Label label6;
-        private Button button1;
+        private Button btn_save;
         private Button button2;
     }
 }

@@ -118,7 +118,7 @@
             button1.Name = "button1";
             button1.Size = new Size(175, 47);
             button1.TabIndex = 5;
-            button1.Text = "ویرایش کاربر";
+            button1.Text = "ویرایش عضو";
             button1.UseVisualStyleBackColor = false;
             // 
             // button2
@@ -131,7 +131,7 @@
             button2.Name = "button2";
             button2.Size = new Size(175, 47);
             button2.TabIndex = 6;
-            button2.Text = "ثبت کاربر";
+            button2.Text = "ثبت عضو";
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
@@ -140,6 +140,8 @@
             dataGrid_members.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGrid_members.Location = new Point(12, 217);
             dataGrid_members.Name = "dataGrid_members";
+            dataGrid_members.ReadOnly = true;
+            dataGrid_members.RightToLeft = RightToLeft.Yes;
             dataGrid_members.RowHeadersWidth = 51;
             dataGrid_members.Size = new Size(966, 314);
             dataGrid_members.TabIndex = 7;
