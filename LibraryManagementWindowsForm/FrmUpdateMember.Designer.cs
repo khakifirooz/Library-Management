@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button2 = new Button();
+            btn_close = new Button();
             btn_save = new Button();
             label6 = new Label();
             picture_member = new PictureBox();
@@ -49,17 +49,18 @@
             ((System.ComponentModel.ISupportInitialize)picture_member).BeginInit();
             SuspendLayout();
             // 
-            // button2
+            // btn_close
             // 
-            button2.BackColor = Color.Goldenrod;
-            button2.Font = new Font("B Nazanin", 12F);
-            button2.Location = new Point(216, 463);
-            button2.Margin = new Padding(4);
-            button2.Name = "button2";
-            button2.Size = new Size(139, 38);
-            button2.TabIndex = 8;
-            button2.Text = "بازگشت";
-            button2.UseVisualStyleBackColor = false;
+            btn_close.BackColor = Color.Goldenrod;
+            btn_close.Font = new Font("B Nazanin", 12F);
+            btn_close.Location = new Point(216, 463);
+            btn_close.Margin = new Padding(4);
+            btn_close.Name = "btn_close";
+            btn_close.Size = new Size(139, 38);
+            btn_close.TabIndex = 8;
+            btn_close.Text = "بازگشت";
+            btn_close.UseVisualStyleBackColor = false;
+            btn_close.Click += btn_close_Click;
             // 
             // btn_save
             // 
@@ -72,6 +73,7 @@
             btn_save.TabIndex = 7;
             btn_save.Text = "ذخیره";
             btn_save.UseVisualStyleBackColor = false;
+            btn_save.Click += btn_save_Click;
             // 
             // label6
             // 
@@ -266,7 +268,7 @@
             Controls.Add(label7);
             Controls.Add(txt_id);
             Controls.Add(label1);
-            Controls.Add(button2);
+            Controls.Add(btn_close);
             Controls.Add(btn_save);
             Controls.Add(label6);
             Controls.Add(picture_member);
@@ -281,10 +283,11 @@
             Controls.Add(label2);
             Font = new Font("B Nazanin", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 178);
             ForeColor = SystemColors.ControlText;
-            Margin = new Padding(4, 4, 4, 4);
+            Margin = new Padding(4);
             Name = "FrmUpdateMember";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ویرایش عضو";
+            Load += FrmUpdateMember_Load;
             ((System.ComponentModel.ISupportInitialize)picture_member).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -292,7 +295,7 @@
 
         #endregion
 
-        private Button button2;
+        private Button btn_close;
         private Button btn_save;
         private Label label6;
         private PictureBox picture_member;
