@@ -13,6 +13,12 @@ namespace ClassLibraryInfrastructure.Repositories
             _context = context;
         }
 
+        public Task<Member?> GetMemberWithLoanByIdAsync(int id)
+        {
+            return _context.Members.Include(x => x.Loans)
+                .ThenInclude(x => x.Book).FirstOrDefaultAsync(x => x.Id == id);
+        }
+
         public async Task<List<Member>> SearchAsync(int id, string? nationalCode)
         {
             if (id == 0 && string.IsNullOrWhiteSpace(nationalCode))

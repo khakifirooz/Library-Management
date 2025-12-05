@@ -9,5 +9,6 @@ namespace LibraryManagementContracts.Member
         Task<MemberViewModel> GetByIdAsync(int id);
         Task<List<MemberViewModel>> GetAllAsync();
         Task<List<MemberViewModel>> SearchAsync(int id, string? nationalCode);
+        Task<MemberViewModel> GetMemberWithLoanByIdAsync(int id);
     }
 }

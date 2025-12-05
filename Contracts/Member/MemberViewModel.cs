@@ -1,4 +1,6 @@
-﻿namespace LibraryManagementContracts.Member
+﻿using LibraryManagementContracts.Loan;
+
+namespace LibraryManagementContracts.Member
 {
     public class MemberViewModel
     {
@@ -10,5 +12,6 @@
         public bool IsSpecial { get; set; }
         public bool Status { get; set; }
         public byte[] Image { get; set; }
+        public List<LoanViewModel> Loans { get; set; }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using FrameworkApplication;
+using Library_Manegment_Domain.Entities.Loans;
 using Library_Manegment_Domain.Entities.Members;
+using LibraryManagementContracts.Loan;
 using LibraryManagementContracts.Member;
 
 namespace LibraryManagementApplication
@@ -51,7 +53,7 @@ namespace LibraryManagementApplication
 
         public async Task<MemberViewModel> GetByIdAsync(int id)
         {
-            var result  = await _memberRepository.GetByIdAsync(id);
+            var result = await _memberRepository.GetByIdAsync(id);
             var member = new MemberViewModel()
             {
                 Id = result.Id,
@@ -64,6 +66,42 @@ namespace LibraryManagementApplication
                 Image = result.Image
             };
             return member;
+        }
+
+        public async Task<MemberViewModel> GetMemberWithLoanByIdAsync(int id)
+        {
+            var member = await _memberRepository.GetMemberWithLoanByIdAsync(id);
+            if (member is null)
+                new MemberViewModel();
+
+            var memberViewModel = new MemberViewModel()
+            {
+                Id = member.Id,
+                Name = member.Name,
+                Family = member.Family,
+                NationalCode = member.NationalCode,
+                Mobile = member.Mobile,
+                IsSpecial = member.IsSpecial,
+                Status = member.Status,
+                Image = member.Image,
+                Loans = MapLoans(member.Loans)
+            };
+            return memberViewModel;
+        }
+
+        public static List<LoanViewModel> MapLoans(List<Loan> loans)
+        {
+            return loans.Select(loan => new LoanViewModel()
+            {
+                Id = loan.Id,
+                MemberId = loan.MemberId,
+                MemberName = $"{loan.Member.Name} {loan.Member.Family}",
+                BookId = loan.BookId,
+                BookName = loan.Book.Title,
+                LoanDate = loan.LoanDate,
+                ReturnDate = loan.ReturnDate,
+                Status = loan.Status,
+            }).ToList();
         }
 
         public async Task<List<MemberViewModel>> SearchAsync(int id, string? nationalCode)
