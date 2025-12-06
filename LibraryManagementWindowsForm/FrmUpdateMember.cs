@@ -36,6 +36,15 @@ namespace LibraryManagementWindowsForm
 
         private async void btn_save_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txt_name.Text) ||
+                  string.IsNullOrWhiteSpace(txt_family.Text) ||
+                  string.IsNullOrWhiteSpace(txt_mobile.Text) ||
+                  string.IsNullOrWhiteSpace(txt_national_code.Text) ||
+                  picture_member.Image == null)
+            {
+                MessageBox.Show("حتما همه مقادیر را پر کنید");
+                return;
+            }
             MemoryStream stream = new MemoryStream();
             picture_member.Image.Save(stream, picture_member.Image.RawFormat);
             var image = stream.GetBuffer();

@@ -88,7 +88,7 @@ namespace LibraryManagementApplication
                 IsSpecial = member.IsSpecial,
                 Status = member.Status,
                 Image = member.Image,
-                Loans = MapLoans(member.Loans)
+                Loans = MapLoans(member.Loans),
             };
             return memberViewModel;
         }

@@ -21,6 +21,11 @@ namespace LibraryManagementWindowsForm
         private async void btn_reneview_Click(object sender, EventArgs e)
         {
             var memberId = txt_search_id.Text == "" ? 0 : Convert.ToInt32(txt_search_id.Text);
+            if (memberId == 0 )
+            {
+                MessageBox.Show("وارد کردن شماره عضویت اجباری است");
+                return;
+            }
             var result = await _memberService.GetMemberWithLoanByIdAsync(memberId);
             txt_family.Text = result.Name + " " + result.Family;
             checkBox_isSpecial.Checked = result.IsSpecial;
