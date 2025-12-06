@@ -1,6 +1,5 @@
-﻿using Contracts.Book;
-using FrameworkApplication;
-using Library_Manegment_Domain.Entities.Books;
+﻿using FrameworkApplication;
+using Library_Manegment_Domain.Common;
 using Library_Manegment_Domain.Entities.Loans;
 using Library_Manegment_Domain.Entities.Members;
 using LibraryManagementContracts.Loan;
@@ -10,27 +9,28 @@ namespace LibraryManagementApplication
 {
     public class MemberService : IMemberService
     {
-        private readonly IMemberRepository _memberRepository;
-        private readonly IBookRepository _bookRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public MemberService(IMemberRepository memberRepository, IBookRepository bookRepository)
+        //private readonly IMemberRepository _memberRepository;
+        //private readonly IBookRepository _bookRepository;
+
+        public MemberService(IUnitOfWork unitOfWork)
         {
-            _memberRepository = memberRepository;
-            _bookRepository = bookRepository;
+            _unitOfWork = unitOfWork;
         }
         public async Task<OperationResult> CreateAsync(MemberCreateModel command)
         {
             OperationResult result = new();
             try
             {
-                if (await _memberRepository.ExistAsync(x => x.NationalCode == command.NationalCode))
+                if (await _unitOfWork.MemberRepository.ExistAsync(x => x.NationalCode == command.NationalCode))
                     return result.Failed(ApplicationMessages.DublicateRecord);
 
                 var member = new Member(command.Name, command.Family, command.NationalCode,
                     command.Mobile, command.IsSpecial, command.Image);
 
-                await _memberRepository.CreateAsync(member);
-                await _memberRepository.SavaChangesAsync();
+                await _unitOfWork.MemberRepository.CreateAsync(member);
+                await _unitOfWork.SaveChangesAsync(); 
                 return result.Succeded();
             }
             catch (Exception e)
@@ -41,7 +41,7 @@ namespace LibraryManagementApplication
 
         public async Task<List<MemberViewModel>> GetAllAsync()
         {
-            var result = await _memberRepository.GetAllAsync();
+            var result = await _unitOfWork.MemberRepository.GetAllAsync();
             return result.Select(x => new MemberViewModel()
             {
                 Id = x.Id,
@@ -57,7 +57,7 @@ namespace LibraryManagementApplication
 
         public async Task<MemberViewModel> GetByIdAsync(int id)
         {
-            var result = await _memberRepository.GetByIdAsync(id);
+            var result = await _unitOfWork.MemberRepository.GetByIdAsync(id);
             var member = new MemberViewModel()
             {
                 Id = result.Id,
@@ -74,7 +74,7 @@ namespace LibraryManagementApplication
 
         public async Task<MemberViewModel> GetMemberWithLoanByIdAsync(int id)
         {
-            var member = await _memberRepository.GetMemberWithLoanByIdAsync(id);
+            var member = await _unitOfWork.MemberRepository.GetMemberWithLoanByIdAsync(id);
             if (member is null)
                 new MemberViewModel();
 
@@ -110,7 +110,7 @@ namespace LibraryManagementApplication
 
         public async Task<List<MemberViewModel>> SearchAsync(int id, string? nationalCode)
         {
-            var result = await _memberRepository.SearchAsync(id, nationalCode);
+            var result = await _unitOfWork.MemberRepository.SearchAsync(id, nationalCode);
             return result.Select(x => new MemberViewModel()
             {
                 Id = x.Id,
@@ -129,18 +129,18 @@ namespace LibraryManagementApplication
             OperationResult result = new();
             try
             {
-                var member = await _memberRepository.GetByIdAsync(command.Id);
+                var member = await _unitOfWork.MemberRepository.GetByIdAsync(command.Id);
                 if (member is null)
                     return result.Failed(ApplicationMessages.RecordNotFound);
 
-                if (await _memberRepository.ExistAsync(x => x.NationalCode == command.NationalCode && x.Id != command.Id))
+                if (await _unitOfWork.MemberRepository.ExistAsync(x => x.NationalCode == command.NationalCode && x.Id != command.Id))
                     return result.Failed(ApplicationMessages.DublicateRecord);
 
                 member.Update(command.Name, command.Family, command.NationalCode,
                     command.Mobile, command.IsSpecial, command.Status, command.Image);
 
-                _memberRepository.Update(member);
-                await _memberRepository.SavaChangesAsync();
+                _unitOfWork.MemberRepository.Update(member);
+                await _unitOfWork.SaveChangesAsync();
                 return result.Succeded();
             }
             catch (Exception e)
@@ -154,25 +154,27 @@ namespace LibraryManagementApplication
             OperationResult result = new();
             try
             {
-                var member = await _memberRepository.GetByIdAsync(command.MemberId);
+                await _unitOfWork.BeginTransactionAsync();
+                var member = await _unitOfWork.MemberRepository.GetByIdAsync(command.MemberId);
                 if (member is null)
                     result.Failed(ApplicationMessages.RecordNotFound);
 
                 var loan = new Loan(command.MemberId, command.BookId, command.LoanDate, command.ReturnDate);
                 member.addLoan(loan);
 
-                var book = await _bookRepository.GetByIdAsync(command.BookId);
+                var book = await _unitOfWork.BookRepository.GetByIdAsync(command.BookId);
                 if (book is null)
                     result.Failed(ApplicationMessages.RecordNotFound);
 
                 book.Loaned();
-                await _memberRepository.SavaChangesAsync();
+                await _unitOfWork.SaveChangesAsync();
+                await _unitOfWork.CommitTransactionAsync();
                 return result.Succeded();
 
             }
             catch (Exception e)
             {
-
+                await _unitOfWork.RollBackTrasactionAsync();
                 return result.Failed(e.Message);
             }
         }

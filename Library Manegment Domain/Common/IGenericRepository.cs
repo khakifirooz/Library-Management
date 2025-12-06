@@ -10,6 +10,7 @@ namespace Library_Manegment_Domain.Common
         Task<T> GetByIdAsync(TKey id);
         Task<List<T>> GetAllAsync();
         Task<bool> ExistAsync(Expression<Func<T, bool>> predicate);
-        Task SavaChangesAsync();
+
+      //  Task SavaChangesAsync();  => move to unit of work
     }
 }

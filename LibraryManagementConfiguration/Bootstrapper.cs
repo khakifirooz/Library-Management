@@ -19,11 +19,15 @@ namespace LibraryManagementConfiguration
         {
             // هرکسی که یک پیاده سازی از این خواست یک اینستنس از جنریک ریپازیتوری بهش بده
             services.AddScoped(typeof (IGenericRepository<,>), typeof(GenericRepository<,>));
-            services.AddScoped<IBookRepository, BookRepository>();
+          //  services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<IBookService, BookService>();
-            services.AddScoped<IMemberRepository, MemberRepository>();
+         // services.AddScoped<IMemberRepository, MemberRepository>();
             services.AddScoped<IMemberService, MemberService>();
-            services.AddScoped<ILoanRepository, LoanRepository>();
+         //   services.AddScoped<ILoanRepository, LoanRepository>();
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>(); // unit of work
+
+
             services.AddDbContext<LibraryMangementDbContext>(x =>
             x.UseSqlServer("Data Source=.; Initial Catalog = LibraryManagementDB; Integrated Security = True; encrypt = True; TrustServerCertificate = True;"));
             return services;

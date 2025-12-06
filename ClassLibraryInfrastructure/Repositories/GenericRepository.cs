@@ -32,10 +32,10 @@ namespace ClassLibraryInfrastructure.Repositories
             return await _context.Set<T>().FindAsync(id);
         }
 
-        public async Task SavaChangesAsync()
-        {
-            await _context.SaveChangesAsync();
-        }
+        //public async Task SavaChangesAsync()      // moved to unit of work
+        //{
+        //    await _context.SaveChangesAsync();
+        //}
 
         public void Update(T entity)
         {
