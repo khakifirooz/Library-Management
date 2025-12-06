@@ -7,4 +7,12 @@
             
         }
     }
+
+    public class MemberIsInactiveException : Exception
+    {
+        public MemberIsInactiveException() : base($"امانت کتاب به عضو غیر فعال امکان پذیر نمیباشد!")
+        {
+
+        }
+    }
 }

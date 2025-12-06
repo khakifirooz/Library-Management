@@ -35,5 +35,10 @@ namespace Library_Manegment_Domain.Entities.Books
         {
             IsDeleted = true;
         }
+
+        public void Loaned()
+        {
+            IsLoaned = true;
+        }
     }
 }

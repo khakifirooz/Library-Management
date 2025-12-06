@@ -1,4 +1,6 @@
-﻿using FrameworkApplication;
+﻿using Contracts.Book;
+using FrameworkApplication;
+using Library_Manegment_Domain.Entities.Books;
 using Library_Manegment_Domain.Entities.Loans;
 using Library_Manegment_Domain.Entities.Members;
 using LibraryManagementContracts.Loan;
@@ -9,10 +11,12 @@ namespace LibraryManagementApplication
     public class MemberService : IMemberService
     {
         private readonly IMemberRepository _memberRepository;
+        private readonly IBookRepository _bookRepository;
 
-        public MemberService(IMemberRepository memberRepository)
+        public MemberService(IMemberRepository memberRepository, IBookRepository bookRepository)
         {
             _memberRepository = memberRepository;
+            _bookRepository = bookRepository;
         }
         public async Task<OperationResult> CreateAsync(MemberCreateModel command)
         {
@@ -141,6 +145,34 @@ namespace LibraryManagementApplication
             }
             catch (Exception e)
             {
+                return result.Failed(e.Message);
+            }
+        }
+
+        public async Task<OperationResult> AddLoanAsync(LoanCreateModel command)
+        {
+            OperationResult result = new();
+            try
+            {
+                var member = await _memberRepository.GetByIdAsync(command.MemberId);
+                if (member is null)
+                    result.Failed(ApplicationMessages.RecordNotFound);
+
+                var loan = new Loan(command.MemberId, command.BookId, command.LoanDate, command.ReturnDate);
+                member.addLoan(loan);
+
+                var book = await _bookRepository.GetByIdAsync(command.BookId);
+                if (book is null)
+                    result.Failed(ApplicationMessages.RecordNotFound);
+
+                book.Loaned();
+                await _memberRepository.SavaChangesAsync();
+                return result.Succeded();
+
+            }
+            catch (Exception e)
+            {
+
                 return result.Failed(e.Message);
             }
         }

@@ -1,4 +1,5 @@
 ﻿using FrameworkApplication;
+using LibraryManagementContracts.Loan;
 
 namespace LibraryManagementContracts.Member
 {
@@ -6,6 +7,7 @@ namespace LibraryManagementContracts.Member
     {
         Task<OperationResult> CreateAsync(MemberCreateModel command);
         Task<OperationResult> UpdateAsync(MemberUpdateModel command);
+        Task<OperationResult> AddLoanAsync(LoanCreateModel command);
         Task<MemberViewModel> GetByIdAsync(int id);
         Task<List<MemberViewModel>> GetAllAsync();
         Task<List<MemberViewModel>> SearchAsync(int id, string? nationalCode);

@@ -41,9 +41,11 @@ namespace Library_Manegment_Domain.Entities.Members
 
         public void addLoan(Loan loan)
         {
-            if (IsSpecial == false && Loans.Count == 3)
+            if (Status == false)
+                throw new MemberIsInactiveException();
+            if (IsSpecial == false && Loans.Count >= 3)
                 throw new NotAllowExeption(Loans.Count);
-            if (IsSpecial == true && Loans.Count == 5)
+            if (IsSpecial == true && Loans.Count >= 5)
                 throw new NotAllowExeption(Loans.Count);
             Loans.Add(loan);
         }

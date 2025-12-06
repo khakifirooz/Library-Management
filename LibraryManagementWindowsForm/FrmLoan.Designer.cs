@@ -196,6 +196,7 @@
             // btn_save
             // 
             btn_save.BackColor = Color.White;
+            btn_save.Enabled = false;
             btn_save.FlatAppearance.BorderColor = Color.IndianRed;
             btn_save.FlatAppearance.BorderSize = 2;
             btn_save.FlatStyle = FlatStyle.Flat;
@@ -207,6 +208,7 @@
             btn_save.TabIndex = 9;
             btn_save.Text = "ثبت امانت";
             btn_save.UseVisualStyleBackColor = false;
+            btn_save.Click += btn_save_Click;
             // 
             // dateTimePicker_return
             // 

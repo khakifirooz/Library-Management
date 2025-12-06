@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Threading.Tasks;
 using Contracts.Book;
+using FrameworkApplication;
+using LibraryManagementContracts.Loan;
 using LibraryManagementContracts.Member;
 
 namespace LibraryManagementWindowsForm
@@ -43,6 +37,7 @@ namespace LibraryManagementWindowsForm
             dataGridView_loans.Columns[5].HeaderText = "تاریخ امانت";
             dataGridView_loans.Columns[6].HeaderText = "تاریخ تحویل";
             dataGridView_loans.Columns[7].HeaderText = "وضعیت";
+            btn_reneview.Enabled = true;
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -60,6 +55,25 @@ namespace LibraryManagementWindowsForm
             comboBox_books.DataSource = await _bookService.GetExistForComboAsync();
             comboBox_books.DisplayMember = "Title";
             comboBox_books.ValueMember = "Id";
+        }
+
+        private async void btn_save_Click(object sender, EventArgs e)
+        {
+            var loan = new LoanCreateModel()
+            {
+                MemberId = txt_search_id.Text == "" ? 0 : Convert.ToInt32(txt_search_id.Text),
+                BookId = Convert.ToInt32(comboBox_books.SelectedValue),
+                LoanDate = dateTimePicker_loan.Text.ConvertShamsiDateToMilady(),
+                ReturnDate = dateTimePicker_return.Text.ConvertShamsiDateToMilady()
+            };
+
+            var result = await _memberService.AddLoanAsync(loan);
+            MessageBox.Show(result.Message);
+
+            comboBox_books.DataSource = await _bookService.GetExistForComboAsync();
+            comboBox_books.DisplayMember = "Title";
+            comboBox_books.ValueMember = "Id";
+            btn_reneview_Click(null, null);
         }
     }
 }
