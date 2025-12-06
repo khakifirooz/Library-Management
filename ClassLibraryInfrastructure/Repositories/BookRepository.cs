@@ -21,5 +21,10 @@ namespace ClassLibraryInfrastructure.Repositories
         {
             return await _context.Books.Where(x => x.Title.Contains(title) && x.IsDeleted == false).ToListAsync();
         }
+
+        public Task<List<Book>> GetExistForComboAsync()
+        {
+            return _context.Books.Where(x => x.IsLoaned == false && x.IsDeleted == false).ToListAsync();
+        }
     }
 }

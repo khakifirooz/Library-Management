@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
-            dataGridView1 = new DataGridView();
+            dataGridView_loans = new DataGridView();
             txt_family = new TextBox();
             label2 = new Label();
             checkBox_isSpecial = new CheckBox();
@@ -47,14 +47,14 @@
             comboBox_books = new ComboBox();
             label3 = new Label();
             groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView_loans).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox_member).BeginInit();
             groupBox2.SuspendLayout();
             SuspendLayout();
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(dataGridView1);
+            groupBox1.Controls.Add(dataGridView_loans);
             groupBox1.Controls.Add(txt_family);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(checkBox_isSpecial);
@@ -72,15 +72,17 @@
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "جستجوی عضو";
+            groupBox1.Enter += groupBox1_Enter;
             // 
-            // dataGridView1
+            // dataGridView_loans
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(8, 239);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(784, 207);
-            dataGridView1.TabIndex = 8;
+            dataGridView_loans.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView_loans.Location = new Point(8, 239);
+            dataGridView_loans.Name = "dataGridView_loans";
+            dataGridView_loans.RowHeadersWidth = 51;
+            dataGridView_loans.Size = new Size(784, 207);
+            dataGridView_loans.TabIndex = 8;
+            dataGridView_loans.CellContentClick += dataGridView_loans_CellContentClick;
             // 
             // txt_family
             // 
@@ -90,6 +92,7 @@
             txt_family.MaxLength = 10;
             txt_family.Multiline = true;
             txt_family.Name = "txt_family";
+            txt_family.ReadOnly = true;
             txt_family.Size = new Size(170, 39);
             txt_family.TabIndex = 7;
             // 
@@ -106,6 +109,7 @@
             // checkBox_isSpecial
             // 
             checkBox_isSpecial.AutoSize = true;
+            checkBox_isSpecial.Enabled = false;
             checkBox_isSpecial.Location = new Point(563, 187);
             checkBox_isSpecial.Name = "checkBox_isSpecial";
             checkBox_isSpecial.RightToLeft = RightToLeft.No;
@@ -117,6 +121,7 @@
             // checkBox_status
             // 
             checkBox_status.AutoSize = true;
+            checkBox_status.Enabled = false;
             checkBox_status.Location = new Point(698, 187);
             checkBox_status.Name = "checkBox_status";
             checkBox_status.RightToLeft = RightToLeft.No;
@@ -270,10 +275,12 @@
             Font = new Font("B Nazanin", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 178);
             Margin = new Padding(4);
             Name = "FrmLoan";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "مدیریت امانات";
+            Load += FrmLoan_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView_loans).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox_member).EndInit();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
@@ -289,7 +296,7 @@
         private PictureBox pictureBox_member;
         private CheckBox checkBox_status;
         private CheckBox checkBox_isSpecial;
-        private DataGridView dataGridView1;
+        private DataGridView dataGridView_loans;
         private TextBox txt_family;
         private Label label2;
         private GroupBox groupBox2;

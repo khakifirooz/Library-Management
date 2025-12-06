@@ -11,5 +11,6 @@ namespace Contracts.Book
         Task<BookDTO> GetByIdAsync(int id);
         Task<List<BookDTO>> GetAllAsync();
         Task<List<BookDTO>> GetByTitleAsync(string title);
+        Task<List<BookForComboDTO>> GetExistForComboAsync();
     }
 }

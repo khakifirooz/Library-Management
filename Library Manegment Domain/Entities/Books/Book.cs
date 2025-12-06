@@ -9,7 +9,8 @@ namespace Library_Manegment_Domain.Entities.Books
         public string Author { get; private set; }
         public string Language { get; private set; }
         public byte[] Image { get; private set; }
-        public bool IsDeleted { get; set; }
+        public bool IsDeleted { get; private set; }
+        public bool IsLoaned { get; private set; }
         public List<Loan> Loans { get; private set; }
 
         public Book(string title, string author, string language, byte[] image)

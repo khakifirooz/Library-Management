@@ -6,5 +6,6 @@ namespace Library_Manegment_Domain.Entities.Books
     {
         Task<List<Book>> GetByTitleAsync(string title);
         Task<List<Book>> GetAllWithoutDeleted();
+        Task<List<Book>> GetExistForComboAsync();
     }
 }

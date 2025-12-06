@@ -97,6 +97,16 @@ namespace LibraryManagementApplication
             }).ToList();
         }
 
+        public async Task<List<BookForComboDTO>> GetExistForComboAsync()
+        {
+            var book = await _bookRepository.GetExistForComboAsync();
+            return book.Select(x => new BookForComboDTO()
+            {
+                Id = x.Id,
+                Title = x.Title
+            }).ToList();
+        }
+
         public async Task<OperationResult> UpdateAsync(BookDTO command)
         {
             OperationResult result = new();
