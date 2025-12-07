@@ -32,6 +32,7 @@ namespace LibraryManagementWindowsForm
                 services.AddTransient<FrmRegisterMember>();
                 services.AddTransient<FrmUpdateMember>();
                 services.AddTransient<FrmLoan>();
+
                 // ....
             });
         }

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            pictureBox1 = new PictureBox();
             dataGridView_loans = new DataGridView();
             txt_family = new TextBox();
             label2 = new Label();
@@ -46,14 +47,25 @@
             label4 = new Label();
             comboBox_books = new ComboBox();
             label3 = new Label();
+            groupBox3 = new GroupBox();
+            btn_return_save = new Button();
+            dateTimePicker_returnBack = new DateTimePicker();
+            dateTimePicker_ExpiredTime = new DateTimePicker();
+            label6 = new Label();
+            label7 = new Label();
+            comboBox_Book_return = new ComboBox();
+            label8 = new Label();
             groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView_loans).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox_member).BeginInit();
             groupBox2.SuspendLayout();
+            groupBox3.SuspendLayout();
             SuspendLayout();
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(pictureBox1);
             groupBox1.Controls.Add(dataGridView_loans);
             groupBox1.Controls.Add(txt_family);
             groupBox1.Controls.Add(label2);
@@ -68,38 +80,49 @@
             groupBox1.Name = "groupBox1";
             groupBox1.Padding = new Padding(4);
             groupBox1.RightToLeft = RightToLeft.Yes;
-            groupBox1.Size = new Size(792, 453);
+            groupBox1.Size = new Size(1009, 453);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "جستجوی عضو";
             groupBox1.Enter += groupBox1_Enter;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.download__1_;
+            pictureBox1.Location = new Point(15, 33);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(286, 200);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 9;
+            pictureBox1.TabStop = false;
+            // 
             // dataGridView_loans
             // 
             dataGridView_loans.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView_loans.Location = new Point(8, 239);
+            dataGridView_loans.Location = new Point(15, 239);
             dataGridView_loans.Name = "dataGridView_loans";
             dataGridView_loans.RowHeadersWidth = 51;
-            dataGridView_loans.Size = new Size(784, 207);
+            dataGridView_loans.Size = new Size(987, 207);
             dataGridView_loans.TabIndex = 8;
+            dataGridView_loans.CellClick += dataGridView_loans_CellClick;
             dataGridView_loans.CellContentClick += dataGridView_loans_CellContentClick;
             // 
             // txt_family
             // 
             txt_family.BackColor = SystemColors.Info;
-            txt_family.Location = new Point(507, 128);
+            txt_family.Location = new Point(735, 129);
             txt_family.Margin = new Padding(4);
             txt_family.MaxLength = 10;
             txt_family.Multiline = true;
             txt_family.Name = "txt_family";
             txt_family.ReadOnly = true;
-            txt_family.Size = new Size(170, 39);
+            txt_family.Size = new Size(163, 39);
             txt_family.TabIndex = 7;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(718, 131);
+            label2.Location = new Point(946, 132);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
             label2.Size = new Size(52, 26);
@@ -110,7 +133,7 @@
             // 
             checkBox_isSpecial.AutoSize = true;
             checkBox_isSpecial.Enabled = false;
-            checkBox_isSpecial.Location = new Point(563, 187);
+            checkBox_isSpecial.Location = new Point(791, 188);
             checkBox_isSpecial.Name = "checkBox_isSpecial";
             checkBox_isSpecial.RightToLeft = RightToLeft.No;
             checkBox_isSpecial.Size = new Size(80, 30);
@@ -122,7 +145,7 @@
             // 
             checkBox_status.AutoSize = true;
             checkBox_status.Enabled = false;
-            checkBox_status.Location = new Point(698, 187);
+            checkBox_status.Location = new Point(926, 188);
             checkBox_status.Name = "checkBox_status";
             checkBox_status.RightToLeft = RightToLeft.No;
             checkBox_status.Size = new Size(72, 30);
@@ -132,9 +155,9 @@
             // 
             // pictureBox_member
             // 
-            pictureBox_member.Location = new Point(7, 33);
+            pictureBox_member.Location = new Point(307, 33);
             pictureBox_member.Name = "pictureBox_member";
-            pictureBox_member.Size = new Size(248, 183);
+            pictureBox_member.Size = new Size(257, 199);
             pictureBox_member.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox_member.TabIndex = 3;
             pictureBox_member.TabStop = false;
@@ -142,18 +165,18 @@
             // txt_search_id
             // 
             txt_search_id.BackColor = SystemColors.Info;
-            txt_search_id.Location = new Point(507, 33);
+            txt_search_id.Location = new Point(735, 34);
             txt_search_id.Margin = new Padding(4);
             txt_search_id.MaxLength = 10;
             txt_search_id.Multiline = true;
             txt_search_id.Name = "txt_search_id";
-            txt_search_id.Size = new Size(170, 39);
+            txt_search_id.Size = new Size(163, 39);
             txt_search_id.TabIndex = 2;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(677, 40);
+            label1.Location = new Point(905, 41);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
             label1.Size = new Size(93, 26);
@@ -167,10 +190,10 @@
             btn_reneview.FlatAppearance.BorderSize = 2;
             btn_reneview.FlatStyle = FlatStyle.Flat;
             btn_reneview.Font = new Font("B Nazanin", 12F, FontStyle.Regular, GraphicsUnit.Point, 178);
-            btn_reneview.Location = new Point(365, 33);
+            btn_reneview.Location = new Point(593, 34);
             btn_reneview.Margin = new Padding(4);
             btn_reneview.Name = "btn_reneview";
-            btn_reneview.Size = new Size(112, 39);
+            btn_reneview.Size = new Size(105, 39);
             btn_reneview.TabIndex = 0;
             btn_reneview.Text = "بازیابی";
             btn_reneview.UseVisualStyleBackColor = false;
@@ -185,10 +208,10 @@
             groupBox2.Controls.Add(label4);
             groupBox2.Controls.Add(comboBox_books);
             groupBox2.Controls.Add(label3);
-            groupBox2.Location = new Point(300, 455);
+            groupBox2.Location = new Point(524, 463);
             groupBox2.Name = "groupBox2";
             groupBox2.RightToLeft = RightToLeft.Yes;
-            groupBox2.Size = new Size(496, 221);
+            groupBox2.Size = new Size(498, 213);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             groupBox2.Text = "امانت کتاب";
@@ -255,6 +278,7 @@
             comboBox_books.Name = "comboBox_books";
             comboBox_books.Size = new Size(250, 34);
             comboBox_books.TabIndex = 10;
+            comboBox_books.SelectedIndexChanged += comboBox_books_SelectedIndexChanged;
             // 
             // label3
             // 
@@ -266,12 +290,104 @@
             label3.TabIndex = 9;
             label3.Text = "نام کتاب :";
             // 
+            // groupBox3
+            // 
+            groupBox3.Controls.Add(btn_return_save);
+            groupBox3.Controls.Add(dateTimePicker_returnBack);
+            groupBox3.Controls.Add(dateTimePicker_ExpiredTime);
+            groupBox3.Controls.Add(label6);
+            groupBox3.Controls.Add(label7);
+            groupBox3.Controls.Add(comboBox_Book_return);
+            groupBox3.Controls.Add(label8);
+            groupBox3.Location = new Point(12, 463);
+            groupBox3.Name = "groupBox3";
+            groupBox3.RightToLeft = RightToLeft.Yes;
+            groupBox3.Size = new Size(506, 213);
+            groupBox3.TabIndex = 15;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "امانت کتاب";
+            // 
+            // btn_return_save
+            // 
+            btn_return_save.BackColor = Color.White;
+            btn_return_save.Enabled = false;
+            btn_return_save.FlatAppearance.BorderColor = Color.IndianRed;
+            btn_return_save.FlatAppearance.BorderSize = 2;
+            btn_return_save.FlatStyle = FlatStyle.Flat;
+            btn_return_save.Font = new Font("B Nazanin", 12F, FontStyle.Regular, GraphicsUnit.Point, 178);
+            btn_return_save.Location = new Point(7, 46);
+            btn_return_save.Margin = new Padding(4);
+            btn_return_save.Name = "btn_return_save";
+            btn_return_save.Size = new Size(112, 39);
+            btn_return_save.TabIndex = 9;
+            btn_return_save.Text = "تحویل امانت";
+            btn_return_save.UseVisualStyleBackColor = false;
+            btn_return_save.Click += button1_Click;
+            // 
+            // dateTimePicker_returnBack
+            // 
+            dateTimePicker_returnBack.Font = new Font("Book Antiqua", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dateTimePicker_returnBack.Format = DateTimePickerFormat.Short;
+            dateTimePicker_returnBack.Location = new Point(140, 160);
+            dateTimePicker_returnBack.Name = "dateTimePicker_returnBack";
+            dateTimePicker_returnBack.Size = new Size(250, 29);
+            dateTimePicker_returnBack.TabIndex = 14;
+            // 
+            // dateTimePicker_ExpiredTime
+            // 
+            dateTimePicker_ExpiredTime.Font = new Font("Book Antiqua", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dateTimePicker_ExpiredTime.Format = DateTimePickerFormat.Short;
+            dateTimePicker_ExpiredTime.Location = new Point(140, 106);
+            dateTimePicker_ExpiredTime.Name = "dateTimePicker_ExpiredTime";
+            dateTimePicker_ExpiredTime.Size = new Size(250, 29);
+            dateTimePicker_ExpiredTime.TabIndex = 13;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(413, 165);
+            label6.Margin = new Padding(4, 0, 4, 0);
+            label6.Name = "label6";
+            label6.Size = new Size(83, 26);
+            label6.TabIndex = 12;
+            label6.Text = "تاریخ تحویل :";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(388, 109);
+            label7.Margin = new Padding(4, 0, 4, 0);
+            label7.Name = "label7";
+            label7.Size = new Size(108, 26);
+            label7.TabIndex = 11;
+            label7.Text = "تاریخ اتمام مهلت :";
+            // 
+            // comboBox_Book_return
+            // 
+            comboBox_Book_return.FormattingEnabled = true;
+            comboBox_Book_return.Location = new Point(140, 46);
+            comboBox_Book_return.Name = "comboBox_Book_return";
+            comboBox_Book_return.Size = new Size(250, 34);
+            comboBox_Book_return.TabIndex = 10;
+            comboBox_Book_return.SelectedIndexChanged += comboBox_Book_return_SelectedIndexChanged;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(432, 46);
+            label8.Margin = new Padding(4, 0, 4, 0);
+            label8.Name = "label8";
+            label8.Size = new Size(64, 26);
+            label8.TabIndex = 9;
+            label8.Text = "نام کتاب :";
+            // 
             // FrmLoan
             // 
             AutoScaleDimensions = new SizeF(11F, 26F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.InactiveCaption;
-            ClientSize = new Size(803, 673);
+            ClientSize = new Size(1021, 673);
+            Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Font = new Font("B Nazanin", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 178);
@@ -282,10 +398,13 @@
             Load += FrmLoan_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView_loans).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox_member).EndInit();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
+            groupBox3.ResumeLayout(false);
+            groupBox3.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -309,5 +428,14 @@
         private Button btn_save;
         private DateTimePicker dateTimePicker_return;
         private DateTimePicker dateTimePicker_loan;
+        private PictureBox pictureBox1;
+        private GroupBox groupBox3;
+        private Button btn_return_save;
+        private DateTimePicker dateTimePicker_returnBack;
+        private DateTimePicker dateTimePicker_ExpiredTime;
+        private Label label6;
+        private Label label7;
+        private ComboBox comboBox_Book_return;
+        private Label label8;
     }
 }

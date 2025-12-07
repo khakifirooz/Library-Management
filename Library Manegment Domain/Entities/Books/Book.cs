@@ -40,5 +40,10 @@ namespace Library_Manegment_Domain.Entities.Books
         {
             IsLoaned = true;
         }
+
+        public void LoanedBack()
+        {
+            IsLoaned = false;
+        }
     }
 }

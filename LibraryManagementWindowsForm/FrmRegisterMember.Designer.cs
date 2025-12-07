@@ -135,6 +135,7 @@
             txt_national_code.RightToLeft = RightToLeft.Yes;
             txt_national_code.Size = new Size(170, 33);
             txt_national_code.TabIndex = 7;
+            txt_national_code.KeyPress += txt_national_code_KeyPress;
             // 
             // txt_mobile
             // 
@@ -147,6 +148,7 @@
             txt_mobile.RightToLeft = RightToLeft.Yes;
             txt_mobile.Size = new Size(170, 33);
             txt_mobile.TabIndex = 8;
+            txt_mobile.KeyPress += txt_mobile_KeyPress;
             // 
             // checkBox_isSpecial
             // 

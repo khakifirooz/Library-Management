@@ -76,7 +76,11 @@ namespace LibraryManagementApplication
         {
             var member = await _unitOfWork.MemberRepository.GetMemberWithLoanByIdAsync(id);
             if (member is null)
-                new MemberViewModel();
+            {
+                // new MemberViewModel();
+                return null;
+            }
+                
 
             var memberViewModel = new MemberViewModel()
             {
@@ -89,13 +93,16 @@ namespace LibraryManagementApplication
                 Status = member.Status,
                 Image = member.Image,
                 Loans = MapLoans(member.Loans),
+             // Loans = null
             };
             return memberViewModel;
         }
 
         public static List<LoanViewModel> MapLoans(List<Loan> loans)
         {
-            return loans.Select(loan => new LoanViewModel()
+            return loans
+                .Where(loan => loan.Book.IsLoaned)
+                .Select(loan => new LoanViewModel()
             {
                 Id = loan.Id,
                 MemberId = loan.MemberId,
@@ -159,6 +166,9 @@ namespace LibraryManagementApplication
                 if (member is null)
                     result.Failed(ApplicationMessages.RecordNotFound);
 
+                //if (IsLoaned)
+                //    return result.Failed("This book is already loaned");
+
                 var loan = new Loan(command.MemberId, command.BookId, command.LoanDate, command.ReturnDate);
                 member.addLoan(loan);
 
@@ -178,5 +188,34 @@ namespace LibraryManagementApplication
                 return result.Failed(e.Message);
             }
         }
+
+        //public async Task<OperationResult> LoanBackAsync(LoanBackModel command)
+        //{
+        //    OperationResult result = new();
+        //    try
+        //    {
+        //        await _unitOfWork.BeginTransactionAsync();
+        //        var member = await _unitOfWork.MemberRepository.GetByIdAsync(command.MemberId);
+        //        if (member is null)
+        //            result.Failed(ApplicationMessages.RecordNotFound);
+
+        //        var loan = new Loan(command.MemberId, command.BookId, command.ExpiredLoanDate, command.ReturnDate);
+        //        member.RemoveLoan(loan);
+
+        //        var book = await _unitOfWork.BookRepository.GetByIdAsync(command.BookId);
+        //        if (book is null)
+        //            result.Failed(ApplicationMessages.RecordNotFound);
+
+        //        book.LoanedBack();
+        //        await _unitOfWork.SaveChangesAsync();
+        //        await _unitOfWork.CommitTransactionAsync();
+        //        return result.Succeded();
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        await _unitOfWork.RollBackTrasactionAsync();
+        //        return result.Failed(e.Message);
+        //    }
+        //}
     }
 }

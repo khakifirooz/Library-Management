@@ -1,6 +1,12 @@
 ﻿using System.Threading.Tasks;
+using System.Windows.Forms;
+using Accessibility;
+using ClassLibraryInfrastructure.Repositories;
 using Contracts.Book;
 using FrameworkApplication;
+using Library_Manegment_Domain.Entities.Loans;
+using Library_Manegment_Domain.Entities.Members;
+using LibraryManagementApplication;
 using LibraryManagementContracts.Loan;
 using LibraryManagementContracts.Member;
 
@@ -10,18 +16,23 @@ namespace LibraryManagementWindowsForm
     {
         private readonly IMemberService _memberService;
         private readonly IBookService _bookService;
+        private readonly ILoanService _loanService;
 
-        public FrmLoan(IMemberService memberService, IBookService bookService)
+        //  private readonly LoanRepository repository;
+
+        public FrmLoan(IMemberService memberService, IBookService bookService, ILoanService loanService)
         {
             _memberService = memberService;
             _bookService = bookService;
+            _loanService = loanService;
+            //  this.repository = repository;
             InitializeComponent();
         }
 
         private async void btn_reneview_Click(object sender, EventArgs e)
         {
             var memberId = txt_search_id.Text == "" ? 0 : Convert.ToInt32(txt_search_id.Text);
-            if (memberId == 0 )
+            if (memberId == 0)
             {
                 MessageBox.Show("وارد کردن شماره عضویت اجباری است");
                 return;
@@ -42,7 +53,8 @@ namespace LibraryManagementWindowsForm
             dataGridView_loans.Columns[5].HeaderText = "تاریخ امانت";
             dataGridView_loans.Columns[6].HeaderText = "تاریخ تحویل";
             dataGridView_loans.Columns[7].HeaderText = "وضعیت";
-            btn_reneview.Enabled = true;
+            btn_save.Enabled = true;
+            btn_return_save.Enabled = true;
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -60,6 +72,13 @@ namespace LibraryManagementWindowsForm
             comboBox_books.DataSource = await _bookService.GetExistForComboAsync();
             comboBox_books.DisplayMember = "Title";
             comboBox_books.ValueMember = "Id";
+
+            comboBox_Book_return.DataSource = await _bookService.GetAllAsync();
+            comboBox_Book_return.DisplayMember = "Title";
+            comboBox_Book_return.ValueMember = "Id";
+
+            dataGridView_loans.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView_loans.MultiSelect = false;
         }
 
         private async void btn_save_Click(object sender, EventArgs e)
@@ -68,17 +87,59 @@ namespace LibraryManagementWindowsForm
             {
                 MemberId = txt_search_id.Text == "" ? 0 : Convert.ToInt32(txt_search_id.Text),
                 BookId = Convert.ToInt32(comboBox_books.SelectedValue),
-                LoanDate = dateTimePicker_loan.Text.ConvertShamsiDateToMilady(),
-                ReturnDate = dateTimePicker_return.Text.ConvertShamsiDateToMilady()
+                // LoanDate = dateTimePicker_loan.Text.ConvertShamsiDateToMilady(),
+                // ReturnDate = dateTimePicker_return.Text.ConvertShamsiDateToMilady()
+                ReturnDate = dateTimePicker_return.Value,
             };
 
             var result = await _memberService.AddLoanAsync(loan);
             MessageBox.Show(result.Message);
 
+            comboBox_books.DataSource = null;
             comboBox_books.DataSource = await _bookService.GetExistForComboAsync();
             comboBox_books.DisplayMember = "Title";
             comboBox_books.ValueMember = "Id";
             btn_reneview_Click(null, null);
+        }
+
+        private void comboBox_books_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void button1_Click(object sender, EventArgs e)
+        {
+            int loanId = Convert.ToInt32(dataGridView_loans.CurrentRow.Cells[0].Value);
+
+            var result = await _loanService.ReturnLoanAsync(loanId);
+
+            MessageBox.Show(result.Message);
+
+            if (result.Success)
+            {
+                dataGridView_loans.DataSource = await _memberService.GetMemberWithLoanByIdAsync(loanId);
+            }
+            else
+            {
+                MessageBox.Show(result.Message);
+            }
+
+           // dataGridView_loans.DataBindings.Clear();
+            
+
+        }
+
+        private void dataGridView_loans_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // comboBox_Book_return.Text = dataGridView_loans.CurrentRow.Cells[2].Value.ToString();
+
+            comboBox_Book_return.Text = dataGridView_loans.CurrentRow.Cells[4].Value.ToString();
+
+        }
+
+        private void comboBox_Book_return_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

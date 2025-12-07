@@ -14,7 +14,7 @@ namespace Library_Manegment_Domain.Entities.Members
         public bool IsSpecial { get; private set; }
         public bool Status { get; private set; }
         public byte[] Image { get; private set; }
-        public List<Loan> Loans { get; set; }
+        public List<Loan> Loans { get; set; } = new List<Loan>();
 
         public Member(string name, string family, string nationalCode, string mobile, bool isSpecial, byte[] image)
         {
@@ -25,6 +25,7 @@ namespace Library_Manegment_Domain.Entities.Members
             IsSpecial = isSpecial;
             Image = image;
             Status = true;
+            Loans = new List<Loan>();
         }
 
         public void Update(string name, string family, string nationalCode, string mobile, bool isSpecial,bool status, byte[] image)
@@ -48,6 +49,22 @@ namespace Library_Manegment_Domain.Entities.Members
             if (IsSpecial == true && Loans.Count >= 5)
                 throw new NotAllowExeption(Loans.Count);
             Loans.Add(loan);
+        }
+
+        public void RemoveLoan(Loan loan)
+        {
+            if (loan == null)
+                throw new ArgumentNullException(nameof(loan));
+
+            if (!Loans.Remove(loan))
+                throw new InvalidOperationException("Loan not found for this member.");
+
+            if (loan == null)
+                throw new ArgumentNullException(nameof(loan));
+
+            bool removed = Loans.Remove(loan);
+            if (!removed)
+                throw new InvalidOperationException("Loan not found for this member.");
         }
     }
 }
