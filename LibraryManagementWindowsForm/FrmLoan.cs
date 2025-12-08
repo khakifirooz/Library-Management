@@ -1,12 +1,4 @@
-﻿using System.Threading.Tasks;
-using System.Windows.Forms;
-using Accessibility;
-using ClassLibraryInfrastructure.Repositories;
-using Contracts.Book;
-using FrameworkApplication;
-using Library_Manegment_Domain.Entities.Loans;
-using Library_Manegment_Domain.Entities.Members;
-using LibraryManagementApplication;
+﻿using Contracts.Book;
 using LibraryManagementContracts.Loan;
 using LibraryManagementContracts.Member;
 
@@ -87,8 +79,6 @@ namespace LibraryManagementWindowsForm
             {
                 MemberId = txt_search_id.Text == "" ? 0 : Convert.ToInt32(txt_search_id.Text),
                 BookId = Convert.ToInt32(comboBox_books.SelectedValue),
-                // LoanDate = dateTimePicker_loan.Text.ConvertShamsiDateToMilady(),
-                // ReturnDate = dateTimePicker_return.Text.ConvertShamsiDateToMilady()
                 ReturnDate = dateTimePicker_return.Value,
             };
 
@@ -125,16 +115,11 @@ namespace LibraryManagementWindowsForm
             }
 
            // dataGridView_loans.DataBindings.Clear();
-            
-
         }
 
         private void dataGridView_loans_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // comboBox_Book_return.Text = dataGridView_loans.CurrentRow.Cells[2].Value.ToString();
-
             comboBox_Book_return.Text = dataGridView_loans.CurrentRow.Cells[4].Value.ToString();
-
         }
 
         private void comboBox_Book_return_SelectedIndexChanged(object sender, EventArgs e)

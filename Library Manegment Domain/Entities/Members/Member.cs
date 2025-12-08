@@ -1,5 +1,4 @@
-﻿using System.Data;
-using Library_Manegment_Domain.Common;
+﻿using Library_Manegment_Domain.Common;
 using Library_Manegment_Domain.Entities.Loans;
 using Library_Manegment_Domain.Exeptions;
 
@@ -57,14 +56,14 @@ namespace Library_Manegment_Domain.Entities.Members
                 throw new ArgumentNullException(nameof(loan));
 
             if (!Loans.Remove(loan))
-                throw new InvalidOperationException("Loan not found for this member.");
+                throw new InvalidOperationException("امانت برای عضو پیدا نشد");
 
             if (loan == null)
                 throw new ArgumentNullException(nameof(loan));
 
             bool removed = Loans.Remove(loan);
             if (!removed)
-                throw new InvalidOperationException("Loan not found for this member.");
+                throw new InvalidOperationException("امانت برای عضو پیدا نشد");
         }
     }
 }

@@ -10,8 +10,6 @@ namespace LibraryManagementApplication
     public class BookService : IBookService
     {
 
-        // private readonly IBookRepository _bookRepository;
-
         private readonly IUnitOfWork _unitOfWork;
         public BookService(IUnitOfWork unitOfWork)
         {
