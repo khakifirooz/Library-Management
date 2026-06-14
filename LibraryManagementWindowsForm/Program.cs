@@ -17,7 +17,7 @@ namespace LibraryManagementWindowsForm
             ApplicationConfiguration.Initialize();
             var host = CreateHostBuilder().Build();
             ServiceProvider = host.Services;
-            Application.Run(ServiceProvider.GetRequiredService<FrmMain>());
+            Application.Run(ServiceProvider.GetRequiredService<LoginForm>());
         }
         public static IServiceProvider ServiceProvider { get; private set; }
 
@@ -32,6 +32,7 @@ namespace LibraryManagementWindowsForm
                 services.AddTransient<FrmRegisterMember>();
                 services.AddTransient<FrmUpdateMember>();
                 services.AddTransient<FrmLoan>();
+                services.AddTransient<LoginForm>();
 
                 // ....
             });

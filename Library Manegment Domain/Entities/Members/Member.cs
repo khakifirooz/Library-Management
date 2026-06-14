@@ -13,7 +13,9 @@ namespace Library_Manegment_Domain.Entities.Members
         public bool IsSpecial { get; private set; }
         public bool Status { get; private set; }
         public byte[] Image { get; private set; }
+        public MemberCredential Credential { get; private set; }
         public List<Loan> Loans { get; set; } = new List<Loan>();
+
 
         public Member(string name, string family, string nationalCode, string mobile, bool isSpecial, byte[] image)
         {

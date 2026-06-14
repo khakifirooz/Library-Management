@@ -27,7 +27,7 @@ namespace LibraryManagementApplication
                     command.Mobile, command.IsSpecial, command.Image);
 
                 await _unitOfWork.MemberRepository.CreateAsync(member);
-                await _unitOfWork.SaveChangesAsync(); 
+                await _unitOfWork.SaveChangesAsync();
                 return result.Succeded();
             }
             catch (Exception e)
@@ -77,7 +77,7 @@ namespace LibraryManagementApplication
                 // new MemberViewModel();
                 return null;
             }
-                
+
 
             var memberViewModel = new MemberViewModel()
             {
@@ -99,16 +99,16 @@ namespace LibraryManagementApplication
             return loans
                 .Where(loan => loan.Book.IsLoaned)
                 .Select(loan => new LoanViewModel()
-            {
-                Id = loan.Id,
-                MemberId = loan.MemberId,
-                MemberName = $"{loan.Member.Name} {loan.Member.Family}",
-                BookId = loan.BookId,
-                BookName = loan.Book.Title,
-                LoanDate = loan.LoanDate,
-                ReturnDate = loan.ReturnDate,
-                Status = loan.Status,
-            }).ToList();
+                {
+                    Id = loan.Id,
+                    MemberId = loan.MemberId,
+                    MemberName = $"{loan.Member.Name} {loan.Member.Family}",
+                    BookId = loan.BookId,
+                    BookName = loan.Book.Title,
+                    LoanDate = loan.LoanDate,
+                    ReturnDate = loan.ReturnDate,
+                    Status = loan.Status,
+                }).ToList();
         }
 
         public async Task<List<MemberViewModel>> SearchAsync(int id, string? nationalCode)
@@ -182,5 +182,36 @@ namespace LibraryManagementApplication
             }
         }
 
+        public async Task<OperationResult> CheckAth(string name)
+        {
+            OperationResult result = new();
+
+
+            MemberCheckModel memberCheckModel = new MemberCheckModel();
+
+            if (memberCheckModel.Name == name)
+            {
+                
+            }
+        }
+
+        //public Task<MemberViewModel?> LoginAsync(string nationalCode, string mobile)
+        //{
+        //    var member = (await _unitOfWork.MemberRepository.GetAllAsync())
+        //.FirstOrDefault(x =>
+        //    x.NationalCode == nationalCode &&
+        //    x.Mobile == mobile);
+
+        //    if (member == null)
+        //        return null;
+
+        //    return new MemberViewModel
+        //    {
+        //        Id = member.Id,
+        //        Name = member.Name,
+        //        Family = member.Family,
+        //        NationalCode = member.NationalCode
+        //    };
+        //}
     }
 }

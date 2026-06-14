@@ -148,6 +148,7 @@
             txt_mobile.RightToLeft = RightToLeft.Yes;
             txt_mobile.Size = new Size(170, 33);
             txt_mobile.TabIndex = 8;
+            txt_mobile.TextChanged += txt_mobile_TextChanged;
             txt_mobile.KeyPress += txt_mobile_KeyPress;
             // 
             // checkBox_isSpecial

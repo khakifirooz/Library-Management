@@ -32,6 +32,7 @@
             btnBook = new Button();
             button1 = new Button();
             button2 = new Button();
+            userProfile2 = new UserProfile();
             SuspendLayout();
             // 
             // btnBook
@@ -76,6 +77,14 @@
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
+            // userProfile2
+            // 
+            userProfile2.BackColor = SystemColors.ButtonShadow;
+            userProfile2.Location = new Point(72, 12);
+            userProfile2.Name = "userProfile2";
+            userProfile2.Size = new Size(304, 166);
+            userProfile2.TabIndex = 4;
+            // 
             // FrmMain
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -83,6 +92,7 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1033, 581);
+            Controls.Add(userProfile2);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(btnBook);
@@ -98,5 +108,6 @@
         private Button btnBook;
         private Button button1;
         private Button button2;
+        private UserProfile userProfile2;
     }
 }

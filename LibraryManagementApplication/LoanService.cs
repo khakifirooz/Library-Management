@@ -24,18 +24,18 @@ namespace LibraryManagementApplication
             var result = new OperationResult();
             var loan = await _loanRepository.GetByIdAsync(loanId);
             if (loan == null)
-                return result.Failed("Loan not found");
+                return result.Failed("امانت مورد نظر پیدا نشد");
 
             var book = await _bookRepository.GetByIdAsync(loan.BookId);
             if (book == null)
-                return result.Failed("Book not found");
+                return result.Failed("کتاب پیدا نشد");
 
             book.LoanedBack();
 
              _bookRepository.Update(book);
             await _unitOfWork.SaveChangesAsync();
 
-            return result.Succeded("Book returned successfully");
+            return result.Succeded("با موفقیت پس گرفته شد");
         }
     }
 }

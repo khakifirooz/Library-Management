@@ -1,17 +1,25 @@
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace LibraryManagementWindowsForm
 {
     public partial class FrmMain : Form
     {
-        public FrmMain()
+        private string loggedInUser;   // 
+        public FrmMain(string username)
         {
             InitializeComponent();
+            loggedInUser = username;      // گرفتن یوز
         }
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
+            UserProfile uc = new UserProfile();
 
+            uc.ShowOnline(loggedInUser); 
+
+            uc.Dock = DockStyle.Top;
+            Controls.Add(uc);
         }
 
         private void btnBook_Click(object sender, EventArgs e)

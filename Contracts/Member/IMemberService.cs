@@ -5,6 +5,8 @@ namespace LibraryManagementContracts.Member
 {
     public interface IMemberService
     {
+
+        Task<OperationResult> CheckAth(string name);
         Task<OperationResult> CreateAsync(MemberCreateModel command);
         Task<OperationResult> UpdateAsync(MemberUpdateModel command);
         Task<OperationResult> AddLoanAsync(LoanCreateModel command);
@@ -12,5 +14,7 @@ namespace LibraryManagementContracts.Member
         Task<List<MemberViewModel>> GetAllAsync();
         Task<List<MemberViewModel>> SearchAsync(int id, string? nationalCode);
         Task<MemberViewModel> GetMemberWithLoanByIdAsync(int id);
+
+      //  Task<MemberViewModel?> LoginAsync(string nationalCode, string mobile);
     }
 }

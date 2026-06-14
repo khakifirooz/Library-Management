@@ -98,5 +98,10 @@ namespace LibraryManagementWindowsForm
                 MessageBox.Show("حروف قابل استقاده در شماره همراه نمیباشند");
             }
         }
+
+        private void txt_mobile_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

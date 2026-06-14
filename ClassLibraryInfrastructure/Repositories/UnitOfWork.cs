@@ -17,12 +17,15 @@ namespace ClassLibraryInfrastructure.Repositories
             MemberRepository = new MemberRepository(context);
             BookRepository = new BookRepository(context);
             LoanRepository = new LoanRepository(context);
+            
         }
         public IMemberRepository MemberRepository { get; }
 
         public IBookRepository BookRepository { get; }
 
         public ILoanRepository LoanRepository { get; }
+
+     //   public IUserRepository UserRepository { get; }
 
         public async Task BeginTransactionAsync()
         {

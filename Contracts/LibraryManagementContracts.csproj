@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FrameworkApplication\FrameworkApplication.csproj" />
+    <ProjectReference Include="..\Library Manegment Domain\Library Manegment Domain.csproj" />
   </ItemGroup>
 
 </Project>
