@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.ComponentModel;
 
 namespace LibraryManagementWindowsForm
 {
@@ -17,25 +9,22 @@ namespace LibraryManagementWindowsForm
             InitializeComponent();
         }
 
-        //private void UserProfile_Load(object sender, EventArgs e)
-        //{
-        //    lblTitle.Text = "ادمین آنلاین";  //  اینجا باید بعدا یوزر نیم مقابل که وارد میشه ادیتش کنیم 
-        //    lblTitle.ForeColor = Color.Green;
-        //    lblTitle.Font = new Font("Tahoma", 10, FontStyle.Bold);
-        //}
-
-        public void showonline(string username)
+        // اضافه کردن این پراپرتی برای حل خطای عدم شناسایی UserName
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public string UserName
         {
-            lblTitle.Text = $" کاربر {username} انلاینه";  // یوزر نیم  
-            lblTitle.ForeColor = Color.Green;
-            lblTitle.Font = new Font("tahoma", 10, FontStyle.Bold);
+            get => lblTitle.Text;
+            set => lblTitle.Text = value;
         }
-
         public void ShowOnline(string username)
         {
-            lblTitle.Text = $" کاربر {username} آنلاین";
+            // مدیریت زمانی که هنوز یوزری وارد نشده (جلوگیری از نمایش نام خالی)
+            if (string.IsNullOrEmpty(username)) return;
+
+            lblTitle.Text = $"{username} is online";
             lblTitle.ForeColor = Color.Green;
-            lblTitle.Font = new Font("Tahoma", 10, FontStyle.Bold);
+            lblTitle.Font = new Font("Tahoma", 8, FontStyle.Bold);
         }
 
         private void UserProfile_Load(object sender, EventArgs e)

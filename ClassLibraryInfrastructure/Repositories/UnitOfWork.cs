@@ -10,6 +10,11 @@ namespace ClassLibraryInfrastructure.Repositories
     {
         private readonly LibraryMangementDbContext _context;
         private IDbContextTransaction _transaction;
+        private readonly IMemberCredentialRepository _memberCredentialRepository;
+        public IMemberCredentialRepository MemberCredentialRepository => _memberCredentialRepository;
+
+
+        //  public IMemberCredentialRepository MemberCredentialRepository { get; }
 
         public UnitOfWork(LibraryMangementDbContext context)
         {
@@ -17,7 +22,10 @@ namespace ClassLibraryInfrastructure.Repositories
             MemberRepository = new MemberRepository(context);
             BookRepository = new BookRepository(context);
             LoanRepository = new LoanRepository(context);
-            
+            _memberCredentialRepository = new MemberCredentialRepository(context);
+
+            //  MemberCredentialRepository = new MemberCredentialRepository(_context);
+
         }
         public IMemberRepository MemberRepository { get; }
 

@@ -3,7 +3,6 @@ using ClassLibraryInfrastructure.Mappings;
 using Library_Manegment_Domain.Entities.Books;
 using Library_Manegment_Domain.Entities.Loans;
 using Library_Manegment_Domain.Entities.Members;
-using Library_Manegment_Domain.Entities.User;
 using Microsoft.EntityFrameworkCore;
 
 namespace ClassLibraryInfrastructure
@@ -17,6 +16,8 @@ namespace ClassLibraryInfrastructure
         public DbSet<MemberCredential> MemberCredentials { get; set; }
 
 
+
+
         public LibraryMangementDbContext(DbContextOptions<LibraryMangementDbContext> options) : base(options)
         {
             
@@ -27,9 +28,11 @@ namespace ClassLibraryInfrastructure
             modelBuilder.HasDefaultSchema("dbo");
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(LibraryMangementDbContext).Assembly);
 
-            //modelBuilder.ApplyConfiguration(new BookMapping());
-            //modelBuilder.ApplyConfiguration(new LoanMapping());
-            //modelBuilder.ApplyConfiguration(new Membermapping());
+           // modelBuilder.ApplyConfiguration(new BookMapping());
+           // modelBuilder.ApplyConfiguration(new LoanMapping());
+           // modelBuilder.ApplyConfiguration(new Membermapping());
+           // modelBuilder.ApplyConfiguration(new MemberCredentialMapping());
+
 
             base.OnModelCreating(modelBuilder);
         }

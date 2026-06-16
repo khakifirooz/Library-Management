@@ -182,18 +182,43 @@ namespace LibraryManagementApplication
             }
         }
 
-        public async Task<OperationResult> CheckAth(string name)
+        public async Task<MemberViewModel> Login(string username, string password)
         {
-            OperationResult result = new();
+            // فقط در جدول Credentials (که حالا یوزرهای ادمین هستند) جستجو کن
+            var user = await _unitOfWork.MemberCredentialRepository.GetByUserNameAsync(username);
 
+            // اگر یوزری با این مشخصات نبود یا پسورد اشتباه بود، اجازه ورود نده
+            if (user == null || user.Password != password)
+                return null;
 
-            MemberCheckModel memberCheckModel = new MemberCheckModel();
-
-            if (memberCheckModel.Name == name)
+            // اگر لاگین موفق بود، یک مدل برای نمایش در فرم اصلی برگردان
+            // اینجا دیگر سراغ جدول Members نمی‌رویم چون گفتی فقط لاگین ادمین مد نظر است
+            return new MemberViewModel
             {
-                
-            }
+                Id = user.Id, // ID رکورد ادمین
+                Name = user.UserName, // نام کاربری ادمین برای نمایش در پنل
+                Family = "Administrator",
+                NationalCode = "---",
+                Mobile = "---"
+            };
         }
+
+        
+
+
+
+        //public async Task<OperationResult> CheckAth(string name)
+        //{
+        //    OperationResult result = new();
+
+
+        //    MemberCheckModel memberCheckModel = new MemberCheckModel();
+
+        //    if (memberCheckModel.Name == name)
+        //    {
+
+        //    }
+        //}
 
         //public Task<MemberViewModel?> LoginAsync(string nationalCode, string mobile)
         //{

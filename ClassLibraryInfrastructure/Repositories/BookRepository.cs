@@ -19,10 +19,22 @@ namespace ClassLibraryInfrastructure.Repositories
 
         public async Task<List<Book>> GetByTitleAsync(string title)
         {
-            if (!string.IsNullOrEmpty(title))
-                return await _context.Books.Where(x => x.Title.Contains(title) && x.IsDeleted == false).ToListAsync();
-            else
-                return null;
+
+            title = title?.Trim();
+
+            if (string.IsNullOrWhiteSpace(title))
+                return new List<Book>();
+
+            return await _context.Books
+                .Where(x => !x.IsDeleted)
+                .Where(x => x.Title != null && EF.Functions.Like(x.Title, $"%{title}%"))
+                .ToListAsync();
+
+            //if (!string.IsNullOrEmpty(title))
+            //    return await _context.Books
+            //        .Where(x => x.Title.Contains(title) && x.IsDeleted == false).ToListAsync();
+            //else
+            //    return null;
         }
 
         public Task<List<Book>> GetExistForComboAsync()

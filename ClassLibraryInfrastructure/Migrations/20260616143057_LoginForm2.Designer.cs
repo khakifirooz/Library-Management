@@ -4,6 +4,7 @@ using ClassLibraryInfrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClassLibraryInfrastructure.Migrations
 {
     [DbContext(typeof(LibraryMangementDbContext))]
-    partial class LibraryMangementDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260616143057_LoginForm2")]
+    partial class LoginForm2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -144,6 +147,9 @@ namespace ClassLibraryInfrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("MemberId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -155,6 +161,9 @@ namespace ClassLibraryInfrastructure.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("MemberId")
+                        .IsUnique();
 
                     b.ToTable("MemberCredentials", "dbo");
                 });
@@ -178,6 +187,17 @@ namespace ClassLibraryInfrastructure.Migrations
                     b.Navigation("Member");
                 });
 
+            modelBuilder.Entity("Library_Manegment_Domain.Entities.Members.MemberCredential", b =>
+                {
+                    b.HasOne("Library_Manegment_Domain.Entities.Members.Member", "Member")
+                        .WithOne("Credential")
+                        .HasForeignKey("Library_Manegment_Domain.Entities.Members.MemberCredential", "MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Member");
+                });
+
             modelBuilder.Entity("Library_Manegment_Domain.Entities.Books.Book", b =>
                 {
                     b.Navigation("Loans");
@@ -185,6 +205,9 @@ namespace ClassLibraryInfrastructure.Migrations
 
             modelBuilder.Entity("Library_Manegment_Domain.Entities.Members.Member", b =>
                 {
+                    b.Navigation("Credential")
+                        .IsRequired();
+
                     b.Navigation("Loans");
                 });
 #pragma warning restore 612, 618

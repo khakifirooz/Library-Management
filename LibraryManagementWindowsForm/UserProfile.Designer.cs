@@ -37,10 +37,11 @@
             lblTitle.AutoSize = true;
             lblTitle.BackColor = SystemColors.ActiveCaption;
             lblTitle.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblTitle.Location = new Point(147, 52);
+            lblTitle.Location = new Point(8, 13);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(0, 28);
             lblTitle.TabIndex = 1;
+            lblTitle.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label1
             // 
@@ -49,6 +50,7 @@
             label1.Name = "label1";
             label1.Size = new Size(0, 20);
             label1.TabIndex = 2;
+            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // UserProfile
             // 

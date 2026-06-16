@@ -79,11 +79,14 @@
             // 
             // userProfile2
             // 
-            userProfile2.BackColor = SystemColors.ButtonShadow;
-            userProfile2.Location = new Point(72, 12);
+            userProfile2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            userProfile2.BackColor = SystemColors.ActiveCaptionText;
+            userProfile2.Location = new Point(1, 2);
             userProfile2.Name = "userProfile2";
-            userProfile2.Size = new Size(304, 166);
+            userProfile2.Size = new Size(272, 46);
             userProfile2.TabIndex = 4;
+            userProfile2.UserName = "";
+            userProfile2.Load += userProfile2_Load;
             // 
             // FrmMain
             // 

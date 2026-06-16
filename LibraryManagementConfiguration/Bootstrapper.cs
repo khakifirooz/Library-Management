@@ -27,7 +27,7 @@ namespace LibraryManagementConfiguration
             //   services.AddScoped<ILoanRepository, LoanRepository>();
             services.AddScoped<ILoanService, LoanService>();
             services.AddScoped<ILoanRepository, LoanRepository>();
-            services.AddScoped<IMemberCredentialRepository, MemberCredentialRepository>(); //برای احراز هویت اعضا
+            //services.AddScoped<IMemberCredentialRepository, MemberCredentialRepository>(); //برای احراز هویت اعضا
 
 
             services.AddScoped<IUnitOfWork, UnitOfWork>(); // unit of work

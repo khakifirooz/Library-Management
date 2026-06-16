@@ -8,19 +8,16 @@ namespace ClassLibraryInfrastructure.Mappings
     {
         public void Configure(EntityTypeBuilder<MemberCredential> builder)
         {
+            builder.ToTable("MemberCredentials");
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.UserName)
-                   .IsRequired()
-                   .HasMaxLength(50);
+                .HasMaxLength(50)
+                .IsRequired();
 
             builder.Property(x => x.Password)
-                   .IsRequired()
-                   .HasMaxLength(100);
-
-            builder.HasOne(x => x.Member)
-                   .WithOne(x => x.Credential)
-                   .HasForeignKey<MemberCredential>(x => x.MemberId);
+                .HasMaxLength(100)
+                .IsRequired();
         }
     }
 }

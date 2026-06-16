@@ -1,4 +1,6 @@
-﻿namespace LibraryManagementWindowsForm
+﻿using LibraryManagementContracts.Member;
+
+namespace LibraryManagementWindowsForm
 {
     partial class LoginForm
     {
@@ -6,6 +8,8 @@
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
+
+
 
         /// <summary>
         /// Clean up any resources being used.
@@ -29,7 +33,7 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            button1 = new Button();
+            btn1 = new Button();
             txt_user = new TextBox();
             txt_pass = new TextBox();
             SuspendLayout();
@@ -44,15 +48,15 @@
             label1.Text = "لطفا وارد شوید";
             label1.TextAlign = ContentAlignment.TopCenter;
             // 
-            // button1
+            // btn1
             // 
-            button1.Location = new Point(351, 275);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 1;
-            button1.Text = "ورود";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += this.button1_Click;
+            btn1.Location = new Point(351, 275);
+            btn1.Name = "btn1";
+            btn1.Size = new Size(94, 29);
+            btn1.TabIndex = 1;
+            btn1.Text = "ورود";
+            btn1.UseVisualStyleBackColor = true;
+            btn1.Click += this.btn1_Click;
             // 
             // txt_user
             // 
@@ -75,7 +79,7 @@
             ClientSize = new Size(800, 450);
             Controls.Add(txt_pass);
             Controls.Add(txt_user);
-            Controls.Add(button1);
+            Controls.Add(btn1);
             Controls.Add(label1);
             Name = "LoginForm";
             Text = "LoginForm";
@@ -87,7 +91,7 @@
         #endregion
 
         private Label label1;
-        private Button button1;
+        private Button btn1;
         private TextBox txt_user;
         private TextBox txt_pass;
     }

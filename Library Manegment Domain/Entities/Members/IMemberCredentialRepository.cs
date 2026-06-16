@@ -4,6 +4,6 @@ namespace Library_Manegment_Domain.Entities.Members
 {
     public interface IMemberCredentialRepository : IGenericRepository<int, MemberCredential>
     {
-        Task<MemberCredential?> GetByUserNameAsync(string username);
+        Task<MemberCredential> GetByUserNameAsync(string username);
     }
 }

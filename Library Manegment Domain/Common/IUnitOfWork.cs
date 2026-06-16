@@ -9,6 +9,8 @@ namespace Library_Manegment_Domain.Common
         IMemberRepository MemberRepository { get; }
         IBookRepository BookRepository { get; }
         ILoanRepository LoanRepository { get; }
+        IMemberCredentialRepository MemberCredentialRepository { get; }
+
         Task BeginTransactionAsync();
         Task CommitTransactionAsync();
         Task RollBackTrasactionAsync();

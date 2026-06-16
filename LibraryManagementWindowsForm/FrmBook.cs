@@ -16,9 +16,16 @@ namespace LibraryManagementWindowsForm
 
         private void picture_book_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.ShowDialog();
-            picture_book.Load(openFileDialog.FileName);
+            try
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.ShowDialog();
+                picture_book.Load(openFileDialog.FileName);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private async void button1_Click(object sender, EventArgs e)
@@ -114,9 +121,16 @@ namespace LibraryManagementWindowsForm
 
         private async void txt_search_TextChanged(object sender, EventArgs e)
         {
-            var result = await _bookService.GetByTitleAsync(txt_search.Text);
-            dataGrid_books.DataSource = result;
-            SetColumns();
+            try
+            {
+                var result = await _bookService.GetByTitleAsync(txt_search.Text);
+                dataGrid_books.DataSource = result;
+                SetColumns();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private async void btn_delete_Click(object sender, EventArgs e)

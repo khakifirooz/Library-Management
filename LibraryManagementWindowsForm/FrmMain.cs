@@ -5,21 +5,28 @@ namespace LibraryManagementWindowsForm
 {
     public partial class FrmMain : Form
     {
-        private string loggedInUser;   // 
-        public FrmMain(string username)
+        private string _loggedInUser;
+
+        /// private string loggedInUser;   // 
+        public FrmMain(/*string username*/)
         {
             InitializeComponent();
-            loggedInUser = username;      // گرفتن یوز
+           // loggedInUser = username;      // گرفتن یوز
         }
 
+        public void SetUserData(string username)
+        {
+            _loggedInUser = username;
+            // تغییر نام از userProfile1 به userProfile2
+            if (userProfile2 != null)
+            {
+                userProfile2.UserName = username;
+                userProfile2.ShowOnline(username);
+            }
+        }
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            UserProfile uc = new UserProfile();
-
-            uc.ShowOnline(loggedInUser); 
-
-            uc.Dock = DockStyle.Top;
-            Controls.Add(uc);
+            userProfile2.ShowOnline(_loggedInUser);
         }
 
         private void btnBook_Click(object sender, EventArgs e)
@@ -38,6 +45,11 @@ namespace LibraryManagementWindowsForm
         {
             var frmLoan = Program.ServiceProvider.GetRequiredService<FrmLoan>();
             frmLoan.ShowDialog();
+        }
+
+        private void userProfile2_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
