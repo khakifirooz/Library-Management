@@ -25,9 +25,16 @@ namespace LibraryManagementWindowsForm
 
         private void picture_member_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.ShowDialog();
-            picture_member.Load(openFileDialog.FileName);
+            try
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.ShowDialog();
+                picture_member.Load(openFileDialog.FileName);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private async void btn_save_Click(object sender, EventArgs e)
