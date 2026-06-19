@@ -6,22 +6,39 @@ namespace Library_Manegment_Domain.Entities.Members
     {
         public string UserName { get; private set; }
         public string Password { get; private set; }
-        // اگر لازم داشتی می‌توانی Role یا نام نمایشی هم اضافه کنی
-        // public string FullName { get; private set; }
+        public string Role { get; private set; }
+        public bool IsActive { get; private set; }
 
-        // سازنده برای EF Core
-        //protected MemberCredential() { }
-
-        // سازنده اصلی برای ایجاد یوزر جدید
-        public MemberCredential(string userName, string password)
+        // ایجاد یوزر جدید
+        public MemberCredential(
+        string userName,
+        string password,
+        string role)
         {
             UserName = userName;
             Password = password;
+            Role = role;
+            IsActive = true;
         }
 
-        public void ChangePassword(string newPassword)
+        public void Disable()
         {
-            Password = newPassword;
+            IsActive = false;
+        }
+
+        public void Enable()
+        {
+            IsActive = true;
+        }
+
+        public void ChangeRole(string role)
+        {
+            Role = role;
+        }
+
+        public void ChangePassword(string password)
+        {
+            Password = password;
         }
     }
 }
