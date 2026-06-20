@@ -1,4 +1,5 @@
 ﻿using FrameworkApplication;
+using LibraryManagementContracts.Admin;
 using LibraryManagementContracts.Loan;
 
 namespace LibraryManagementContracts.Member
@@ -15,6 +16,17 @@ namespace LibraryManagementContracts.Member
         Task<List<MemberViewModel>> SearchAsync(int id, string? nationalCode);
         Task<MemberViewModel> GetMemberWithLoanByIdAsync(int id);
         Task<MemberViewModel> Login(string username, string password);
+
+        // برای ادمین 
+        Task<List<AdminViewModel>> GetAllAdminsAsync();
+
+        Task<OperationResult> CreateAdminAsync(CreateAdminModel command);
+
+        Task<OperationResult> UpdateAdminAsync(UpdateAdminModel command);
+
+        Task<OperationResult> DisableAdminAsync(int id);
+
+        Task<OperationResult> EnableAdminAsync(int id);
 
 
         //  Task<MemberViewModel?> LoginAsync(string nationalCode, string mobile);

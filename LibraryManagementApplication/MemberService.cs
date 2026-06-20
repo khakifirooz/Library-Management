@@ -2,6 +2,7 @@
 using Library_Manegment_Domain.Common;
 using Library_Manegment_Domain.Entities.Loans;
 using Library_Manegment_Domain.Entities.Members;
+using LibraryManagementContracts.Admin;
 using LibraryManagementContracts.Loan;
 using LibraryManagementContracts.Member;
 
@@ -187,23 +188,162 @@ namespace LibraryManagementApplication
             // فقط در جدول Credentials (که حالا یوزرهای ادمین هستند) جستجو کن
             var user = await _unitOfWork.MemberCredentialRepository.GetByUserNameAsync(username);
 
+
             // اگر یوزری با این مشخصات نبود یا پسورد اشتباه بود، اجازه ورود نده
-            if (user == null || user.Password != password)
+            if (user == null)
                 return null;
+
+            if (!user.IsActive)
+                return null;
+
+            if (user.Password != password)
+                return null;
+
 
             // اگر لاگین موفق بود، یک مدل برای نمایش در فرم اصلی برگردان
             // اینجا دیگر سراغ جدول Members نمی‌رویم چون گفتی فقط لاگین ادمین مد نظر است
             return new MemberViewModel
             {
-                Id = user.Id, // ID رکورد ادمین
-                Name = user.UserName, // نام کاربری ادمین برای نمایش در پنل
+                Id = user.Id,
+                Name = user.UserName,
                 Family = "Administrator",
                 NationalCode = "---",
-                Mobile = "---"
+                Mobile = "---",
+                Role = user.Role
             };
         }
 
-        
+        public async Task<List<AdminViewModel>> GetAllAdminsAsync()
+        {
+            var admins = await _unitOfWork.MemberCredentialRepository.GetAllAsync();
+
+            return admins.Select(x => new AdminViewModel
+            {
+                Id = x.Id,
+                UserName = x.UserName,
+                Role = x.Role,
+                IsActive = x.IsActive
+            }).ToList();
+        }
+
+        public async Task<OperationResult> CreateAdminAsync(CreateAdminModel command)
+        {
+            OperationResult result = new();
+
+            try
+            {
+                var exist = await _unitOfWork.MemberCredentialRepository
+                    .GetByUserNameAsync(command.UserName);
+
+                if (exist != null)
+                    return result.Failed("Username already exists");
+
+                var admin = new MemberCredential(
+                    command.UserName,
+                    command.Password,
+                    "Admin");
+
+                await _unitOfWork.MemberCredentialRepository.CreateAsync(admin);
+
+                await _unitOfWork.SaveChangesAsync();
+
+                return result.Succeded();
+            }
+            catch (Exception ex)
+            {
+                return result.Failed(ex.Message);
+            }
+        }
+
+        public async Task<OperationResult> UpdateAdminAsync(UpdateAdminModel command)
+        {
+            OperationResult result = new();
+
+            try
+            {
+                var admin =
+                    await _unitOfWork.MemberCredentialRepository
+                    .GetByIdAsync(command.Id);
+
+                if (admin == null)
+                    return result.Failed("Admin not found");
+
+                var duplicated =
+                   await _unitOfWork.MemberCredentialRepository
+                   .GetByUserNameAsync(command.UserName);  // یک یوزرنیم دوبار ثبت نشه
+
+                if (duplicated != null &&
+                    duplicated.Id != command.Id)
+                {
+                    return result.Failed("Username already exists");
+                }
+
+                admin.ChangeUserName(command.UserName);
+
+                if (!string.IsNullOrWhiteSpace(command.Password))
+                    admin.ChangePassword(command.Password);
+
+                await _unitOfWork.SaveChangesAsync();
+
+                return result.Succeded();
+            }
+            catch (Exception ex)
+            {
+                return result.Failed(ex.Message);
+            }
+        }
+
+        public async Task<OperationResult> DisableAdminAsync(int id)
+        {
+            OperationResult result = new();
+
+            try
+            {
+                var admin =
+                    await _unitOfWork.MemberCredentialRepository
+                    .GetByIdAsync(id);
+
+                if (admin == null)
+                    return result.Failed("Admin not found");
+
+                admin.Disable();
+
+                await _unitOfWork.SaveChangesAsync();
+
+                return result.Succeded();
+            }
+            catch (Exception ex)
+            {
+                return result.Failed(ex.Message);
+            }
+        }
+
+        public async Task<OperationResult> EnableAdminAsync(int id)
+        {
+            OperationResult result = new();
+
+            try
+            {
+                var admin =
+                    await _unitOfWork.MemberCredentialRepository
+                    .GetByIdAsync(id);
+
+                if (admin == null)
+                    return result.Failed("Admin not found");
+
+                admin.Enable();
+
+                await _unitOfWork.SaveChangesAsync();
+
+                return result.Succeded();
+            }
+            catch (Exception ex)
+            {
+                return result.Failed(ex.Message);
+            }
+        }
+
+
 
 
 

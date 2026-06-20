@@ -21,6 +21,16 @@ namespace Library_Manegment_Domain.Entities.Members
             IsActive = true;
         }
 
+        public void ChangeUserName(string userName)
+        {
+            UserName = userName;
+        }
+
+        public void ChangePassword(string password)
+        {
+            Password = password;
+        }
+
         public void Disable()
         {
             IsActive = false;
@@ -29,16 +39,6 @@ namespace Library_Manegment_Domain.Entities.Members
         public void Enable()
         {
             IsActive = true;
-        }
-
-        public void ChangeRole(string role)
-        {
-            Role = role;
-        }
-
-        public void ChangePassword(string password)
-        {
-            Password = password;
         }
     }
 }

@@ -19,5 +19,18 @@ namespace ClassLibraryInfrastructure.Repositories
             return await _context.MemberCredentials
                 .FirstOrDefaultAsync(x => x.UserName == username);
         }
+
+        public async Task<List<MemberCredential>> GetAllAsync()
+        {
+            return await _context.MemberCredentials
+                .AsNoTracking()
+                .ToListAsync();
+        }
+
+        public async Task<MemberCredential?> GetByIdAsync(int id)
+        {
+            return await _context.MemberCredentials
+                .FirstOrDefaultAsync(x => x.Id == id);
+        }
     }
 }

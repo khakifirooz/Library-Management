@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using LibraryManagementContracts.Member;
+using Microsoft.Extensions.DependencyInjection;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace LibraryManagementWindowsForm
@@ -7,6 +8,8 @@ namespace LibraryManagementWindowsForm
     {
         private string _loggedInUser;
 
+        private string _role;
+
         /// private string loggedInUser;   // 
         public FrmMain(/*string username*/)
         {
@@ -14,19 +17,25 @@ namespace LibraryManagementWindowsForm
            // loggedInUser = username;      // گرفتن یوز
         }
 
-        public void SetUserData(string username)
+        public void SetUserData(MemberViewModel user)
         {
-            _loggedInUser = username;
-            // تغییر نام از userProfile1 به userProfile2
+            _loggedInUser = user.Name;
+            _role = user.Role;
+
             if (userProfile2 != null)
             {
-                userProfile2.UserName = username;
-                userProfile2.ShowOnline(username);
+                userProfile2.UserName = user.Name;
+                userProfile2.ShowOnline(user.Name);
             }
         }
         private void FrmMain_Load(object sender, EventArgs e)
         {
             userProfile2.ShowOnline(_loggedInUser);
+
+            if (_role != "SuperAdmin")
+            {
+                btnAdminManagement.Visible = false;
+            }
         }
 
         private void btnBook_Click(object sender, EventArgs e)

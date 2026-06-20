@@ -13,5 +13,6 @@ namespace LibraryManagementContracts.Member
         public bool Status { get; set; }
         public byte[] Image { get; set; }
         public List<LoanViewModel> Loans { get; set; }
+        public string? Role { get; set; }
     }
 }

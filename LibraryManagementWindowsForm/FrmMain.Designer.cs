@@ -33,6 +33,7 @@
             button1 = new Button();
             button2 = new Button();
             userProfile2 = new UserProfile();
+            btnAdminManagement = new Button();
             SuspendLayout();
             // 
             // btnBook
@@ -41,9 +42,9 @@
             btnBook.FlatAppearance.BorderColor = Color.Blue;
             btnBook.FlatAppearance.BorderSize = 2;
             btnBook.FlatStyle = FlatStyle.Flat;
-            btnBook.Location = new Point(872, 31);
+            btnBook.Location = new Point(981, 31);
             btnBook.Name = "btnBook";
-            btnBook.Size = new Size(129, 38);
+            btnBook.Size = new Size(146, 38);
             btnBook.TabIndex = 0;
             btnBook.Text = "مدیریت کتاب ها";
             btnBook.UseVisualStyleBackColor = false;
@@ -55,9 +56,9 @@
             button1.FlatAppearance.BorderColor = Color.Blue;
             button1.FlatAppearance.BorderSize = 2;
             button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(872, 93);
+            button1.Location = new Point(981, 93);
             button1.Name = "button1";
-            button1.Size = new Size(129, 38);
+            button1.Size = new Size(146, 38);
             button1.TabIndex = 1;
             button1.Text = "مدیریت اعضا";
             button1.UseVisualStyleBackColor = false;
@@ -69,9 +70,9 @@
             button2.FlatAppearance.BorderColor = Color.Blue;
             button2.FlatAppearance.BorderSize = 2;
             button2.FlatStyle = FlatStyle.Flat;
-            button2.Location = new Point(872, 156);
+            button2.Location = new Point(981, 156);
             button2.Name = "button2";
-            button2.Size = new Size(129, 38);
+            button2.Size = new Size(146, 38);
             button2.TabIndex = 2;
             button2.Text = "مدیریت امانات";
             button2.UseVisualStyleBackColor = false;
@@ -81,24 +82,41 @@
             // 
             userProfile2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             userProfile2.BackColor = SystemColors.ActiveCaptionText;
-            userProfile2.Location = new Point(1, 2);
+            userProfile2.Location = new Point(2, 2);
             userProfile2.Name = "userProfile2";
-            userProfile2.Size = new Size(272, 46);
+            userProfile2.Size = new Size(306, 46);
             userProfile2.TabIndex = 4;
             userProfile2.UserName = "";
             userProfile2.Load += userProfile2_Load;
             // 
+            // btnAdminManagement
+            // 
+            btnAdminManagement.BackColor = Color.DarkOliveGreen;
+            btnAdminManagement.FlatAppearance.BorderColor = Color.Blue;
+            btnAdminManagement.FlatAppearance.BorderSize = 2;
+            btnAdminManagement.FlatStyle = FlatStyle.Flat;
+            btnAdminManagement.ForeColor = Color.Khaki;
+            btnAdminManagement.Location = new Point(981, 228);
+            btnAdminManagement.Name = "btnAdminManagement";
+            btnAdminManagement.Size = new Size(146, 38);
+            btnAdminManagement.TabIndex = 5;
+            btnAdminManagement.Text = "مدیریت ادمین ها";
+            btnAdminManagement.UseVisualStyleBackColor = false;
+            // 
             // FrmMain
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1033, 581);
+            ClientSize = new Size(1162, 581);
+            Controls.Add(btnAdminManagement);
             Controls.Add(userProfile2);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(btnBook);
+            Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ForeColor = Color.Black;
             Name = "FrmMain";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "فرم اصلی";
@@ -112,5 +130,6 @@
         private Button button1;
         private Button button2;
         private UserProfile userProfile2;
+        private Button btnAdminManagement;
     }
 }

@@ -18,6 +18,13 @@ namespace ClassLibraryInfrastructure.Mappings
             builder.Property(x => x.Password)
                 .HasMaxLength(100)
                 .IsRequired();
+
+            builder.Property(x => x.Role)
+               .HasMaxLength(20)
+               .IsRequired();
+
+            builder.Property(x => x.IsActive)
+                   .IsRequired();
         }
     }
 }

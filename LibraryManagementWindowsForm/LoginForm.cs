@@ -31,7 +31,7 @@ namespace LibraryManagementWindowsForm
 
                 //  انتقال نام کاربر به فرم اصلی از طریق متدی که قبلاً ساختیم
                 // ترکیب نام و نام خانوادگی برای نمایش کامل
-                mainForm.SetUserData($"{result.Name} {result.Family}");
+                mainForm.SetUserData(result);
 
                 // مدیریت بستن برنامه و نمایش فرم
                 mainForm.FormClosed += (s, args) => this.Close();
