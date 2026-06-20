@@ -23,34 +23,42 @@ namespace LibraryManagementWindowsForm
 
         private async void btn_reneview_Click(object sender, EventArgs e)
         {
-            var memberId = txt_search_id.Text == "" ? 0 : Convert.ToInt32(txt_search_id.Text);
-            if (memberId == 0)
+            try
             {
-                MessageBox.Show("وارد کردن شماره عضویت اجباری است");
-                return;
+                var memberId = txt_search_id.Text == "" ? 0 : Convert.ToInt32(txt_search_id.Text);
+
+                if (memberId == 0)
+                {
+                    MessageBox.Show("وارد کردن شماره عضویت اجباری است");
+                    return;
+                }
+                var result = await _memberService.GetMemberWithLoanByIdAsync(memberId);
+                txt_family.Text = result.Name + " " + result.Family;
+                checkBox_isSpecial.Checked = result.IsSpecial;
+                checkBox_status.Checked = result.Status;
+                MemoryStream stream = new MemoryStream(result.Image);
+                pictureBox_member.Image = Image.FromStream(stream);
+                dataGridView_loans.DataBindings.Clear();
+                dataGridView_loans.DataSource = result.Loans;
+                dataGridView_loans.Columns[0].HeaderText = "شناسه";
+                dataGridView_loans.Columns[1].Visible = false;
+                dataGridView_loans.Columns[2].Visible = false;
+                dataGridView_loans.Columns[3].Visible = false;
+                dataGridView_loans.Columns[4].HeaderText = "نام کتاب";
+                dataGridView_loans.Columns[5].HeaderText = "تاریخ امانت";
+                dataGridView_loans.Columns[6].HeaderText = "تاریخ تحویل";
+
+                dataGridView_loans.Columns[5].DefaultCellStyle.Format = "yyyy/MM/dd";
+                dataGridView_loans.Columns[6].DefaultCellStyle.Format = "yyyy/MM/dd";
+
+                dataGridView_loans.Columns[7].HeaderText = "وضعیت";
+                btn_save.Enabled = true;
+                btn_return_save.Enabled = true;
             }
-            var result = await _memberService.GetMemberWithLoanByIdAsync(memberId);
-            txt_family.Text = result.Name + " " + result.Family;
-            checkBox_isSpecial.Checked = result.IsSpecial;
-            checkBox_status.Checked = result.Status;
-            MemoryStream stream = new MemoryStream(result.Image);
-            pictureBox_member.Image = Image.FromStream(stream);
-            dataGridView_loans.DataBindings.Clear();
-            dataGridView_loans.DataSource = result.Loans;
-            dataGridView_loans.Columns[0].HeaderText = "شناسه";
-            dataGridView_loans.Columns[1].Visible = false;
-            dataGridView_loans.Columns[2].Visible = false;
-            dataGridView_loans.Columns[3].Visible = false;
-            dataGridView_loans.Columns[4].HeaderText = "نام کتاب";
-            dataGridView_loans.Columns[5].HeaderText = "تاریخ امانت";
-            dataGridView_loans.Columns[6].HeaderText = "تاریخ تحویل";
-
-            dataGridView_loans.Columns[5].DefaultCellStyle.Format = "yyyy/MM/dd";
-            dataGridView_loans.Columns[6].DefaultCellStyle.Format = "yyyy/MM/dd";
-
-            dataGridView_loans.Columns[7].HeaderText = "وضعیت";
-            btn_save.Enabled = true;
-            btn_return_save.Enabled = true;
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
