@@ -37,6 +37,7 @@
             btn_update = new Button();
             button2 = new Button();
             dataGrid_members = new DataGridView();
+            userProfile1 = new UserProfile();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGrid_members).BeginInit();
             SuspendLayout();
@@ -151,11 +152,20 @@
             dataGrid_members.TabIndex = 7;
             dataGrid_members.CellClick += dataGrid_members_CellClick;
             // 
+            // userProfile1
+            // 
+            userProfile1.Location = new Point(12, 151);
+            userProfile1.Name = "userProfile1";
+            userProfile1.Size = new Size(332, 47);
+            userProfile1.TabIndex = 8;
+            userProfile1.UserName = "";
+            // 
             // FrmManageMembers
             // 
             AutoScaleDimensions = new SizeF(9F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(986, 538);
+            Controls.Add(userProfile1);
             Controls.Add(dataGrid_members);
             Controls.Add(button2);
             Controls.Add(btn_update);
@@ -182,5 +192,6 @@
         private Button btn_update;
         private Button button2;
         private DataGridView dataGrid_members;
+        private UserProfile userProfile1;
     }
 }

@@ -46,6 +46,7 @@
             txt_search = new TextBox();
             label6 = new Label();
             lbl_id = new Label();
+            userProfile1 = new UserProfile();
             ((System.ComponentModel.ISupportInitialize)dataGrid_books).BeginInit();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picture_book).BeginInit();
@@ -61,6 +62,7 @@
             dataGrid_books.Size = new Size(834, 216);
             dataGrid_books.TabIndex = 0;
             dataGrid_books.CellClick += dataGrid_books_CellClick;
+            dataGrid_books.CellContentClick += dataGrid_books_CellContentClick;
             // 
             // groupBox1
             // 
@@ -247,6 +249,7 @@
             groupBox2.TabIndex = 2;
             groupBox2.TabStop = false;
             groupBox2.Text = "جستجو :";
+            groupBox2.Enter += groupBox2_Enter;
             // 
             // txt_search
             // 
@@ -286,12 +289,21 @@
             lbl_id.TabIndex = 11;
             lbl_id.Visible = false;
             // 
+            // userProfile1
+            // 
+            userProfile1.Location = new Point(12, 235);
+            userProfile1.Name = "userProfile1";
+            userProfile1.Size = new Size(314, 32);
+            userProfile1.TabIndex = 12;
+            userProfile1.UserName = "";
+            // 
             // FrmBook
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.RoyalBlue;
             ClientSize = new Size(858, 495);
+            Controls.Add(userProfile1);
             Controls.Add(lbl_id);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
@@ -331,5 +343,6 @@
         private TextBox txt_search;
         private Label label6;
         private Label lbl_id;
+        private UserProfile userProfile1;
     }
 }

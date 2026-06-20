@@ -37,14 +37,18 @@
             label1 = new Label();
             txtUserName = new TextBox();
             txtPassword = new TextBox();
+            userProfile1 = new UserProfile();
             ((System.ComponentModel.ISupportInitialize)dgvAdmins).BeginInit();
             SuspendLayout();
             // 
             // dgvAdmins
             // 
+            dgvAdmins.AllowUserToAddRows = false;
+            dgvAdmins.AllowUserToDeleteRows = false;
             dgvAdmins.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvAdmins.Location = new Point(3, 204);
             dgvAdmins.Name = "dgvAdmins";
+            dgvAdmins.ReadOnly = true;
             dgvAdmins.RowHeadersWidth = 51;
             dgvAdmins.Size = new Size(794, 241);
             dgvAdmins.TabIndex = 0;
@@ -58,6 +62,7 @@
             btnCreateAdmin.TabIndex = 1;
             btnCreateAdmin.Text = "اضافه کردن";
             btnCreateAdmin.UseVisualStyleBackColor = true;
+            btnCreateAdmin.Click += btnCreateAdmin_Click;
             // 
             // btnUpdate
             // 
@@ -124,11 +129,21 @@
             txtPassword.Size = new Size(152, 27);
             txtPassword.TabIndex = 8;
             // 
+            // userProfile1
+            // 
+            userProfile1.Location = new Point(508, 126);
+            userProfile1.Name = "userProfile1";
+            userProfile1.Size = new Size(289, 56);
+            userProfile1.TabIndex = 9;
+            userProfile1.UserName = "";
+            userProfile1.Load += userProfile1_Load;
+            // 
             // FrmAdminManagement
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(userProfile1);
             Controls.Add(txtPassword);
             Controls.Add(txtUserName);
             Controls.Add(label1);
@@ -157,5 +172,6 @@
         private Label label1;
         private TextBox txtUserName;
         private TextBox txtPassword;
+        private UserProfile userProfile1;
     }
 }

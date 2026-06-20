@@ -14,12 +14,13 @@ namespace LibraryManagementWindowsForm
         public FrmMain(/*string username*/)
         {
             InitializeComponent();
-           // loggedInUser = username;      // گرفتن یوز
+            // loggedInUser = username;      // گرفتن یوز
         }
 
         public void SetUserData(MemberViewModel user)
         {
-            _loggedInUser = user.Name;
+            GlobalUser.Username = user.Name;
+           // _loggedInUser = user.Name;
             _role = user.Role;
 
             if (userProfile2 != null)
@@ -30,7 +31,9 @@ namespace LibraryManagementWindowsForm
         }
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            userProfile2.ShowOnline(_loggedInUser);
+            userProfile2.ShowOnline(GlobalUser.Username);
+
+           //userProfile2.ShowOnline(_loggedInUser);
 
             if (_role != "SuperAdmin")
             {
@@ -59,6 +62,12 @@ namespace LibraryManagementWindowsForm
         private void userProfile2_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnAdminManagement_Click(object sender, EventArgs e)
+        {
+            var frmAdminManage = Program.ServiceProvider.GetRequiredService<FrmAdminManagement>();
+            frmAdminManage.ShowDialog();
         }
     }
 }

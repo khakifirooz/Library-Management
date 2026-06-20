@@ -89,5 +89,14 @@ namespace LibraryManagementWindowsForm.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Admin.
+        /// </summary>
+        internal static string GlobalUsername {
+            get {
+                return ResourceManager.GetString("GlobalUsername", resourceCulture);
+            }
+        }
     }
 }

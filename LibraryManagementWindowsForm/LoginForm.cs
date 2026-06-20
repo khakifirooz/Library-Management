@@ -26,6 +26,10 @@ namespace LibraryManagementWindowsForm
 
             if (result != null)
             {
+
+                GlobalUser.Username = result.Name;   // اگر نام فیلد Name است
+                GlobalUser.Role = result.Role;
+
                 //  گرفتن نمونه فرم اصلی از طریق ServiceProvider
                 var mainForm = Program.ServiceProvider.GetRequiredService<FrmMain>();
 

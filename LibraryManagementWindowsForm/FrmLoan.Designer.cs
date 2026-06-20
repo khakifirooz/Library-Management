@@ -55,6 +55,7 @@
             label7 = new Label();
             comboBox_Book_return = new ComboBox();
             label8 = new Label();
+            userProfile1 = new UserProfile();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView_loans).BeginInit();
@@ -65,6 +66,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(userProfile1);
             groupBox1.Controls.Add(pictureBox1);
             groupBox1.Controls.Add(dataGridView_loans);
             groupBox1.Controls.Add(txt_family);
@@ -381,6 +383,14 @@
             label8.TabIndex = 9;
             label8.Text = "نام کتاب :";
             // 
+            // userProfile1
+            // 
+            userProfile1.Location = new Point(570, 175);
+            userProfile1.Name = "userProfile1";
+            userProfile1.Size = new Size(215, 52);
+            userProfile1.TabIndex = 10;
+            userProfile1.UserName = "";
+            // 
             // FrmLoan
             // 
             AutoScaleDimensions = new SizeF(11F, 26F);
@@ -437,5 +447,6 @@
         private Label label7;
         private ComboBox comboBox_Book_return;
         private Label label8;
+        private UserProfile userProfile1;
     }
 }

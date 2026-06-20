@@ -19,7 +19,7 @@ namespace LibraryManagementWindowsForm
         }
         public void ShowOnline(string username)
         {
-            // مدیریت زمانی که هنوز یوزری وارد نشده (جلوگیری از نمایش نام خالی)
+            //  زمانی که هنوز یوزری وارد نشده (جلوگیری از نمایش نام خالی)
             if (string.IsNullOrEmpty(username)) return;
 
             lblTitle.Text = $"{username} is online";
@@ -29,7 +29,10 @@ namespace LibraryManagementWindowsForm
 
         private void UserProfile_Load(object sender, EventArgs e)
         {
-
+            if (!string.IsNullOrWhiteSpace(GlobalUser.Username))
+            {
+                ShowOnline(GlobalUser.Username);
+            }
         }
     }
 }

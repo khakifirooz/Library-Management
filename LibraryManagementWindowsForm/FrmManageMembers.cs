@@ -13,6 +13,11 @@ namespace LibraryManagementWindowsForm
         {
             InitializeComponent();
             _memberService = memberService;
+
+            if (GlobalUser.Username != null)
+            {
+                userProfile1.ShowOnline(GlobalUser.Username);
+            }
         }
 
         private async void FrmManageMembers_Load(object sender, EventArgs e)

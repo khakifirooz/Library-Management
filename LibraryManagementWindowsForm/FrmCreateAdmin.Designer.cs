@@ -32,6 +32,7 @@
             txtPassword = new TextBox();
             label1 = new Label();
             btnSave = new Button();
+            userProfile1 = new UserProfile();
             SuspendLayout();
             // 
             // txtUserName
@@ -69,11 +70,20 @@
             btnSave.UseVisualStyleBackColor = true;
             btnSave.Click += btnSave_Click;
             // 
+            // userProfile1
+            // 
+            userProfile1.Location = new Point(248, 173);
+            userProfile1.Name = "userProfile1";
+            userProfile1.Size = new Size(241, 43);
+            userProfile1.TabIndex = 4;
+            userProfile1.UserName = "";
+            // 
             // FrmCreateAdmin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(501, 241);
+            Controls.Add(userProfile1);
             Controls.Add(btnSave);
             Controls.Add(label1);
             Controls.Add(txtPassword);
@@ -81,6 +91,7 @@
             Name = "FrmCreateAdmin";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmCreateAdmin";
+            Load += FrmCreateAdmin_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -91,5 +102,6 @@
         private TextBox txtPassword;
         private Label label1;
         private Button btnSave;
+        private UserProfile userProfile1;
     }
 }

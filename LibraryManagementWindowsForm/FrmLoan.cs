@@ -71,6 +71,11 @@ namespace LibraryManagementWindowsForm
 
             dataGridView_loans.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView_loans.MultiSelect = false;
+
+            if (GlobalUser.Username != null)
+            {
+                userProfile1.ShowOnline(GlobalUser.Username);
+            }
         }
 
         private async void btn_save_Click(object sender, EventArgs e)

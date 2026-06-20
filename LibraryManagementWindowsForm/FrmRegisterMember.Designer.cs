@@ -42,6 +42,7 @@
             label6 = new Label();
             btn_save = new Button();
             button2 = new Button();
+            userProfile1 = new UserProfile();
             ((System.ComponentModel.ISupportInitialize)picture_member).BeginInit();
             SuspendLayout();
             // 
@@ -212,12 +213,21 @@
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
+            // userProfile1
+            // 
+            userProfile1.Location = new Point(32, 362);
+            userProfile1.Name = "userProfile1";
+            userProfile1.Size = new Size(330, 39);
+            userProfile1.TabIndex = 14;
+            userProfile1.UserName = "";
+            // 
             // FrmRegisterMember
             // 
             AutoScaleDimensions = new SizeF(11F, 26F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(884, 525);
+            Controls.Add(userProfile1);
             Controls.Add(button2);
             Controls.Add(btn_save);
             Controls.Add(label6);
@@ -261,5 +271,6 @@
         private Label label6;
         private Button btn_save;
         private Button button2;
+        private UserProfile userProfile1;
     }
 }

@@ -65,6 +65,10 @@ namespace LibraryManagementWindowsForm
         {
             dataGrid_books.DataSource = await _bookService.GetAllAsync();
             SetColumns();
+            if (GlobalUser.Username != null)
+            {
+                userProfile1.ShowOnline(GlobalUser.Username);
+            }
         }
 
         public void SetColumns()
@@ -127,7 +131,7 @@ namespace LibraryManagementWindowsForm
                 dataGrid_books.DataSource = result;
                 SetColumns();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -153,6 +157,16 @@ namespace LibraryManagementWindowsForm
                 MessageBox.Show(result.Message);
 
             FrmBook_Load(null, null);
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGrid_books_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

@@ -20,7 +20,10 @@ namespace LibraryManagementWindowsForm
 
         private void FrmRegisterMember_Load(object sender, EventArgs e)
         {
-
+            if (GlobalUser.Username != null)
+            {
+                userProfile1.ShowOnline(GlobalUser.Username);
+            }
         }
 
         private void picture_member_Click(object sender, EventArgs e)

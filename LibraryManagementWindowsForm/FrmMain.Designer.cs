@@ -102,6 +102,7 @@
             btnAdminManagement.TabIndex = 5;
             btnAdminManagement.Text = "مدیریت ادمین ها";
             btnAdminManagement.UseVisualStyleBackColor = false;
+            btnAdminManagement.Click += btnAdminManagement_Click;
             // 
             // FrmMain
             // 

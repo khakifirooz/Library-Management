@@ -27,6 +27,11 @@ namespace LibraryManagementWindowsForm
             checkBox_status.Checked = member.Status;
             MemoryStream memoryStream = new MemoryStream(member.Image);
             picture_member.Image = Image.FromStream(memoryStream);
+
+            if (GlobalUser.Username != null)
+            {
+                userProfile1.ShowOnline(GlobalUser.Username);
+            }
         }
 
         private void btn_close_Click(object sender, EventArgs e)

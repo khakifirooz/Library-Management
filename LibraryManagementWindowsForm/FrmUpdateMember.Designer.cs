@@ -46,6 +46,7 @@
             txt_id = new TextBox();
             checkBox_status = new CheckBox();
             label8 = new Label();
+            userProfile1 = new UserProfile();
             ((System.ComponentModel.ISupportInitialize)picture_member).BeginInit();
             SuspendLayout();
             // 
@@ -258,11 +259,20 @@
             label8.TabIndex = 31;
             label8.Text = "وضعیت :";
             // 
+            // userProfile1
+            // 
+            userProfile1.Location = new Point(30, 359);
+            userProfile1.Name = "userProfile1";
+            userProfile1.Size = new Size(238, 53);
+            userProfile1.TabIndex = 32;
+            userProfile1.UserName = "";
+            // 
             // FrmUpdateMember
             // 
             AutoScaleDimensions = new SizeF(11F, 26F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(739, 514);
+            Controls.Add(userProfile1);
             Controls.Add(checkBox_status);
             Controls.Add(label8);
             Controls.Add(label7);
@@ -313,5 +323,6 @@
         private TextBox txt_id;
         private CheckBox checkBox_status;
         private Label label8;
+        private UserProfile userProfile1;
     }
 }

@@ -221,6 +221,7 @@ namespace LibraryManagementApplication
             {
                 Id = x.Id,
                 UserName = x.UserName,
+                Password = x.Password,
                 Role = x.Role,
                 IsActive = x.IsActive
             }).ToList();
