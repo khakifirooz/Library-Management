@@ -58,8 +58,7 @@ namespace LibraryManagementWindowsForm
             if (confirm != DialogResult.Yes)
                 return;
 
-            var result =
-              await _memberService.CreateAdminAsync(
+            var result = await _memberService.CreateAdminAsync(
               new CreateAdminModel
               {
                   UserName = txtUserName.Text,

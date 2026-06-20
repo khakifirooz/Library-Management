@@ -15,7 +15,7 @@ namespace LibraryManagementWindowsForm
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
-
+            txt_pass.PasswordChar = '*';
         }
 
         private async void btn1_Click(object sender, EventArgs e)
@@ -44,10 +44,34 @@ namespace LibraryManagementWindowsForm
             }
             else
             {
-                MessageBox.Show("نام کاربری یا رمز عبور اشتباه است", "خطا", 
+                MessageBox.Show("نام کاربری یا رمز عبور اشتباه است", "خطا",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+        }
+
+        private void chkShowPassword_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (chkShowPassword.Checked)
+            {
+                txt_pass.PasswordChar = '\0';
+                chkShowPassword.Text = "مخفی کردن رمز";
+            }
+            else
+            {
+                txt_pass.PasswordChar = '*';
+                chkShowPassword.Text = "نمایش رمز";
+            }
+
+            //if (chkShowPassword.Checked)
+            //{
+            //    txt_pass.PasswordChar = '\0'; // نمایش رمز
+            //}
+            //else
+            //{
+            //    txt_pass.PasswordChar = '*'; // مخفی شدن رمز
+            //}
         }
     }
 }

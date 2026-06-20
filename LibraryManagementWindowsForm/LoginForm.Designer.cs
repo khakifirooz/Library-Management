@@ -36,6 +36,7 @@ namespace LibraryManagementWindowsForm
             btn1 = new Button();
             txt_user = new TextBox();
             txt_pass = new TextBox();
+            chkShowPassword = new CheckBox();
             SuspendLayout();
             // 
             // label1
@@ -63,6 +64,7 @@ namespace LibraryManagementWindowsForm
             btn1.TabIndex = 1;
             btn1.Text = "ورود ادمین";
             btn1.UseVisualStyleBackColor = false;
+            btn1.UseWaitCursor = true;
             btn1.Click += btn1_Click;
             // 
             // txt_user
@@ -81,12 +83,25 @@ namespace LibraryManagementWindowsForm
             txt_pass.TabIndex = 3;
             txt_pass.UseWaitCursor = true;
             // 
+            // chkShowPassword
+            // 
+            chkShowPassword.AutoSize = true;
+            chkShowPassword.Location = new Point(487, 268);
+            chkShowPassword.Name = "chkShowPassword";
+            chkShowPassword.Size = new Size(128, 24);
+            chkShowPassword.TabIndex = 4;
+            chkShowPassword.Text = "نمایش رمز عبور";
+            chkShowPassword.UseVisualStyleBackColor = true;
+            chkShowPassword.UseWaitCursor = true;
+            chkShowPassword.CheckedChanged += chkShowPassword_CheckedChanged;
+            // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Desktop;
             ClientSize = new Size(800, 450);
+            Controls.Add(chkShowPassword);
             Controls.Add(txt_pass);
             Controls.Add(txt_user);
             Controls.Add(btn1);
@@ -94,6 +109,7 @@ namespace LibraryManagementWindowsForm
             ForeColor = Color.LawnGreen;
             Name = "LoginForm";
             RightToLeftLayout = true;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "فرم ورود";
             UseWaitCursor = true;
             Load += LoginForm_Load;
@@ -107,5 +123,6 @@ namespace LibraryManagementWindowsForm
         private Button btn1;
         private TextBox txt_user;
         private TextBox txt_pass;
+        private CheckBox chkShowPassword;
     }
 }

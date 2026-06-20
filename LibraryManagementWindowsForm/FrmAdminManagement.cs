@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using LibraryManagementContracts.Admin;
 using LibraryManagementContracts.Member;
 using Microsoft.Extensions.DependencyInjection;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace LibraryManagementWindowsForm
 {
@@ -203,6 +204,43 @@ namespace LibraryManagementWindowsForm
         {
             var form = new FrmCreateAdmin(_memberService);
             form.ShowDialog();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        public void SetColumns()
+        {
+            dgvAdmins.Columns[0].HeaderText = "نام کاربری";
+            dgvAdmins.Columns[1].HeaderText = "عنوان";
+            dgvAdmins.Columns[2].HeaderText = "وضعیت";
+        }
+
+        private async void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                var result = await _memberService.GetAllAdminsAsync();
+
+                var filtered = result
+                    .Where(x => x.UserName.Contains(txt_search.Text))
+                    .ToList();
+
+                dgvAdmins.DataSource = filtered;
+
+                SetColumns();
+
+                if (string.IsNullOrWhiteSpace(txt_search.Text))
+                {
+                    dgvAdmins.DataSource = result;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

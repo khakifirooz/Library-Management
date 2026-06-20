@@ -44,6 +44,10 @@ namespace LibraryManagementWindowsForm
             dataGridView_loans.Columns[4].HeaderText = "نام کتاب";
             dataGridView_loans.Columns[5].HeaderText = "تاریخ امانت";
             dataGridView_loans.Columns[6].HeaderText = "تاریخ تحویل";
+
+            dataGridView_loans.Columns[5].DefaultCellStyle.Format = "yyyy/MM/dd";
+            dataGridView_loans.Columns[6].DefaultCellStyle.Format = "yyyy/MM/dd";
+
             dataGridView_loans.Columns[7].HeaderText = "وضعیت";
             btn_save.Enabled = true;
             btn_return_save.Enabled = true;
@@ -112,19 +116,51 @@ namespace LibraryManagementWindowsForm
 
             if (result.Success)
             {
-                dataGridView_loans.DataSource = await _memberService.GetMemberWithLoanByIdAsync(loanId);
+                int memberId = Convert.ToInt32(txt_search_id.Text);
+
+                var member = await _memberService.GetMemberWithLoanByIdAsync(memberId);
+
+                dataGridView_loans.DataSource = member.Loans;
             }
             else
             {
                 MessageBox.Show(result.Message);
             }
 
-           // dataGridView_loans.DataBindings.Clear();
+            //if (result.Success)
+            //{
+            //    dataGridView_loans.DataSource = await _memberService.GetMemberWithLoanByIdAsync(loanId);
+            //}
+            //else
+            //{
+            //    MessageBox.Show(result.Message);
+            //}
+
+            // dataGridView_loans.DataBindings.Clear();
         }
 
         private void dataGridView_loans_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            comboBox_Book_return.Text = dataGridView_loans.CurrentRow.Cells[4].Value.ToString();
+            //comboBox_Book_return.Text = dataGridView_loans.CurrentRow.Cells[4].Value.ToString();
+
+            try
+            {
+                if (e.RowIndex < 0)
+                    return;
+
+                comboBox_Book_return.Text =
+                    dataGridView_loans.CurrentRow.Cells[4].Value.ToString();
+
+                if (dataGridView_loans.CurrentRow.Cells[6].Value != null)
+                {
+                    dateTimePicker_return.Value =
+                        Convert.ToDateTime(dataGridView_loans.CurrentRow.Cells[6].Value);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
         }
 
         private void comboBox_Book_return_SelectedIndexChanged(object sender, EventArgs e)

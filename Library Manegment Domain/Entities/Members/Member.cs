@@ -57,15 +57,25 @@ namespace Library_Manegment_Domain.Entities.Members
             if (loan == null)
                 throw new ArgumentNullException(nameof(loan));
 
-            if (!Loans.Remove(loan))
+            var existingLoan = Loans.FirstOrDefault(x => x.Id == loan.Id);
+
+            if (existingLoan == null)
                 throw new InvalidOperationException("امانت برای عضو پیدا نشد");
 
-            if (loan == null)
-                throw new ArgumentNullException(nameof(loan));
+            Loans.Remove(existingLoan);
 
-            bool removed = Loans.Remove(loan);
-            if (!removed)
-                throw new InvalidOperationException("امانت برای عضو پیدا نشد");
+            //if (loan == null)
+            //    throw new ArgumentNullException(nameof(loan));
+
+            //if (!Loans.Remove(loan))
+            //    throw new InvalidOperationException("امانت برای عضو پیدا نشد");
+
+            //if (loan == null)
+            //    throw new ArgumentNullException(nameof(loan));
+
+            //bool removed = Loans.Remove(loan);
+            //if (!removed)
+            //    throw new InvalidOperationException("امانت برای عضو پیدا نشد");
         }
     }
 }
