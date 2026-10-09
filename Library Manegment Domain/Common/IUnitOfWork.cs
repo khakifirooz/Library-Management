@@ -15,5 +15,7 @@ namespace Library_Manegment_Domain.Common
         Task CommitTransactionAsync();
         Task RollBackTrasactionAsync();
         Task SaveChangesAsync();
+
+        void ResetTracking();
     }
 }
