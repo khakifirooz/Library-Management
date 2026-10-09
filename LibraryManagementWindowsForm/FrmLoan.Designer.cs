@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            userProfile1 = new UserProfile();
             pictureBox1 = new PictureBox();
             dataGridView_loans = new DataGridView();
             txt_family = new TextBox();
@@ -40,10 +41,10 @@
             label1 = new Label();
             btn_reneview = new Button();
             groupBox2 = new GroupBox();
+            label5 = new Label();
             btn_save = new Button();
             dateTimePicker_return = new DateTimePicker();
             dateTimePicker_loan = new DateTimePicker();
-            label5 = new Label();
             label4 = new Label();
             comboBox_books = new ComboBox();
             label3 = new Label();
@@ -55,7 +56,6 @@
             label7 = new Label();
             comboBox_Book_return = new ComboBox();
             label8 = new Label();
-            userProfile1 = new UserProfile();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView_loans).BeginInit();
@@ -87,6 +87,15 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "جستجوی عضو";
             groupBox1.Enter += groupBox1_Enter;
+            // 
+            // userProfile1
+            // 
+            userProfile1.Location = new Point(570, 175);
+            userProfile1.Name = "userProfile1";
+            userProfile1.Size = new Size(215, 52);
+            userProfile1.TabIndex = 10;
+            userProfile1.UserName = "";
+            userProfile1.Load += userProfile1_Load;
             // 
             // pictureBox1
             // 
@@ -203,10 +212,10 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(label5);
             groupBox2.Controls.Add(btn_save);
             groupBox2.Controls.Add(dateTimePicker_return);
             groupBox2.Controls.Add(dateTimePicker_loan);
-            groupBox2.Controls.Add(label5);
             groupBox2.Controls.Add(label4);
             groupBox2.Controls.Add(comboBox_books);
             groupBox2.Controls.Add(label3);
@@ -217,6 +226,17 @@
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             groupBox2.Text = "امانت کتاب";
+            groupBox2.Enter += groupBox2_Enter;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(385, 167);
+            label5.Margin = new Padding(4, 0, 4, 0);
+            label5.Name = "label5";
+            label5.Size = new Size(108, 26);
+            label5.TabIndex = 15;
+            label5.Text = "تاریخ اتمام مهلت :";
             // 
             // btn_save
             // 
@@ -239,7 +259,7 @@
             // 
             dateTimePicker_return.Font = new Font("Book Antiqua", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dateTimePicker_return.Format = DateTimePickerFormat.Short;
-            dateTimePicker_return.Location = new Point(149, 165);
+            dateTimePicker_return.Location = new Point(136, 165);
             dateTimePicker_return.Name = "dateTimePicker_return";
             dateTimePicker_return.Size = new Size(250, 29);
             dateTimePicker_return.TabIndex = 14;
@@ -248,20 +268,10 @@
             // 
             dateTimePicker_loan.Font = new Font("Book Antiqua", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dateTimePicker_loan.Format = DateTimePickerFormat.Short;
-            dateTimePicker_loan.Location = new Point(149, 106);
+            dateTimePicker_loan.Location = new Point(136, 106);
             dateTimePicker_loan.Name = "dateTimePicker_loan";
             dateTimePicker_loan.Size = new Size(250, 29);
             dateTimePicker_loan.TabIndex = 13;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(406, 165);
-            label5.Margin = new Padding(4, 0, 4, 0);
-            label5.Name = "label5";
-            label5.Size = new Size(83, 26);
-            label5.TabIndex = 12;
-            label5.Text = "تاریخ تحویل :";
             // 
             // label4
             // 
@@ -276,7 +286,7 @@
             // comboBox_books
             // 
             comboBox_books.FormattingEnabled = true;
-            comboBox_books.Location = new Point(149, 46);
+            comboBox_books.Location = new Point(136, 46);
             comboBox_books.Name = "comboBox_books";
             comboBox_books.Size = new Size(250, 34);
             comboBox_books.TabIndex = 10;
@@ -343,21 +353,22 @@
             dateTimePicker_ExpiredTime.Name = "dateTimePicker_ExpiredTime";
             dateTimePicker_ExpiredTime.Size = new Size(250, 29);
             dateTimePicker_ExpiredTime.TabIndex = 13;
+            dateTimePicker_ExpiredTime.ValueChanged += dateTimePicker_ExpiredTime_ValueChanged;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(413, 165);
+            label6.Location = new Point(391, 109);
             label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
-            label6.Size = new Size(83, 26);
+            label6.Size = new Size(114, 26);
             label6.TabIndex = 12;
-            label6.Text = "تاریخ تحویل :";
+            label6.Text = "تاریخ تحویل کتاب :";
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(388, 109);
+            label7.Location = new Point(388, 160);
             label7.Margin = new Padding(4, 0, 4, 0);
             label7.Name = "label7";
             label7.Size = new Size(108, 26);
@@ -382,14 +393,6 @@
             label8.Size = new Size(64, 26);
             label8.TabIndex = 9;
             label8.Text = "نام کتاب :";
-            // 
-            // userProfile1
-            // 
-            userProfile1.Location = new Point(570, 175);
-            userProfile1.Name = "userProfile1";
-            userProfile1.Size = new Size(215, 52);
-            userProfile1.TabIndex = 10;
-            userProfile1.UserName = "";
             // 
             // FrmLoan
             // 
@@ -431,7 +434,6 @@
         private TextBox txt_family;
         private Label label2;
         private GroupBox groupBox2;
-        private Label label5;
         private Label label4;
         private ComboBox comboBox_books;
         private Label label3;
@@ -448,5 +450,6 @@
         private ComboBox comboBox_Book_return;
         private Label label8;
         private UserProfile userProfile1;
+        private Label label5;
     }
 }

@@ -5,6 +5,7 @@ using Library_Manegment_Domain.Entities.Members;
 using LibraryManagementContracts.Admin;
 using LibraryManagementContracts.Loan;
 using LibraryManagementContracts.Member;
+using LibraryManagementWindowsForm;
 
 namespace LibraryManagementApplication
 {
@@ -97,19 +98,45 @@ namespace LibraryManagementApplication
 
         public static List<LoanViewModel> MapLoans(List<Loan> loans)
         {
-            return loans
-                .Where(loan => loan.Book.IsLoaned)
-                .Select(loan => new LoanViewModel()
-                {
-                    Id = loan.Id,
-                    MemberId = loan.MemberId,
-                    MemberName = $"{loan.Member.Name} {loan.Member.Family}",
-                    BookId = loan.BookId,
-                    BookName = loan.Book.Title,
-                    LoanDate = loan.LoanDate,
-                    ReturnDate = loan.ReturnDate,
-                    Status = loan.Status,
-                }).ToList();
+            //return loans
+            //    .Where(loan => loan.Book.IsLoaned)
+            //    .Select(loan => new LoanViewModel()
+            //    {
+            //        Id = loan.Id,
+            //        MemberId = loan.MemberId,
+            //        MemberName = $"{loan.Member.Name} {loan.Member.Family}",
+            //        BookId = loan.BookId,
+            //        BookName = loan.Book.Title,
+            //        LoanDate = loan.LoanDate,
+            //        ReturnDate = loan.ReturnDate,
+            //        Status = loan.Status,
+            //    }).ToList();
+
+            return loans.Select(loan => new LoanViewModel()
+            {
+                Id = loan.Id,
+                MemberId = loan.MemberId,
+                MemberName = $"{loan.Member.Name} {loan.Member.Family}",
+                BookId = loan.BookId,
+                BookName = loan.Book.Title,
+
+                LoanDate = loan.LoanDate,
+                ReturnDate = loan.ReturnDate,
+
+               // LoanDatePersian = PersianDateHelper.ToPersian(loan.LoanDate),
+
+                LoanDatePersian = loan.LoanDate == default
+                      ? ""
+                      : PersianDateHelper.ToPersian(loan.LoanDate),
+                    
+                                  ReturnDatePersian = loan.ReturnDate == default
+                      ? ""
+                      : PersianDateHelper.ToPersian(loan.ReturnDate),
+
+              // ReturnDatePersian = PersianDateHelper.ToPersian(loan.ReturnDate),
+
+                Status = loan.Status,
+            }).ToList();
         }
 
         public async Task<List<MemberViewModel>> SearchAsync(int id, string? nationalCode)
@@ -156,25 +183,28 @@ namespace LibraryManagementApplication
         public async Task<OperationResult> AddLoanAsync(LoanCreateModel command)
         {
             OperationResult result = new();
+
+            await _unitOfWork.BeginTransactionAsync();
+
             try
             {
-                await _unitOfWork.BeginTransactionAsync();
                 var member = await _unitOfWork.MemberRepository.GetByIdAsync(command.MemberId);
                 if (member is null)
-                    result.Failed(ApplicationMessages.RecordNotFound);
-
-                var loan = new Loan(command.MemberId, command.BookId, command.LoanDate, command.ReturnDate);
-                member.addLoan(loan);
+                    return result.Failed("Member not found");
 
                 var book = await _unitOfWork.BookRepository.GetByIdAsync(command.BookId);
                 if (book is null)
-                    result.Failed(ApplicationMessages.RecordNotFound);
+                    return result.Failed("Book not found");
 
+                var loan = new Loan(command.MemberId, command.BookId, command.LoanDate, command.ReturnDate);
+
+                member.addLoan(loan);
                 book.Loaned();
+
                 await _unitOfWork.SaveChangesAsync();
                 await _unitOfWork.CommitTransactionAsync();
-                return result.Succeded();
 
+                return result.Succeded();
             }
             catch (Exception e)
             {

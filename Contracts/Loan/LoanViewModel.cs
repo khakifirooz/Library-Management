@@ -9,6 +9,10 @@
         public string? BookName { get; set; }
         public DateTime LoanDate { get; set; }
         public DateTime ReturnDate { get; set; }
+
+        public string? LoanDatePersian { get; set; }
+        public string? ReturnDatePersian { get; set; }
+
         public bool Status { get; set; }
     }
 }

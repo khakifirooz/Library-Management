@@ -14,8 +14,10 @@ namespace ClassLibraryInfrastructure.Repositories
 
         public Task<Member?> GetMemberWithLoanByIdAsync(int id)
         {
-            return _context.Members.Include(x => x.Loans)
-                .ThenInclude(x => x.Book).FirstOrDefaultAsync(x => x.Id == id);
+            return _context.Members
+                .Include(x => x.Loans)
+                    .ThenInclude(x => x.Book)
+                .FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<List<Member>> SearchAsync(int id, string? nationalCode)
@@ -24,7 +26,15 @@ namespace ClassLibraryInfrastructure.Repositories
             {
                 return await _context.Members.ToListAsync();
             }
-            return await _context.Members.Where(x => x.Id == id || x.NationalCode  == nationalCode).ToListAsync();
+            return await _context.Members.Where(x => x.Id == id 
+            || x.NationalCode  == nationalCode).ToListAsync();
+        }
+
+        public async Task<Member?> GetByIdWithLoansAsync(int id)
+        {
+            return await _context.Members
+                .Include(x => x.Loans)
+                .FirstOrDefaultAsync(x => x.Id == id);
         }
     }
 }

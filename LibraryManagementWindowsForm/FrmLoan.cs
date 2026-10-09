@@ -33,29 +33,44 @@ namespace LibraryManagementWindowsForm
                     return;
                 }
                 var result = await _memberService.GetMemberWithLoanByIdAsync(memberId);
+
+                if (result == null)
+                {
+                    MessageBox.Show("Member not found");
+                    return; 
+                }
+
+                MessageBox.Show($"Member Loaded - Loans: {result.Loans.Count}");
                 txt_family.Text = result.Name + " " + result.Family;
                 checkBox_isSpecial.Checked = result.IsSpecial;
                 checkBox_status.Checked = result.Status;
                 MemoryStream stream = new MemoryStream(result.Image);
                 pictureBox_member.Image = Image.FromStream(stream);
-                dataGridView_loans.DataBindings.Clear();
+                dataGridView_loans.DataSource = null;
                 dataGridView_loans.DataSource = result.Loans;
-                dataGridView_loans.Columns[0].HeaderText = "شناسه";
-                dataGridView_loans.Columns[1].Visible = false;
-                dataGridView_loans.Columns[2].Visible = false;
-                dataGridView_loans.Columns[3].Visible = false;
-                dataGridView_loans.Columns[4].HeaderText = "نام کتاب";
-                dataGridView_loans.Columns[5].HeaderText = "تاریخ امانت";
-                dataGridView_loans.Columns[6].HeaderText = "تاریخ تحویل";
+                dataGridView_loans.Refresh();
 
-                dataGridView_loans.Columns[5].DefaultCellStyle.Format = "yyyy/MM/dd";
-                dataGridView_loans.Columns[6].DefaultCellStyle.Format = "yyyy/MM/dd";
 
-                dataGridView_loans.Columns[7].HeaderText = "وضعیت";
-                btn_save.Enabled = true;
-                btn_return_save.Enabled = true;
+
+                dataGridView_loans.Columns["MemberId"].Visible = false;
+                dataGridView_loans.Columns["MemberName"].Visible = false;
+                dataGridView_loans.Columns["BookId"].Visible = false;
+
+                dataGridView_loans.Columns["LoanDate"].Visible = false;
+                dataGridView_loans.Columns["ReturnDate"].Visible = false;
+
+                dataGridView_loans.Columns["BookName"].HeaderText = "نام کتاب";
+
+                dataGridView_loans.Columns["LoanDatePersian"].HeaderText =
+                    "تاریخ امانت";
+
+                dataGridView_loans.Columns["ReturnDatePersian"].HeaderText =
+                    "تاریخ تحویل";
+
+                dataGridView_loans.Columns["Status"].HeaderText =
+                    "وضعیت";
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -73,6 +88,8 @@ namespace LibraryManagementWindowsForm
 
         private async void FrmLoan_Load(object sender, EventArgs e)
         {
+            dataGridView_loans.AutoGenerateColumns = true;
+
             comboBox_books.DataSource = await _bookService.GetExistForComboAsync();
             comboBox_books.DisplayMember = "Title";
             comboBox_books.ValueMember = "Id";
@@ -92,21 +109,31 @@ namespace LibraryManagementWindowsForm
 
         private async void btn_save_Click(object sender, EventArgs e)
         {
-            var loan = new LoanCreateModel()
+            try
             {
-                MemberId = txt_search_id.Text == "" ? 0 : Convert.ToInt32(txt_search_id.Text),
-                BookId = Convert.ToInt32(comboBox_books.SelectedValue),
-                ReturnDate = dateTimePicker_return.Value,
-            };
+                var loan = new LoanCreateModel()
+                {
+                    MemberId = txt_search_id.Text == "" ? 0 : Convert.ToInt32(txt_search_id.Text),
+                    BookId = Convert.ToInt32(comboBox_books.SelectedValue),
+                    LoanDate = DateTime.Now,   // این خط را اضافه کن
+                    ReturnDate = dateTimePicker_return.Value,
+                };
+                MessageBox.Show("btn_save clicked");
+                var result = await _memberService.AddLoanAsync(loan);
+                MessageBox.Show(
+                $"Success = {result.Success}\nMessage = {result.Message}");
+                MessageBox.Show(result.Message);
 
-            var result = await _memberService.AddLoanAsync(loan);
-            MessageBox.Show(result.Message);
-
-            comboBox_books.DataSource = null;
-            comboBox_books.DataSource = await _bookService.GetExistForComboAsync();
-            comboBox_books.DisplayMember = "Title";
-            comboBox_books.ValueMember = "Id";
-            btn_reneview_Click(null, null);
+                comboBox_books.DataSource = null;
+                comboBox_books.DataSource = await _bookService.GetExistForComboAsync();
+                comboBox_books.DisplayMember = "Title";
+                comboBox_books.ValueMember = "Id";
+                btn_reneview_Click(null, null);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void comboBox_books_SelectedIndexChanged(object sender, EventArgs e)
@@ -118,6 +145,7 @@ namespace LibraryManagementWindowsForm
         {
             int loanId = Convert.ToInt32(dataGridView_loans.CurrentRow.Cells[0].Value);
 
+
             var result = await _loanService.ReturnLoanAsync(loanId);
 
             MessageBox.Show(result.Message);
@@ -128,7 +156,9 @@ namespace LibraryManagementWindowsForm
 
                 var member = await _memberService.GetMemberWithLoanByIdAsync(memberId);
 
+                dataGridView_loans.DataSource = null;
                 dataGridView_loans.DataSource = member.Loans;
+                dataGridView_loans.Refresh();
             }
             else
             {
@@ -157,12 +187,17 @@ namespace LibraryManagementWindowsForm
                     return;
 
                 comboBox_Book_return.Text =
-                    dataGridView_loans.CurrentRow.Cells[4].Value.ToString();
+                dataGridView_loans.CurrentRow.Cells[4].Value.ToString();
 
                 if (dataGridView_loans.CurrentRow.Cells[6].Value != null)
                 {
-                    dateTimePicker_return.Value =
-                        Convert.ToDateTime(dataGridView_loans.CurrentRow.Cells[6].Value);
+                    //dateTimePicker_return.Value =
+                    //    Convert.ToDateTime(dataGridView_loans.CurrentRow.Cells[6].Value);
+
+                    DateTime returnDate = (DateTime)dataGridView_loans.CurrentRow.Cells["ReturnDate"].Value;
+
+                    dateTimePicker_return.Value = returnDate;
+                    dateTimePicker_returnBack.Value = returnDate;
                 }
             }
             catch (Exception ex)
@@ -172,6 +207,21 @@ namespace LibraryManagementWindowsForm
         }
 
         private void comboBox_Book_return_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dateTimePicker_ExpiredTime_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void userProfile1_Load(object sender, EventArgs e)
         {
 
         }

@@ -32,7 +32,8 @@ namespace LibraryManagementApplication
             if (loan == null)
                 return result.Failed("امانت مورد نظر پیدا نشد");
 
-            var member = await _memberRepository.GetByIdAsync(loan.MemberId);
+            var member =
+                       await _memberRepository.GetByIdWithLoansAsync(loan.MemberId);
             if (member == null)
                 return result.Failed("عضو مربوط به این امانت پیدا نشد");
 

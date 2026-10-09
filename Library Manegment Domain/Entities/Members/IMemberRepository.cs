@@ -6,5 +6,6 @@ namespace Library_Manegment_Domain.Entities.Members
     {
         Task<List<Member>> SearchAsync(int id, string? nationalCode);
         Task<Member> GetMemberWithLoanByIdAsync(int id);
+        Task<Member?> GetByIdWithLoansAsync(int id);
     }
 }
