@@ -6,7 +6,7 @@ namespace LibraryManagementWindowsForm
 {
     public partial class FrmMain : Form
     {
-        private string _loggedInUser;
+       // private string _loggedInUser;
 
         private string _role;
 

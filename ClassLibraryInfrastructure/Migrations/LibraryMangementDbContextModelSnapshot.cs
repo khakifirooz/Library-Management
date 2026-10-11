@@ -73,14 +73,15 @@ namespace ClassLibraryInfrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("LoanDate")
-                        .HasMaxLength(10)
                         .HasColumnType("datetime2");
 
                     b.Property<int>("MemberId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("ReturnDate")
-                        .HasMaxLength(10)
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ReturnedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("Status")
@@ -91,6 +92,10 @@ namespace ClassLibraryInfrastructure.Migrations
                     b.HasIndex("BookId");
 
                     b.HasIndex("MemberId");
+
+                    b.HasIndex(new[] { "BookId" }, "IX_Loans_BookId_Active")
+                        .IsUnique()
+                        .HasFilter("[Status] = 0");
 
                     b.ToTable("Loans", "dbo");
                 });
@@ -133,6 +138,9 @@ namespace ClassLibraryInfrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("NationalCode")
+                        .IsUnique();
+
                     b.ToTable("Members", "dbo");
                 });
 
@@ -164,6 +172,9 @@ namespace ClassLibraryInfrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("UserName")
+                        .IsUnique();
+
                     b.ToTable("MemberCredentials", "dbo");
                 });
 
@@ -172,13 +183,13 @@ namespace ClassLibraryInfrastructure.Migrations
                     b.HasOne("Library_Manegment_Domain.Entities.Books.Book", "Book")
                         .WithMany("Loans")
                         .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Library_Manegment_Domain.Entities.Members.Member", "Member")
                         .WithMany("Loans")
                         .HasForeignKey("MemberId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Book");

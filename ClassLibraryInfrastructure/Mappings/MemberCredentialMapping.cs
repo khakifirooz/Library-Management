@@ -14,6 +14,7 @@ namespace ClassLibraryInfrastructure.Mappings
             builder.Property(x => x.UserName)
                 .HasMaxLength(50)
                 .IsRequired();
+            builder.HasIndex(x => x.UserName).IsUnique();
 
             builder.Property(x => x.Password)
                 .HasMaxLength(100)
@@ -25,6 +26,7 @@ namespace ClassLibraryInfrastructure.Mappings
 
             builder.Property(x => x.IsActive)
                    .IsRequired();
+
         }
     }
 }

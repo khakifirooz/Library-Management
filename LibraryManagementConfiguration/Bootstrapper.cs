@@ -32,6 +32,9 @@ namespace LibraryManagementConfiguration
 
             services.AddScoped<IUnitOfWork, UnitOfWork>(); // unit of work
 
+            services.AddSingleton(TimeProvider.System); // add => (TimeProvider زمان امروز را در اختیار سرویس می‌گذارد؛
+                                                        // بعداً در یونیت‌تست می‌توانیم تاریخ مشخصی به آن بدهیم)
+
 
             services.AddDbContext<LibraryMangementDbContext>(x =>
             x.UseSqlServer("Data Source=.; Initial Catalog = LibraryManagementDB; Integrated Security = True; encrypt = True; TrustServerCertificate = True;"));
