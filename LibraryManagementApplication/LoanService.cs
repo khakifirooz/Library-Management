@@ -1,80 +1,71 @@
 ﻿using FrameworkApplication;
 using Library_Manegment_Domain.Common;
-using Library_Manegment_Domain.Entities.Books;
-using Library_Manegment_Domain.Entities.Loans;
-using Library_Manegment_Domain.Entities.Members;
 using LibraryManagementContracts.Loan;
 
-namespace LibraryManagementApplication
+namespace LibraryManagementApplication;
+
+public class LoanService(
+    IUnitOfWork unitOfWork,
+    TimeProvider clock) : ILoanService
 {
-    public class LoanService : ILoanService
+    public async Task<OperationResult> ReturnLoanAsync(
+        int loanId,
+        DateTime? returnedAt = null)
     {
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly ILoanRepository _loanRepository;
-        private readonly IBookRepository _bookRepository;
-        private readonly IMemberRepository _memberRepository;
-
-        public LoanService(IUnitOfWork unitOfWork, ILoanRepository loanRepository,
-            IBookRepository bookRepository, IMemberRepository memberRepository)
+        try
         {
-            _unitOfWork = unitOfWork;
-            _loanRepository = loanRepository;
-            _bookRepository = bookRepository;
-            _memberRepository = memberRepository;
+            unitOfWork.ResetTracking();
+
+            var date = (returnedAt ?? clock.GetLocalNow().Date).Date;
+
+            if (date > clock.GetLocalNow().Date)
+            {
+                return new OperationResult().Failed(
+                    "تاریخ برگشت نمی‌تواند در آینده باشد.");
+            }
+
+            await unitOfWork.BeginTransactionAsync();
+
+            var loan =
+                await unitOfWork.LoanRepository.GetByIdAsync(loanId);
+
+            if (loan is null)
+            {
+                return new OperationResult().Failed(
+                    "امانت پیدا نشد.");
+            }
+
+            if (loan.Status)
+            {
+                return new OperationResult().Failed(
+                    "این امانت قبلاً برگشت داده شده است.");
+            }
+
+            var book =
+                await unitOfWork.BookRepository.GetByIdAsync(loan.BookId);
+
+            if (book is null)
+            {
+                return new OperationResult().Failed(
+                    "کتاب پیدا نشد.");
+            }
+
+            loan.Return(date);
+            book.LoanedBack();
+
+            await unitOfWork.SaveChangesAsync();
+            await unitOfWork.CommitTransactionAsync();
+
+            return new OperationResult().Succeded(
+                "برگشت کتاب ثبت شد؛ سابقه امانت حفظ شد.");
         }
-
-        public async Task<OperationResult> ReturnLoanAsync(int loanId)
+        catch (Exception error)
         {
-
-            var result = new OperationResult();
-
-            var loan = await _loanRepository.GetByIdAsync(loanId);
-            if (loan == null)
-                return result.Failed("امانت مورد نظر پیدا نشد");
-
-            var member =
-                       await _memberRepository.GetByIdWithLoansAsync(loan.MemberId);
-            if (member == null)
-                return result.Failed("عضو مربوط به این امانت پیدا نشد");
-
-            var book = await _bookRepository.GetByIdAsync(loan.BookId);
-            if (book == null)
-                return result.Failed("کتاب پیدا نشد");
-
-            try
-            {
-                member.RemoveLoan(loan);
-
-                book.LoanedBack();
-
-                _memberRepository.Update(member);
-                _bookRepository.Update(book);
-
-                await _unitOfWork.SaveChangesAsync();
-
-                return result.Succeded("با موفقیت پس گرفته شد");
-            }
-            catch (Exception ex)
-            {
-                return result.Failed($"خطا در برگشت کتاب: {ex.Message}");
-            }
-
-            //var result = new OperationResult();
-
-            //var loan = await _loanRepository.GetByIdAsync(loanId);
-            //if (loan == null)
-            //    return result.Failed("امانت مورد نظر پیدا نشد");
-
-            //var book = await _bookRepository.GetByIdAsync(loan.BookId);
-            //if (book == null)
-            //    return result.Failed("کتاب پیدا نشد");
-
-            //book.LoanedBack();
-
-            // _bookRepository.Update(book);
-            //await _unitOfWork.SaveChangesAsync();
-
-            //return result.Succeded("با موفقیت پس گرفته شد");
+            return ServiceSupport.Failure(unitOfWork, error);
+        }
+        finally
+        {
+            await unitOfWork.RollBackTrasactionAsync();
         }
     }
 }

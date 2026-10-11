@@ -4,7 +4,8 @@ namespace LibraryManagementContracts.Loan
 {
     public interface ILoanService
     {
-        Task<OperationResult> ReturnLoanAsync(int loanId);
-
+        Task<OperationResult> ReturnLoanAsync(
+            int loanId,
+            DateTime? returnedAt = null);
     }
 }
