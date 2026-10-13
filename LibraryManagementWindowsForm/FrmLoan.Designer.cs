@@ -1,4 +1,4 @@
-﻿namespace LibraryManagementWindowsForm
+namespace LibraryManagementWindowsForm
 {
     partial class FrmLoan
     {
@@ -43,15 +43,15 @@
             groupBox2 = new GroupBox();
             label5 = new Label();
             btn_save = new Button();
-            dateTimePicker_return = new DateTimePicker();
-            dateTimePicker_loan = new DateTimePicker();
+            dateTimePicker_return = new PersianDatePicker();
+            dateTimePicker_loan = new PersianDatePicker();
             label4 = new Label();
             comboBox_books = new ComboBox();
             label3 = new Label();
             groupBox3 = new GroupBox();
             btn_return_save = new Button();
-            dateTimePicker_returnBack = new DateTimePicker();
-            dateTimePicker_ExpiredTime = new DateTimePicker();
+            dateTimePicker_returnBack = new PersianDatePicker();
+            dateTimePicker_ExpiredTime = new PersianDatePicker();
             label6 = new Label();
             label7 = new Label();
             comboBox_Book_return = new ComboBox();
@@ -258,7 +258,6 @@
             // dateTimePicker_return
             // 
             dateTimePicker_return.Font = new Font("Book Antiqua", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dateTimePicker_return.Format = DateTimePickerFormat.Short;
             dateTimePicker_return.Location = new Point(136, 165);
             dateTimePicker_return.Name = "dateTimePicker_return";
             dateTimePicker_return.Size = new Size(250, 29);
@@ -267,7 +266,6 @@
             // dateTimePicker_loan
             // 
             dateTimePicker_loan.Font = new Font("Book Antiqua", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dateTimePicker_loan.Format = DateTimePickerFormat.Short;
             dateTimePicker_loan.Location = new Point(136, 106);
             dateTimePicker_loan.Name = "dateTimePicker_loan";
             dateTimePicker_loan.Size = new Size(250, 29);
@@ -317,7 +315,7 @@
             groupBox3.Size = new Size(506, 213);
             groupBox3.TabIndex = 15;
             groupBox3.TabStop = false;
-            groupBox3.Text = "امانت کتاب";
+            groupBox3.Text = "برگشت کتاب";
             // 
             // btn_return_save
             // 
@@ -339,7 +337,6 @@
             // dateTimePicker_returnBack
             // 
             dateTimePicker_returnBack.Font = new Font("Book Antiqua", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dateTimePicker_returnBack.Format = DateTimePickerFormat.Short;
             dateTimePicker_returnBack.Location = new Point(140, 160);
             dateTimePicker_returnBack.Name = "dateTimePicker_returnBack";
             dateTimePicker_returnBack.Size = new Size(250, 29);
@@ -348,7 +345,6 @@
             // dateTimePicker_ExpiredTime
             // 
             dateTimePicker_ExpiredTime.Font = new Font("Book Antiqua", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dateTimePicker_ExpiredTime.Format = DateTimePickerFormat.Short;
             dateTimePicker_ExpiredTime.Location = new Point(140, 106);
             dateTimePicker_ExpiredTime.Name = "dateTimePicker_ExpiredTime";
             dateTimePicker_ExpiredTime.Size = new Size(250, 29);
@@ -363,7 +359,7 @@
             label6.Name = "label6";
             label6.Size = new Size(114, 26);
             label6.TabIndex = 12;
-            label6.Text = "تاریخ تحویل کتاب :";
+            label6.Text = "تاریخ سررسید :";
             // 
             // label7
             // 
@@ -373,7 +369,7 @@
             label7.Name = "label7";
             label7.Size = new Size(108, 26);
             label7.TabIndex = 11;
-            label7.Text = "تاریخ اتمام مهلت :";
+            label7.Text = "تاریخ برگشت :";
             // 
             // comboBox_Book_return
             // 
@@ -399,7 +395,7 @@
             AutoScaleDimensions = new SizeF(11F, 26F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.InactiveCaption;
-            ClientSize = new Size(1021, 673);
+            ClientSize = new Size(1035, 695);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
@@ -438,13 +434,13 @@
         private ComboBox comboBox_books;
         private Label label3;
         private Button btn_save;
-        private DateTimePicker dateTimePicker_return;
-        private DateTimePicker dateTimePicker_loan;
+        private PersianDatePicker dateTimePicker_return;
+        private PersianDatePicker dateTimePicker_loan;
         private PictureBox pictureBox1;
         private GroupBox groupBox3;
         private Button btn_return_save;
-        private DateTimePicker dateTimePicker_returnBack;
-        private DateTimePicker dateTimePicker_ExpiredTime;
+        private PersianDatePicker dateTimePicker_returnBack;
+        private PersianDatePicker dateTimePicker_ExpiredTime;
         private Label label6;
         private Label label7;
         private ComboBox comboBox_Book_return;

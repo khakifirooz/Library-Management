@@ -17,6 +17,10 @@ namespace LibraryManagementApplication
         }
         public async Task<OperationResult> CreateAsync(BookDTO command)
         {
+
+            var inputValidationMessage = BookInputValidator.Prepare(command);
+            if (inputValidationMessage is not null)
+                return new OperationResult().Failed(inputValidationMessage);
             OperationResult result = new();
             try
             {
@@ -111,6 +115,10 @@ namespace LibraryManagementApplication
 
         public async Task<OperationResult> UpdateAsync(BookDTO command)
         {
+
+            var inputValidationMessage = BookInputValidator.Prepare(command);
+            if (inputValidationMessage is not null)
+                return new OperationResult().Failed(inputValidationMessage);
             OperationResult result = new();
             try
             {

@@ -19,6 +19,22 @@ namespace LibraryManagementWindowsForm
             ServiceProvider = host.Services;
             Application.Run(ServiceProvider.GetRequiredService<LoginForm>());
         }
+
+        public static DialogResult ShowDialog<T>(
+                 Action<T>? configure = null)
+                  where T : Form
+        {
+                           using var scope = ServiceProvider.CreateScope();
+
+                           using var form =
+                               scope.ServiceProvider.GetRequiredService<T>();
+
+                           configure?.Invoke(form);
+
+                           return form.ShowDialog();
+        }
+
+
         public static IServiceProvider ServiceProvider { get; private set; }
 
         static IHostBuilder CreateHostBuilder()
