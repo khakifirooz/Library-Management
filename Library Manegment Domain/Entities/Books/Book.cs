@@ -53,6 +53,8 @@ public class Book : BaseEntity<int>
 
     public void Delete()
     {
+        // اگه کتاب قرض داده بودیم نتونیم دیلیتش کنیم
+        //جاااالب جدی
         if (IsLoaned) throw new InvalidOperationException("ابتدا کتاب امانت‌داده‌شده را پس بگیرید.");
         IsDeleted = true;
     }

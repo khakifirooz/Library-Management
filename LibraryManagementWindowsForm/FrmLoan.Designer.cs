@@ -35,10 +35,10 @@ namespace LibraryManagementWindowsForm
             loanMemberNameField = new TableLayoutPanel();
             loanMemberNameFieldLabel = new Label();
             txt_family = new TextBox();
-            btn_reneview = new Button();
             memberFlags = new FlowLayoutPanel();
             checkBox_status = new CheckBox();
             checkBox_isSpecial = new CheckBox();
+            btn_reneview = new Button();
             historyCard = new TableLayoutPanel();
             historyCardTitle = new Label();
             historyLayout = new TableLayoutPanel();
@@ -129,8 +129,9 @@ namespace LibraryManagementWindowsForm
             rootLayout.RowStyles.Add(new RowStyle());
             rootLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             rootLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            rootLayout.Size = new Size(1220, 780);
+            rootLayout.Size = new Size(1292, 780);
             rootLayout.TabIndex = 0;
+            rootLayout.Paint += rootLayout_Paint;
             // 
             // headerLayout
             // 
@@ -150,7 +151,7 @@ namespace LibraryManagementWindowsForm
             headerLayout.RightToLeft = RightToLeft.No;
             headerLayout.RowCount = 1;
             headerLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 68F));
-            headerLayout.Size = new Size(1188, 92);
+            headerLayout.Size = new Size(1260, 92);
             headerLayout.TabIndex = 1;
             // 
             // userProfile1
@@ -182,7 +183,7 @@ namespace LibraryManagementWindowsForm
             headingLayout.RowCount = 2;
             headingLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 32F));
             headingLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            headingLayout.Size = new Size(944, 68);
+            headingLayout.Size = new Size(1016, 68);
             headingLayout.TabIndex = 2;
             // 
             // headingLabel
@@ -196,7 +197,7 @@ namespace LibraryManagementWindowsForm
             headingLabel.Name = "headingLabel";
             headingLabel.Padding = new Padding(4, 0, 4, 0);
             headingLabel.RightToLeft = RightToLeft.Yes;
-            headingLabel.Size = new Size(944, 32);
+            headingLabel.Size = new Size(1016, 32);
             headingLabel.TabIndex = 3;
             headingLabel.Text = "امانت و برگشت کتاب";
             headingLabel.TextAlign = ContentAlignment.MiddleRight;
@@ -212,7 +213,7 @@ namespace LibraryManagementWindowsForm
             subtitleLabel.Name = "subtitleLabel";
             subtitleLabel.Padding = new Padding(4, 0, 4, 0);
             subtitleLabel.RightToLeft = RightToLeft.Yes;
-            subtitleLabel.Size = new Size(944, 36);
+            subtitleLabel.Size = new Size(1016, 36);
             subtitleLabel.TabIndex = 4;
             subtitleLabel.Text = "تاریخ شمسی، ثبت برگشت واقعی و حفظ تاریخچهٔ امانت";
             subtitleLabel.TextAlign = ContentAlignment.MiddleRight;
@@ -228,7 +229,7 @@ namespace LibraryManagementWindowsForm
             footerLabel.Name = "footerLabel";
             footerLabel.Padding = new Padding(4, 0, 4, 0);
             footerLabel.RightToLeft = RightToLeft.Yes;
-            footerLabel.Size = new Size(1188, 24);
+            footerLabel.Size = new Size(1260, 24);
             footerLabel.TabIndex = 6;
             footerLabel.Text = "مدیریت کتابخانه  •  ثبت و پیگیری اطلاعات";
             footerLabel.TextAlign = ContentAlignment.MiddleRight;
@@ -247,10 +248,10 @@ namespace LibraryManagementWindowsForm
             bodyLayout.Name = "bodyLayout";
             bodyLayout.RightToLeft = RightToLeft.No;
             bodyLayout.RowCount = 3;
-            bodyLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 154F));
+            bodyLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 193F));
             bodyLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            bodyLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 232F));
-            bodyLayout.Size = new Size(1188, 620);
+            bodyLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 223F));
+            bodyLayout.Size = new Size(1260, 620);
             bodyLayout.TabIndex = 61;
             // 
             // memberCard
@@ -269,7 +270,7 @@ namespace LibraryManagementWindowsForm
             memberCard.RowCount = 2;
             memberCard.RowStyles.Add(new RowStyle(SizeType.Absolute, 32F));
             memberCard.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            memberCard.Size = new Size(1176, 142);
+            memberCard.Size = new Size(1248, 181);
             memberCard.TabIndex = 20;
             // 
             // memberCardTitle
@@ -283,7 +284,7 @@ namespace LibraryManagementWindowsForm
             memberCardTitle.Name = "memberCardTitle";
             memberCardTitle.Padding = new Padding(4, 0, 4, 0);
             memberCardTitle.RightToLeft = RightToLeft.Yes;
-            memberCardTitle.Size = new Size(1152, 32);
+            memberCardTitle.Size = new Size(1224, 32);
             memberCardTitle.TabIndex = 21;
             memberCardTitle.Text = "بازیابی عضو";
             memberCardTitle.TextAlign = ContentAlignment.MiddleRight;
@@ -299,8 +300,8 @@ namespace LibraryManagementWindowsForm
             memberDetailsLayout.Controls.Add(pictureBox_member, 0, 0);
             memberDetailsLayout.Controls.Add(loanMemberIdField, 1, 0);
             memberDetailsLayout.Controls.Add(loanMemberNameField, 2, 0);
-            memberDetailsLayout.Controls.Add(btn_reneview, 3, 0);
             memberDetailsLayout.Controls.Add(memberFlags, 1, 1);
+            memberDetailsLayout.Controls.Add(btn_reneview, 3, 0);
             memberDetailsLayout.Dock = DockStyle.Fill;
             memberDetailsLayout.Location = new Point(12, 44);
             memberDetailsLayout.Margin = new Padding(0);
@@ -309,7 +310,7 @@ namespace LibraryManagementWindowsForm
             memberDetailsLayout.RowCount = 2;
             memberDetailsLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 66F));
             memberDetailsLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 34F));
-            memberDetailsLayout.Size = new Size(1152, 86);
+            memberDetailsLayout.Size = new Size(1224, 125);
             memberDetailsLayout.TabIndex = 14;
             // 
             // pictureBox_member
@@ -323,7 +324,7 @@ namespace LibraryManagementWindowsForm
             pictureBox_member.Name = "pictureBox_member";
             pictureBox_member.RightToLeft = RightToLeft.Yes;
             memberDetailsLayout.SetRowSpan(pictureBox_member, 2);
-            pictureBox_member.Size = new Size(96, 92);
+            pictureBox_member.Size = new Size(96, 117);
             pictureBox_member.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox_member.TabIndex = 8;
             pictureBox_member.TabStop = false;
@@ -392,7 +393,7 @@ namespace LibraryManagementWindowsForm
             loanMemberNameField.RowCount = 2;
             loanMemberNameField.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
             loanMemberNameField.RowStyles.Add(new RowStyle(SizeType.Absolute, 36F));
-            loanMemberNameField.Size = new Size(706, 58);
+            loanMemberNameField.Size = new Size(778, 58);
             loanMemberNameField.TabIndex = 17;
             // 
             // loanMemberNameFieldLabel
@@ -406,7 +407,7 @@ namespace LibraryManagementWindowsForm
             loanMemberNameFieldLabel.Name = "loanMemberNameFieldLabel";
             loanMemberNameFieldLabel.Padding = new Padding(4, 0, 4, 0);
             loanMemberNameFieldLabel.RightToLeft = RightToLeft.Yes;
-            loanMemberNameFieldLabel.Size = new Size(706, 24);
+            loanMemberNameFieldLabel.Size = new Size(778, 24);
             loanMemberNameFieldLabel.TabIndex = 18;
             loanMemberNameFieldLabel.Text = "نام و نام خانوادگی";
             loanMemberNameFieldLabel.TextAlign = ContentAlignment.MiddleRight;
@@ -423,29 +424,9 @@ namespace LibraryManagementWindowsForm
             txt_family.Name = "txt_family";
             txt_family.ReadOnly = true;
             txt_family.RightToLeft = RightToLeft.Yes;
-            txt_family.Size = new Size(688, 28);
+            txt_family.Size = new Size(760, 28);
             txt_family.TabIndex = 10;
             txt_family.TextAlign = HorizontalAlignment.Right;
-            // 
-            // btn_reneview
-            // 
-            btn_reneview.Anchor = AnchorStyles.Right;
-            btn_reneview.BackColor = Color.FromArgb(12, 120, 113);
-            btn_reneview.Cursor = Cursors.Hand;
-            btn_reneview.FlatAppearance.BorderColor = Color.FromArgb(222, 230, 239);
-            btn_reneview.FlatAppearance.BorderSize = 0;
-            btn_reneview.FlatStyle = FlatStyle.Flat;
-            btn_reneview.ForeColor = Color.White;
-            btn_reneview.Location = new Point(1020, 13);
-            btn_reneview.Margin = new Padding(4);
-            btn_reneview.MinimumSize = new Size(112, 38);
-            btn_reneview.Name = "btn_reneview";
-            btn_reneview.RightToLeft = RightToLeft.Yes;
-            btn_reneview.Size = new Size(128, 40);
-            btn_reneview.TabIndex = 11;
-            btn_reneview.Text = "بازیابی عضو";
-            btn_reneview.UseVisualStyleBackColor = false;
-            btn_reneview.Click += btn_reneview_Click;
             // 
             // memberFlags
             // 
@@ -461,14 +442,14 @@ namespace LibraryManagementWindowsForm
             memberFlags.Name = "memberFlags";
             memberFlags.Padding = new Padding(0, 4, 0, 4);
             memberFlags.RightToLeft = RightToLeft.No;
-            memberFlags.Size = new Size(1048, 34);
+            memberFlags.Size = new Size(1120, 45);
             memberFlags.TabIndex = 19;
             // 
             // checkBox_status
             // 
             checkBox_status.AutoSize = true;
             checkBox_status.Enabled = false;
-            checkBox_status.Location = new Point(945, 10);
+            checkBox_status.Location = new Point(1017, 10);
             checkBox_status.Margin = new Padding(4, 6, 4, 6);
             checkBox_status.Name = "checkBox_status";
             checkBox_status.RightToLeft = RightToLeft.Yes;
@@ -480,13 +461,33 @@ namespace LibraryManagementWindowsForm
             // 
             checkBox_isSpecial.AutoSize = true;
             checkBox_isSpecial.Enabled = false;
-            checkBox_isSpecial.Location = new Point(821, 10);
+            checkBox_isSpecial.Location = new Point(893, 10);
             checkBox_isSpecial.Margin = new Padding(4, 6, 4, 6);
             checkBox_isSpecial.Name = "checkBox_isSpecial";
             checkBox_isSpecial.RightToLeft = RightToLeft.Yes;
             checkBox_isSpecial.Size = new Size(116, 25);
             checkBox_isSpecial.TabIndex = 13;
             checkBox_isSpecial.Text = "عضویت ویژه";
+            // 
+            // btn_reneview
+            // 
+            btn_reneview.Anchor = AnchorStyles.Right;
+            btn_reneview.BackColor = Color.FromArgb(12, 120, 113);
+            btn_reneview.Cursor = Cursors.Hand;
+            btn_reneview.FlatAppearance.BorderColor = Color.FromArgb(222, 230, 239);
+            btn_reneview.FlatAppearance.BorderSize = 0;
+            btn_reneview.FlatStyle = FlatStyle.Flat;
+            btn_reneview.ForeColor = Color.White;
+            btn_reneview.Location = new Point(1092, 13);
+            btn_reneview.Margin = new Padding(4);
+            btn_reneview.MinimumSize = new Size(112, 38);
+            btn_reneview.Name = "btn_reneview";
+            btn_reneview.RightToLeft = RightToLeft.Yes;
+            btn_reneview.Size = new Size(128, 40);
+            btn_reneview.TabIndex = 11;
+            btn_reneview.Text = "بازیابی عضو";
+            btn_reneview.UseVisualStyleBackColor = false;
+            btn_reneview.Click += btn_reneview_Click;
             // 
             // historyCard
             // 
@@ -496,7 +497,7 @@ namespace LibraryManagementWindowsForm
             historyCard.Controls.Add(historyCardTitle, 0, 0);
             historyCard.Controls.Add(historyLayout, 0, 1);
             historyCard.Dock = DockStyle.Fill;
-            historyCard.Location = new Point(6, 160);
+            historyCard.Location = new Point(6, 199);
             historyCard.Margin = new Padding(6);
             historyCard.Name = "historyCard";
             historyCard.Padding = new Padding(12);
@@ -504,7 +505,7 @@ namespace LibraryManagementWindowsForm
             historyCard.RowCount = 2;
             historyCard.RowStyles.Add(new RowStyle(SizeType.Absolute, 32F));
             historyCard.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            historyCard.Size = new Size(1176, 222);
+            historyCard.Size = new Size(1248, 192);
             historyCard.TabIndex = 25;
             // 
             // historyCardTitle
@@ -518,7 +519,7 @@ namespace LibraryManagementWindowsForm
             historyCardTitle.Name = "historyCardTitle";
             historyCardTitle.Padding = new Padding(4, 0, 4, 0);
             historyCardTitle.RightToLeft = RightToLeft.Yes;
-            historyCardTitle.Size = new Size(1152, 32);
+            historyCardTitle.Size = new Size(1224, 32);
             historyCardTitle.TabIndex = 26;
             historyCardTitle.Text = "تاریخچهٔ امانت‌ها";
             historyCardTitle.TextAlign = ContentAlignment.MiddleRight;
@@ -538,7 +539,7 @@ namespace LibraryManagementWindowsForm
             historyLayout.RowCount = 2;
             historyLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             historyLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
-            historyLayout.Size = new Size(1152, 166);
+            historyLayout.Size = new Size(1224, 136);
             historyLayout.TabIndex = 24;
             // 
             // dataGridView_loans
@@ -585,7 +586,7 @@ namespace LibraryManagementWindowsForm
             dataGridView_loans.RowHeadersWidth = 51;
             dataGridView_loans.RowTemplate.Height = 36;
             dataGridView_loans.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView_loans.Size = new Size(1152, 136);
+            dataGridView_loans.Size = new Size(1224, 106);
             dataGridView_loans.TabIndex = 22;
             dataGridView_loans.Tag = "loans";
             dataGridView_loans.CellClick += dataGridView_loans_CellClick;
@@ -596,15 +597,16 @@ namespace LibraryManagementWindowsForm
             _loanStatus.Dock = DockStyle.Fill;
             _loanStatus.Font = new Font("Tahoma", 9F);
             _loanStatus.ForeColor = Color.FromArgb(94, 110, 132);
-            _loanStatus.Location = new Point(0, 136);
+            _loanStatus.Location = new Point(0, 106);
             _loanStatus.Margin = new Padding(0);
             _loanStatus.Name = "_loanStatus";
             _loanStatus.Padding = new Padding(4, 0, 4, 0);
             _loanStatus.RightToLeft = RightToLeft.Yes;
-            _loanStatus.Size = new Size(1152, 30);
+            _loanStatus.Size = new Size(1224, 30);
             _loanStatus.TabIndex = 23;
             _loanStatus.Text = "عضو را بازیابی کنید تا سابقهٔ امانت نمایش داده شود.";
             _loanStatus.TextAlign = ContentAlignment.MiddleRight;
+            _loanStatus.Click += _loanStatus_Click;
             // 
             // loanActionsLayout
             // 
@@ -615,13 +617,13 @@ namespace LibraryManagementWindowsForm
             loanActionsLayout.Controls.Add(issueCard, 0, 0);
             loanActionsLayout.Controls.Add(returnCard, 1, 0);
             loanActionsLayout.Dock = DockStyle.Fill;
-            loanActionsLayout.Location = new Point(0, 388);
+            loanActionsLayout.Location = new Point(0, 397);
             loanActionsLayout.Margin = new Padding(0);
             loanActionsLayout.Name = "loanActionsLayout";
             loanActionsLayout.RightToLeft = RightToLeft.No;
             loanActionsLayout.RowCount = 1;
             loanActionsLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            loanActionsLayout.Size = new Size(1188, 232);
+            loanActionsLayout.Size = new Size(1260, 223);
             loanActionsLayout.TabIndex = 60;
             // 
             // issueCard
@@ -640,7 +642,7 @@ namespace LibraryManagementWindowsForm
             issueCard.RowCount = 2;
             issueCard.RowStyles.Add(new RowStyle(SizeType.Absolute, 32F));
             issueCard.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            issueCard.Size = new Size(582, 220);
+            issueCard.Size = new Size(618, 211);
             issueCard.TabIndex = 42;
             // 
             // issueCardTitle
@@ -654,7 +656,7 @@ namespace LibraryManagementWindowsForm
             issueCardTitle.Name = "issueCardTitle";
             issueCardTitle.Padding = new Padding(4, 0, 4, 0);
             issueCardTitle.RightToLeft = RightToLeft.Yes;
-            issueCardTitle.Size = new Size(558, 32);
+            issueCardTitle.Size = new Size(594, 32);
             issueCardTitle.TabIndex = 43;
             issueCardTitle.Text = "امانت جدید";
             issueCardTitle.TextAlign = ContentAlignment.MiddleRight;
@@ -679,7 +681,7 @@ namespace LibraryManagementWindowsForm
             issueLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 76F));
             issueLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 28F));
             issueLayout.RowStyles.Add(new RowStyle());
-            issueLayout.Size = new Size(558, 164);
+            issueLayout.Size = new Size(594, 155);
             issueLayout.TabIndex = 41;
             // 
             // issueFieldsLayout
@@ -699,7 +701,7 @@ namespace LibraryManagementWindowsForm
             issueFieldsLayout.RightToLeft = RightToLeft.No;
             issueFieldsLayout.RowCount = 1;
             issueFieldsLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 72F));
-            issueFieldsLayout.Size = new Size(550, 76);
+            issueFieldsLayout.Size = new Size(586, 76);
             issueFieldsLayout.TabIndex = 30;
             // 
             // comboBox_booksField
@@ -717,7 +719,7 @@ namespace LibraryManagementWindowsForm
             comboBox_booksField.RowCount = 2;
             comboBox_booksField.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
             comboBox_booksField.RowStyles.Add(new RowStyle(SizeType.Absolute, 36F));
-            comboBox_booksField.Size = new Size(175, 64);
+            comboBox_booksField.Size = new Size(187, 64);
             comboBox_booksField.TabIndex = 31;
             // 
             // comboBox_booksFieldLabel
@@ -731,7 +733,7 @@ namespace LibraryManagementWindowsForm
             comboBox_booksFieldLabel.Name = "comboBox_booksFieldLabel";
             comboBox_booksFieldLabel.Padding = new Padding(4, 0, 4, 0);
             comboBox_booksFieldLabel.RightToLeft = RightToLeft.Yes;
-            comboBox_booksFieldLabel.Size = new Size(175, 24);
+            comboBox_booksFieldLabel.Size = new Size(187, 24);
             comboBox_booksFieldLabel.TabIndex = 32;
             comboBox_booksFieldLabel.Text = "کتاب قابل امانت";
             comboBox_booksFieldLabel.TextAlign = ContentAlignment.MiddleRight;
@@ -746,7 +748,7 @@ namespace LibraryManagementWindowsForm
             comboBox_books.Margin = new Padding(0, 3, 0, 3);
             comboBox_books.Name = "comboBox_books";
             comboBox_books.RightToLeft = RightToLeft.Yes;
-            comboBox_books.Size = new Size(175, 29);
+            comboBox_books.Size = new Size(187, 29);
             comboBox_books.TabIndex = 27;
             // 
             // dateTimePicker_loanField
@@ -757,14 +759,14 @@ namespace LibraryManagementWindowsForm
             dateTimePicker_loanField.Controls.Add(dateTimePicker_loanFieldLabel, 0, 0);
             dateTimePicker_loanField.Controls.Add(dateTimePicker_loan, 0, 1);
             dateTimePicker_loanField.Dock = DockStyle.Top;
-            dateTimePicker_loanField.Location = new Point(187, 0);
+            dateTimePicker_loanField.Location = new Point(199, 0);
             dateTimePicker_loanField.Margin = new Padding(4, 0, 4, 8);
             dateTimePicker_loanField.Name = "dateTimePicker_loanField";
             dateTimePicker_loanField.RightToLeft = RightToLeft.No;
             dateTimePicker_loanField.RowCount = 2;
             dateTimePicker_loanField.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
             dateTimePicker_loanField.RowStyles.Add(new RowStyle(SizeType.Absolute, 36F));
-            dateTimePicker_loanField.Size = new Size(175, 64);
+            dateTimePicker_loanField.Size = new Size(187, 64);
             dateTimePicker_loanField.TabIndex = 33;
             // 
             // dateTimePicker_loanFieldLabel
@@ -778,7 +780,7 @@ namespace LibraryManagementWindowsForm
             dateTimePicker_loanFieldLabel.Name = "dateTimePicker_loanFieldLabel";
             dateTimePicker_loanFieldLabel.Padding = new Padding(4, 0, 4, 0);
             dateTimePicker_loanFieldLabel.RightToLeft = RightToLeft.Yes;
-            dateTimePicker_loanFieldLabel.Size = new Size(175, 24);
+            dateTimePicker_loanFieldLabel.Size = new Size(187, 24);
             dateTimePicker_loanFieldLabel.TabIndex = 34;
             dateTimePicker_loanFieldLabel.Text = "تاریخ امانت";
             dateTimePicker_loanFieldLabel.TextAlign = ContentAlignment.MiddleRight;
@@ -794,7 +796,7 @@ namespace LibraryManagementWindowsForm
             dateTimePicker_loan.MinimumSize = new Size(140, 32);
             dateTimePicker_loan.Name = "dateTimePicker_loan";
             dateTimePicker_loan.RightToLeft = RightToLeft.Yes;
-            dateTimePicker_loan.Size = new Size(175, 36);
+            dateTimePicker_loan.Size = new Size(187, 36);
             dateTimePicker_loan.TabIndex = 28;
             // 
             // dateTimePicker_returnField
@@ -805,14 +807,14 @@ namespace LibraryManagementWindowsForm
             dateTimePicker_returnField.Controls.Add(dateTimePicker_returnFieldLabel, 0, 0);
             dateTimePicker_returnField.Controls.Add(dateTimePicker_return, 0, 1);
             dateTimePicker_returnField.Dock = DockStyle.Top;
-            dateTimePicker_returnField.Location = new Point(370, 0);
+            dateTimePicker_returnField.Location = new Point(394, 0);
             dateTimePicker_returnField.Margin = new Padding(4, 0, 4, 8);
             dateTimePicker_returnField.Name = "dateTimePicker_returnField";
             dateTimePicker_returnField.RightToLeft = RightToLeft.No;
             dateTimePicker_returnField.RowCount = 2;
             dateTimePicker_returnField.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
             dateTimePicker_returnField.RowStyles.Add(new RowStyle(SizeType.Absolute, 36F));
-            dateTimePicker_returnField.Size = new Size(176, 64);
+            dateTimePicker_returnField.Size = new Size(188, 64);
             dateTimePicker_returnField.TabIndex = 35;
             // 
             // dateTimePicker_returnFieldLabel
@@ -826,7 +828,7 @@ namespace LibraryManagementWindowsForm
             dateTimePicker_returnFieldLabel.Name = "dateTimePicker_returnFieldLabel";
             dateTimePicker_returnFieldLabel.Padding = new Padding(4, 0, 4, 0);
             dateTimePicker_returnFieldLabel.RightToLeft = RightToLeft.Yes;
-            dateTimePicker_returnFieldLabel.Size = new Size(176, 24);
+            dateTimePicker_returnFieldLabel.Size = new Size(188, 24);
             dateTimePicker_returnFieldLabel.TabIndex = 36;
             dateTimePicker_returnFieldLabel.Text = "موعد تحویل";
             dateTimePicker_returnFieldLabel.TextAlign = ContentAlignment.MiddleRight;
@@ -842,7 +844,7 @@ namespace LibraryManagementWindowsForm
             dateTimePicker_return.MinimumSize = new Size(140, 32);
             dateTimePicker_return.Name = "dateTimePicker_return";
             dateTimePicker_return.RightToLeft = RightToLeft.Yes;
-            dateTimePicker_return.Size = new Size(176, 36);
+            dateTimePicker_return.Size = new Size(188, 36);
             dateTimePicker_return.TabIndex = 29;
             // 
             // _bookStatus
@@ -856,7 +858,7 @@ namespace LibraryManagementWindowsForm
             _bookStatus.Name = "_bookStatus";
             _bookStatus.Padding = new Padding(4, 0, 4, 0);
             _bookStatus.RightToLeft = RightToLeft.Yes;
-            _bookStatus.Size = new Size(550, 28);
+            _bookStatus.Size = new Size(586, 28);
             _bookStatus.TabIndex = 39;
             _bookStatus.Text = "کتاب‌های قابل امانت پس از بارگذاری نمایش داده می‌شوند.";
             _bookStatus.TextAlign = ContentAlignment.MiddleRight;
@@ -923,7 +925,7 @@ namespace LibraryManagementWindowsForm
             returnCard.Controls.Add(returnCardTitle, 0, 0);
             returnCard.Controls.Add(returnLayout, 0, 1);
             returnCard.Dock = DockStyle.Fill;
-            returnCard.Location = new Point(600, 6);
+            returnCard.Location = new Point(636, 6);
             returnCard.Margin = new Padding(6);
             returnCard.Name = "returnCard";
             returnCard.Padding = new Padding(12);
@@ -931,7 +933,7 @@ namespace LibraryManagementWindowsForm
             returnCard.RowCount = 2;
             returnCard.RowStyles.Add(new RowStyle(SizeType.Absolute, 32F));
             returnCard.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            returnCard.Size = new Size(582, 220);
+            returnCard.Size = new Size(618, 211);
             returnCard.TabIndex = 58;
             // 
             // returnCardTitle
@@ -945,7 +947,7 @@ namespace LibraryManagementWindowsForm
             returnCardTitle.Name = "returnCardTitle";
             returnCardTitle.Padding = new Padding(4, 0, 4, 0);
             returnCardTitle.RightToLeft = RightToLeft.Yes;
-            returnCardTitle.Size = new Size(558, 32);
+            returnCardTitle.Size = new Size(594, 32);
             returnCardTitle.TabIndex = 59;
             returnCardTitle.Text = "برگشت کتاب";
             returnCardTitle.TextAlign = ContentAlignment.MiddleRight;
@@ -970,7 +972,7 @@ namespace LibraryManagementWindowsForm
             returnLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 76F));
             returnLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 28F));
             returnLayout.RowStyles.Add(new RowStyle());
-            returnLayout.Size = new Size(558, 164);
+            returnLayout.Size = new Size(594, 155);
             returnLayout.TabIndex = 57;
             // 
             // returnFieldsLayout
@@ -990,7 +992,7 @@ namespace LibraryManagementWindowsForm
             returnFieldsLayout.RightToLeft = RightToLeft.No;
             returnFieldsLayout.RowCount = 1;
             returnFieldsLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 72F));
-            returnFieldsLayout.Size = new Size(550, 76);
+            returnFieldsLayout.Size = new Size(586, 76);
             returnFieldsLayout.TabIndex = 47;
             // 
             // comboBox_Book_returnField
@@ -1008,7 +1010,7 @@ namespace LibraryManagementWindowsForm
             comboBox_Book_returnField.RowCount = 2;
             comboBox_Book_returnField.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
             comboBox_Book_returnField.RowStyles.Add(new RowStyle(SizeType.Absolute, 36F));
-            comboBox_Book_returnField.Size = new Size(175, 64);
+            comboBox_Book_returnField.Size = new Size(187, 64);
             comboBox_Book_returnField.TabIndex = 48;
             // 
             // comboBox_Book_returnFieldLabel
@@ -1022,7 +1024,7 @@ namespace LibraryManagementWindowsForm
             comboBox_Book_returnFieldLabel.Name = "comboBox_Book_returnFieldLabel";
             comboBox_Book_returnFieldLabel.Padding = new Padding(4, 0, 4, 0);
             comboBox_Book_returnFieldLabel.RightToLeft = RightToLeft.Yes;
-            comboBox_Book_returnFieldLabel.Size = new Size(175, 24);
+            comboBox_Book_returnFieldLabel.Size = new Size(187, 24);
             comboBox_Book_returnFieldLabel.TabIndex = 49;
             comboBox_Book_returnFieldLabel.Text = "کتاب انتخاب‌شده";
             comboBox_Book_returnFieldLabel.TextAlign = ContentAlignment.MiddleRight;
@@ -1038,7 +1040,7 @@ namespace LibraryManagementWindowsForm
             comboBox_Book_return.Margin = new Padding(0, 3, 0, 3);
             comboBox_Book_return.Name = "comboBox_Book_return";
             comboBox_Book_return.RightToLeft = RightToLeft.Yes;
-            comboBox_Book_return.Size = new Size(175, 29);
+            comboBox_Book_return.Size = new Size(187, 29);
             comboBox_Book_return.TabIndex = 44;
             // 
             // dateTimePicker_ExpiredTimeField
@@ -1049,14 +1051,14 @@ namespace LibraryManagementWindowsForm
             dateTimePicker_ExpiredTimeField.Controls.Add(dateTimePicker_ExpiredTimeFieldLabel, 0, 0);
             dateTimePicker_ExpiredTimeField.Controls.Add(dateTimePicker_ExpiredTime, 0, 1);
             dateTimePicker_ExpiredTimeField.Dock = DockStyle.Top;
-            dateTimePicker_ExpiredTimeField.Location = new Point(187, 0);
+            dateTimePicker_ExpiredTimeField.Location = new Point(199, 0);
             dateTimePicker_ExpiredTimeField.Margin = new Padding(4, 0, 4, 8);
             dateTimePicker_ExpiredTimeField.Name = "dateTimePicker_ExpiredTimeField";
             dateTimePicker_ExpiredTimeField.RightToLeft = RightToLeft.No;
             dateTimePicker_ExpiredTimeField.RowCount = 2;
             dateTimePicker_ExpiredTimeField.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
             dateTimePicker_ExpiredTimeField.RowStyles.Add(new RowStyle(SizeType.Absolute, 36F));
-            dateTimePicker_ExpiredTimeField.Size = new Size(175, 64);
+            dateTimePicker_ExpiredTimeField.Size = new Size(187, 64);
             dateTimePicker_ExpiredTimeField.TabIndex = 50;
             // 
             // dateTimePicker_ExpiredTimeFieldLabel
@@ -1070,7 +1072,7 @@ namespace LibraryManagementWindowsForm
             dateTimePicker_ExpiredTimeFieldLabel.Name = "dateTimePicker_ExpiredTimeFieldLabel";
             dateTimePicker_ExpiredTimeFieldLabel.Padding = new Padding(4, 0, 4, 0);
             dateTimePicker_ExpiredTimeFieldLabel.RightToLeft = RightToLeft.Yes;
-            dateTimePicker_ExpiredTimeFieldLabel.Size = new Size(175, 24);
+            dateTimePicker_ExpiredTimeFieldLabel.Size = new Size(187, 24);
             dateTimePicker_ExpiredTimeFieldLabel.TabIndex = 51;
             dateTimePicker_ExpiredTimeFieldLabel.Text = "موعد تحویل";
             dateTimePicker_ExpiredTimeFieldLabel.TextAlign = ContentAlignment.MiddleRight;
@@ -1087,7 +1089,7 @@ namespace LibraryManagementWindowsForm
             dateTimePicker_ExpiredTime.Name = "dateTimePicker_ExpiredTime";
             dateTimePicker_ExpiredTime.ReadOnly = true;
             dateTimePicker_ExpiredTime.RightToLeft = RightToLeft.Yes;
-            dateTimePicker_ExpiredTime.Size = new Size(175, 36);
+            dateTimePicker_ExpiredTime.Size = new Size(187, 36);
             dateTimePicker_ExpiredTime.TabIndex = 45;
             // 
             // dateTimePicker_returnBackField
@@ -1098,14 +1100,14 @@ namespace LibraryManagementWindowsForm
             dateTimePicker_returnBackField.Controls.Add(dateTimePicker_returnBackFieldLabel, 0, 0);
             dateTimePicker_returnBackField.Controls.Add(dateTimePicker_returnBack, 0, 1);
             dateTimePicker_returnBackField.Dock = DockStyle.Top;
-            dateTimePicker_returnBackField.Location = new Point(370, 0);
+            dateTimePicker_returnBackField.Location = new Point(394, 0);
             dateTimePicker_returnBackField.Margin = new Padding(4, 0, 4, 8);
             dateTimePicker_returnBackField.Name = "dateTimePicker_returnBackField";
             dateTimePicker_returnBackField.RightToLeft = RightToLeft.No;
             dateTimePicker_returnBackField.RowCount = 2;
             dateTimePicker_returnBackField.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
             dateTimePicker_returnBackField.RowStyles.Add(new RowStyle(SizeType.Absolute, 36F));
-            dateTimePicker_returnBackField.Size = new Size(176, 64);
+            dateTimePicker_returnBackField.Size = new Size(188, 64);
             dateTimePicker_returnBackField.TabIndex = 52;
             // 
             // dateTimePicker_returnBackFieldLabel
@@ -1119,7 +1121,7 @@ namespace LibraryManagementWindowsForm
             dateTimePicker_returnBackFieldLabel.Name = "dateTimePicker_returnBackFieldLabel";
             dateTimePicker_returnBackFieldLabel.Padding = new Padding(4, 0, 4, 0);
             dateTimePicker_returnBackFieldLabel.RightToLeft = RightToLeft.Yes;
-            dateTimePicker_returnBackFieldLabel.Size = new Size(176, 24);
+            dateTimePicker_returnBackFieldLabel.Size = new Size(188, 24);
             dateTimePicker_returnBackFieldLabel.TabIndex = 53;
             dateTimePicker_returnBackFieldLabel.Text = "برگشت واقعی";
             dateTimePicker_returnBackFieldLabel.TextAlign = ContentAlignment.MiddleRight;
@@ -1135,7 +1137,7 @@ namespace LibraryManagementWindowsForm
             dateTimePicker_returnBack.MinimumSize = new Size(140, 32);
             dateTimePicker_returnBack.Name = "dateTimePicker_returnBack";
             dateTimePicker_returnBack.RightToLeft = RightToLeft.Yes;
-            dateTimePicker_returnBack.Size = new Size(176, 36);
+            dateTimePicker_returnBack.Size = new Size(188, 36);
             dateTimePicker_returnBack.TabIndex = 46;
             // 
             // returnHint
@@ -1149,7 +1151,7 @@ namespace LibraryManagementWindowsForm
             returnHint.Name = "returnHint";
             returnHint.Padding = new Padding(4, 0, 4, 0);
             returnHint.RightToLeft = RightToLeft.Yes;
-            returnHint.Size = new Size(550, 28);
+            returnHint.Size = new Size(586, 28);
             returnHint.TabIndex = 55;
             returnHint.Text = "ابتدا یک امانت فعال را از جدول انتخاب کنید.";
             returnHint.TextAlign = ContentAlignment.MiddleRight;
@@ -1166,7 +1168,7 @@ namespace LibraryManagementWindowsForm
             returnActions.Name = "returnActions";
             returnActions.Padding = new Padding(0, 4, 0, 4);
             returnActions.RightToLeft = RightToLeft.No;
-            returnActions.Size = new Size(550, 56);
+            returnActions.Size = new Size(586, 56);
             returnActions.TabIndex = 56;
             // 
             // btn_return_save
@@ -1177,7 +1179,7 @@ namespace LibraryManagementWindowsForm
             btn_return_save.FlatAppearance.BorderSize = 0;
             btn_return_save.FlatStyle = FlatStyle.Flat;
             btn_return_save.ForeColor = Color.White;
-            btn_return_save.Location = new Point(418, 8);
+            btn_return_save.Location = new Point(454, 8);
             btn_return_save.Margin = new Padding(4);
             btn_return_save.MinimumSize = new Size(112, 38);
             btn_return_save.Name = "btn_return_save";
@@ -1199,7 +1201,7 @@ namespace LibraryManagementWindowsForm
             viewportPanel.Margin = new Padding(0);
             viewportPanel.Name = "viewportPanel";
             viewportPanel.RightToLeft = RightToLeft.No;
-            viewportPanel.Size = new Size(1220, 780);
+            viewportPanel.Size = new Size(1292, 780);
             viewportPanel.TabIndex = 7;
             // 
             // FrmLoan
@@ -1207,7 +1209,7 @@ namespace LibraryManagementWindowsForm
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(242, 245, 249);
-            ClientSize = new Size(1220, 780);
+            ClientSize = new Size(1292, 780);
             Controls.Add(viewportPanel);
             Font = new Font("Tahoma", 10F);
             ForeColor = Color.FromArgb(25, 42, 66);

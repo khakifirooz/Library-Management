@@ -1,6 +1,6 @@
 ﻿namespace Library_Manegment_Domain.Common
 {
-    public abstract class BaseEntity<TKey>
+    public abstract class BaseEntity<TKey> 
     {
         public TKey Id { get; set; }
 

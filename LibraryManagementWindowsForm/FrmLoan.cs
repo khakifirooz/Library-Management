@@ -61,8 +61,13 @@ public partial class FrmLoan : Form
             comboBox_Book_return.DisplayMember = nameof(LoanViewModel.BookName);
             comboBox_Book_return.ValueMember = nameof(LoanViewModel.Id);
             comboBox_Book_return.DataSource = model.Loans;
-            dataGridView_loans.DataSource = model.Loans;
-            dataGridView_loans.ClearSelection(); dataGridView_loans.CurrentCell = null;
+            //dataGridView_loans.DataSource = model.Loans;
+            //UiGrids.BindLoans(dataGridView_loans, model.Loans,
+            //  text => _loanStatus.Text = text);
+            //dataGridView_loans.ClearSelection(); dataGridView_loans.CurrentCell = null;
+
+            UiGrids.BindLoans(dataGridView_loans, model.Loans,
+                 text => _loanStatus.Text = text);
         }
         finally { _bindingLoans = false; }
         _selectedLoan = null; btn_return_save.Enabled = false;
@@ -97,8 +102,13 @@ public partial class FrmLoan : Form
     private void ShowSelectedLoan()
     {
         if (_bindingLoans) return;
+        //var next = dataGridView_loans.SelectedRows.Count > 0
+        //    ? dataGridView_loans.SelectedRows[0].DataBoundItem as LoanViewModel : null;
+
         var next = dataGridView_loans.SelectedRows.Count > 0
-            ? dataGridView_loans.SelectedRows[0].DataBoundItem as LoanViewModel : null;
+           ? UiGrids.GetLoan(dataGridView_loans.SelectedRows[0])
+             : null;
+
         if (next?.Id == _selectedLoan?.Id) return;
         _selectedLoan = next;
         btn_return_save.Enabled = next is { Status: false };
@@ -157,5 +167,15 @@ public partial class FrmLoan : Form
     {
         base.OnShown(e);
         UiDesigner.FitToScreen(this);
+    }
+
+    private void _loanStatus_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void rootLayout_Paint(object sender, PaintEventArgs e)
+    {
+
     }
 }

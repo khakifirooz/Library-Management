@@ -15,479 +15,834 @@ namespace LibraryManagementWindowsForm
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            rootLayout = new TableLayoutPanel();
-            headerLayout = new TableLayoutPanel();
-            userProfile1 = new UserProfile();
-            headingLayout = new TableLayoutPanel();
-            headingLabel = new Label();
-            subtitleLabel = new Label();
-            footerLabel = new Label();
-            bodyLayout = new TableLayoutPanel();
-            booksCard = new TableLayoutPanel();
-            booksCardTitle = new Label();
-            listLayout = new TableLayoutPanel();
-            searchLayout = new TableLayoutPanel();
-            searchField = new TableLayoutPanel();
-            searchFieldLabel = new Label();
-            txt_search = new TextBox();
-            btn_refresh = new Button();
-            dataGrid_books = new DataGridView();
-            _status = new Label();
-            editorCard = new TableLayoutPanel();
-            editorCardTitle = new Label();
-            _editorHost = new Panel();
-            _editor = new TableLayoutPanel();
-            _mode = new Label();
-            txt_nameField = new TableLayoutPanel();
-            txt_nameFieldLabel = new Label();
-            txt_name = new TextBox();
-            txt_authorField = new TableLayoutPanel();
-            txt_authorFieldLabel = new Label();
-            txt_author = new TextBox();
-            txt_languageField = new TableLayoutPanel();
-            txt_languageFieldLabel = new Label();
-            txt_language = new TextBox();
-            photoCaption = new Label();
-            picture_book = new PictureBox();
-            photoActions = new FlowLayoutPanel();
-            btn_choose_photo = new Button();
-            _actions = new FlowLayoutPanel();
-            btn_save = new Button();
-            btn_edite = new Button();
-            btn_delete = new Button();
-            btn_new = new Button();
-            viewportPanel = new Panel();
-            _errors = new ErrorProvider(components);
+            System.Windows.Forms.DataGridViewCellStyle dataGrid_booksColumnHeadersDefaultCellStyle = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGrid_booksDefaultCellStyle = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGrid_booksAlternatingRowsDefaultCellStyle = new System.Windows.Forms.DataGridViewCellStyle();
+            rootLayout = new System.Windows.Forms.TableLayoutPanel();
+            headerLayout = new System.Windows.Forms.TableLayoutPanel();
+            headingLayout = new System.Windows.Forms.TableLayoutPanel();
+            headingLabel = new System.Windows.Forms.Label();
+            subtitleLabel = new System.Windows.Forms.Label();
+            userProfile1 = new LibraryManagementWindowsForm.UserProfile();
+            footerLabel = new System.Windows.Forms.Label();
+            viewportPanel = new System.Windows.Forms.Panel();
+            _errors = new System.Windows.Forms.ErrorProvider(components);
+            txt_search = new System.Windows.Forms.TextBox();
+            btn_refresh = new System.Windows.Forms.Button();
+            searchLayout = new System.Windows.Forms.TableLayoutPanel();
+            searchField = new System.Windows.Forms.TableLayoutPanel();
+            searchFieldLabel = new System.Windows.Forms.Label();
+            dataGrid_books = new System.Windows.Forms.DataGridView();
+            dataGrid_books_Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            dataGrid_books_Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            dataGrid_books_Author = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            dataGrid_books_Language = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            _status = new System.Windows.Forms.Label();
+            listLayout = new System.Windows.Forms.TableLayoutPanel();
+            booksCard = new System.Windows.Forms.TableLayoutPanel();
+            booksCardTitle = new System.Windows.Forms.Label();
+            _mode = new System.Windows.Forms.Label();
+            txt_name = new System.Windows.Forms.TextBox();
+            txt_nameField = new System.Windows.Forms.TableLayoutPanel();
+            txt_nameFieldLabel = new System.Windows.Forms.Label();
+            txt_author = new System.Windows.Forms.TextBox();
+            txt_authorField = new System.Windows.Forms.TableLayoutPanel();
+            txt_authorFieldLabel = new System.Windows.Forms.Label();
+            txt_language = new System.Windows.Forms.TextBox();
+            txt_languageField = new System.Windows.Forms.TableLayoutPanel();
+            txt_languageFieldLabel = new System.Windows.Forms.Label();
+            photoCaption = new System.Windows.Forms.Label();
+            picture_book = new System.Windows.Forms.PictureBox();
+            btn_choose_photo = new System.Windows.Forms.Button();
+            photoActions = new System.Windows.Forms.FlowLayoutPanel();
+            btn_save = new System.Windows.Forms.Button();
+            btn_edite = new System.Windows.Forms.Button();
+            btn_delete = new System.Windows.Forms.Button();
+            btn_new = new System.Windows.Forms.Button();
+            _actions = new System.Windows.Forms.FlowLayoutPanel();
+            _editor = new System.Windows.Forms.TableLayoutPanel();
+            _editorHost = new System.Windows.Forms.Panel();
+            editorCard = new System.Windows.Forms.TableLayoutPanel();
+            editorCardTitle = new System.Windows.Forms.Label();
+            bodyLayout = new System.Windows.Forms.TableLayoutPanel();
             rootLayout.SuspendLayout();
             headerLayout.SuspendLayout();
             headingLayout.SuspendLayout();
-            bodyLayout.SuspendLayout();
-            booksCard.SuspendLayout();
-            listLayout.SuspendLayout();
+            viewportPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)_errors).BeginInit();
             searchLayout.SuspendLayout();
             searchField.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGrid_books).BeginInit();
-            editorCard.SuspendLayout();
-            _editorHost.SuspendLayout();
-            _editor.SuspendLayout();
+            listLayout.SuspendLayout();
+            booksCard.SuspendLayout();
             txt_nameField.SuspendLayout();
             txt_authorField.SuspendLayout();
             txt_languageField.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picture_book).BeginInit();
             photoActions.SuspendLayout();
             _actions.SuspendLayout();
-            viewportPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)_errors).BeginInit();
+            _editor.SuspendLayout();
+            _editorHost.SuspendLayout();
+            editorCard.SuspendLayout();
+            bodyLayout.SuspendLayout();
             SuspendLayout();
-            // 
+            dataGrid_booksColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(242, 245, 249);
+            dataGrid_booksColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(25, 42, 66);
+            dataGrid_booksColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGrid_booksColumnHeadersDefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGrid_booksColumnHeadersDefaultCellStyle.Padding = new System.Windows.Forms.Padding(6);
+            dataGrid_booksColumnHeadersDefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            dataGrid_booksDefaultCellStyle.BackColor = System.Drawing.Color.White;
+            dataGrid_booksDefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(25, 42, 66);
+            dataGrid_booksDefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(219, 242, 238);
+            dataGrid_booksDefaultCellStyle.SelectionForeColor = System.Drawing.Color.FromArgb(25, 42, 66);
+            dataGrid_booksDefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGrid_booksDefaultCellStyle.Padding = new System.Windows.Forms.Padding(6);
+            dataGrid_booksDefaultCellStyle.NullValue = "—";
+            dataGrid_booksDefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            dataGrid_booksAlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(249, 251, 253);
+            //
             // rootLayout
-            // 
-            rootLayout.BackColor = Color.FromArgb(242, 245, 249);
-            rootLayout.ColumnCount = 1;
-            rootLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            rootLayout.Controls.Add(headerLayout, 0, 0);
-            rootLayout.Controls.Add(footerLabel, 0, 2);
-            rootLayout.Controls.Add(bodyLayout, 0, 1);
-            rootLayout.Dock = DockStyle.Fill;
-            rootLayout.Location = new Point(0, 0);
-            rootLayout.Margin = new Padding(0);
-            rootLayout.MinimumSize = new Size(0, 620);
+            //
             rootLayout.Name = "rootLayout";
-            rootLayout.Padding = new Padding(16);
-            rootLayout.RightToLeft = RightToLeft.No;
+            rootLayout.Margin = new System.Windows.Forms.Padding(0);
+            rootLayout.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            rootLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            rootLayout.ColumnCount = 1;
             rootLayout.RowCount = 3;
-            rootLayout.RowStyles.Add(new RowStyle());
-            rootLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            rootLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            rootLayout.Size = new Size(1120, 740);
+            rootLayout.Padding = new System.Windows.Forms.Padding(16);
+            rootLayout.BackColor = System.Drawing.Color.FromArgb(242, 245, 249);
+            rootLayout.MinimumSize = new System.Drawing.Size(0, 620);
             rootLayout.TabIndex = 0;
-            // 
+            rootLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            rootLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize, 0F));
+            rootLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            rootLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            //
             // headerLayout
-            // 
-            headerLayout.AutoSize = true;
-            headerLayout.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            headerLayout.BackColor = Color.White;
-            headerLayout.ColumnCount = 2;
-            headerLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 220F));
-            headerLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            headerLayout.Controls.Add(userProfile1, 0, 0);
-            headerLayout.Controls.Add(headingLayout, 1, 0);
-            headerLayout.Dock = DockStyle.Fill;
-            headerLayout.Location = new Point(16, 16);
-            headerLayout.Margin = new Padding(0, 0, 0, 12);
+            //
             headerLayout.Name = "headerLayout";
-            headerLayout.Padding = new Padding(12);
-            headerLayout.RightToLeft = RightToLeft.No;
+            headerLayout.Margin = new System.Windows.Forms.Padding(0, 0, 0, 12);
+            headerLayout.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            headerLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            headerLayout.ColumnCount = 2;
             headerLayout.RowCount = 1;
-            headerLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 68F));
-            headerLayout.Size = new Size(1088, 92);
+            headerLayout.Padding = new System.Windows.Forms.Padding(12);
+            headerLayout.BackColor = System.Drawing.Color.White;
+            headerLayout.AutoSize = true;
+            headerLayout.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             headerLayout.TabIndex = 1;
-            // 
-            // userProfile1
-            // 
-            userProfile1.BackColor = Color.White;
-            userProfile1.Dock = DockStyle.Fill;
-            userProfile1.Font = new Font("Tahoma", 10F);
-            userProfile1.ForeColor = Color.FromArgb(25, 42, 66);
-            userProfile1.Location = new Point(16, 16);
-            userProfile1.Margin = new Padding(4, 4, 4, 4);
-            userProfile1.MinimumSize = new Size(160, 32);
-            userProfile1.Name = "userProfile1";
-            userProfile1.RightToLeft = RightToLeft.Yes;
-            userProfile1.Size = new Size(212, 60);
-            userProfile1.TabIndex = 5;
-            // 
+            headerLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 220F));
+            headerLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            headerLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 68F));
+            //
             // headingLayout
-            // 
-            headingLayout.BackColor = Color.White;
-            headingLayout.ColumnCount = 1;
-            headingLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            headingLayout.Controls.Add(headingLabel, 0, 0);
-            headingLayout.Controls.Add(subtitleLabel, 0, 1);
-            headingLayout.Dock = DockStyle.Fill;
-            headingLayout.Location = new Point(232, 12);
-            headingLayout.Margin = new Padding(0);
+            //
             headingLayout.Name = "headingLayout";
-            headingLayout.RightToLeft = RightToLeft.No;
+            headingLayout.Margin = new System.Windows.Forms.Padding(0);
+            headingLayout.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            headingLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            headingLayout.ColumnCount = 1;
             headingLayout.RowCount = 2;
-            headingLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 32F));
-            headingLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            headingLayout.Size = new Size(844, 68);
+            headingLayout.Padding = new System.Windows.Forms.Padding(0);
+            headingLayout.BackColor = System.Drawing.Color.White;
             headingLayout.TabIndex = 2;
-            // 
+            headingLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            headingLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            headingLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            //
             // headingLabel
-            // 
-            headingLabel.AutoEllipsis = true;
-            headingLabel.Dock = DockStyle.Fill;
-            headingLabel.Font = new Font("Tahoma", 17F, FontStyle.Bold);
-            headingLabel.ForeColor = Color.FromArgb(25, 42, 66);
-            headingLabel.Location = new Point(0, 0);
-            headingLabel.Margin = new Padding(0);
+            //
             headingLabel.Name = "headingLabel";
-            headingLabel.Padding = new Padding(4, 0, 4, 0);
-            headingLabel.RightToLeft = RightToLeft.Yes;
-            headingLabel.Size = new Size(844, 32);
-            headingLabel.TabIndex = 3;
+            headingLabel.Margin = new System.Windows.Forms.Padding(0);
+            headingLabel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             headingLabel.Text = "مدیریت کتاب‌ها";
-            headingLabel.TextAlign = ContentAlignment.MiddleRight;
-            // 
+            headingLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            headingLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            headingLabel.AutoSize = false;
+            headingLabel.AutoEllipsis = true;
+            headingLabel.ForeColor = System.Drawing.Color.FromArgb(25, 42, 66);
+            headingLabel.Font = new System.Drawing.Font("Tahoma", 17F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            headingLabel.Padding = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            headingLabel.TabIndex = 3;
+            //
             // subtitleLabel
-            // 
-            subtitleLabel.AutoEllipsis = true;
-            subtitleLabel.Dock = DockStyle.Fill;
-            subtitleLabel.Font = new Font("Tahoma", 9F);
-            subtitleLabel.ForeColor = Color.FromArgb(94, 110, 132);
-            subtitleLabel.Location = new Point(0, 32);
-            subtitleLabel.Margin = new Padding(0);
+            //
             subtitleLabel.Name = "subtitleLabel";
-            subtitleLabel.Padding = new Padding(4, 0, 4, 0);
-            subtitleLabel.RightToLeft = RightToLeft.Yes;
-            subtitleLabel.Size = new Size(844, 36);
-            subtitleLabel.TabIndex = 4;
+            subtitleLabel.Margin = new System.Windows.Forms.Padding(0);
+            subtitleLabel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             subtitleLabel.Text = "ثبت، جست‌وجو و ویرایش مشخصات و تصویر کتاب";
-            subtitleLabel.TextAlign = ContentAlignment.MiddleRight;
-            // 
+            subtitleLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            subtitleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            subtitleLabel.AutoSize = false;
+            subtitleLabel.AutoEllipsis = true;
+            subtitleLabel.ForeColor = System.Drawing.Color.FromArgb(94, 110, 132);
+            subtitleLabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            subtitleLabel.Padding = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            subtitleLabel.TabIndex = 4;
+            //
+            // userProfile1
+            //
+            userProfile1.Name = "userProfile1";
+            userProfile1.Margin = new System.Windows.Forms.Padding(4);
+            userProfile1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            userProfile1.Dock = System.Windows.Forms.DockStyle.Fill;
+            userProfile1.MinimumSize = new System.Drawing.Size(160, 32);
+            userProfile1.TabIndex = 5;
+            //
             // footerLabel
-            // 
-            footerLabel.AutoEllipsis = true;
-            footerLabel.Dock = DockStyle.Fill;
-            footerLabel.Font = new Font("Tahoma", 9F);
-            footerLabel.ForeColor = Color.FromArgb(94, 110, 132);
-            footerLabel.Location = new Point(16, 700);
-            footerLabel.Margin = new Padding(0);
+            //
             footerLabel.Name = "footerLabel";
-            footerLabel.Padding = new Padding(4, 0, 4, 0);
-            footerLabel.RightToLeft = RightToLeft.Yes;
-            footerLabel.Size = new Size(1088, 24);
-            footerLabel.TabIndex = 6;
+            footerLabel.Margin = new System.Windows.Forms.Padding(0);
+            footerLabel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             footerLabel.Text = "مدیریت کتابخانه  •  ثبت و پیگیری اطلاعات";
-            footerLabel.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // bodyLayout
-            // 
-            bodyLayout.BackColor = Color.FromArgb(242, 245, 249);
-            bodyLayout.ColumnCount = 2;
-            bodyLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            bodyLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 340F));
-            bodyLayout.Controls.Add(booksCard, 0, 0);
-            bodyLayout.Controls.Add(editorCard, 1, 0);
-            bodyLayout.Dock = DockStyle.Fill;
-            bodyLayout.Location = new Point(16, 120);
-            bodyLayout.Margin = new Padding(0);
-            bodyLayout.Name = "bodyLayout";
-            bodyLayout.RightToLeft = RightToLeft.No;
-            bodyLayout.RowCount = 1;
-            bodyLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            bodyLayout.Size = new Size(1088, 580);
-            bodyLayout.TabIndex = 41;
-            // 
-            // booksCard
-            // 
-            booksCard.BackColor = Color.White;
-            booksCard.ColumnCount = 1;
-            booksCard.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            booksCard.Controls.Add(booksCardTitle, 0, 0);
-            booksCard.Controls.Add(listLayout, 0, 1);
-            booksCard.Dock = DockStyle.Fill;
-            booksCard.Location = new Point(6, 6);
-            booksCard.Margin = new Padding(6);
-            booksCard.Name = "booksCard";
-            booksCard.Padding = new Padding(12);
-            booksCard.RightToLeft = RightToLeft.No;
-            booksCard.RowCount = 2;
-            booksCard.RowStyles.Add(new RowStyle(SizeType.Absolute, 32F));
-            booksCard.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            booksCard.Size = new Size(736, 568);
-            booksCard.TabIndex = 16;
-            // 
-            // booksCardTitle
-            // 
-            booksCardTitle.AutoEllipsis = true;
-            booksCardTitle.Dock = DockStyle.Fill;
-            booksCardTitle.Font = new Font("Tahoma", 10F, FontStyle.Bold);
-            booksCardTitle.ForeColor = Color.FromArgb(25, 42, 66);
-            booksCardTitle.Location = new Point(12, 12);
-            booksCardTitle.Margin = new Padding(0);
-            booksCardTitle.Name = "booksCardTitle";
-            booksCardTitle.Padding = new Padding(4, 0, 4, 0);
-            booksCardTitle.RightToLeft = RightToLeft.Yes;
-            booksCardTitle.Size = new Size(712, 32);
-            booksCardTitle.TabIndex = 17;
-            booksCardTitle.Text = "فهرست کتاب‌ها";
-            booksCardTitle.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // listLayout
-            // 
-            listLayout.BackColor = Color.White;
-            listLayout.ColumnCount = 1;
-            listLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            listLayout.Controls.Add(searchLayout, 0, 0);
-            listLayout.Controls.Add(dataGrid_books, 0, 1);
-            listLayout.Controls.Add(_status, 0, 2);
-            listLayout.Dock = DockStyle.Fill;
-            listLayout.Location = new Point(12, 44);
-            listLayout.Margin = new Padding(0);
-            listLayout.Name = "listLayout";
-            listLayout.RightToLeft = RightToLeft.No;
-            listLayout.RowCount = 3;
-            listLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 74F));
-            listLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            listLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
-            listLayout.Size = new Size(712, 512);
-            listLayout.TabIndex = 15;
-            // 
-            // searchLayout
-            // 
-            searchLayout.BackColor = Color.White;
-            searchLayout.ColumnCount = 2;
-            searchLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            searchLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 144F));
-            searchLayout.Controls.Add(searchField, 0, 0);
-            searchLayout.Controls.Add(btn_refresh, 1, 0);
-            searchLayout.Dock = DockStyle.Fill;
-            searchLayout.Location = new Point(0, 0);
-            searchLayout.Margin = new Padding(0);
-            searchLayout.Name = "searchLayout";
-            searchLayout.RightToLeft = RightToLeft.No;
-            searchLayout.RowCount = 1;
-            searchLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 68F));
-            searchLayout.Size = new Size(712, 74);
-            searchLayout.TabIndex = 10;
-            // 
-            // searchField
-            // 
-            searchField.BackColor = Color.White;
-            searchField.ColumnCount = 1;
-            searchField.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            searchField.Controls.Add(searchFieldLabel, 0, 0);
-            searchField.Controls.Add(txt_search, 0, 1);
-            searchField.Dock = DockStyle.Top;
-            searchField.Location = new Point(4, 0);
-            searchField.Margin = new Padding(4, 0, 4, 8);
-            searchField.Name = "searchField";
-            searchField.RightToLeft = RightToLeft.No;
-            searchField.RowCount = 2;
-            searchField.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            searchField.RowStyles.Add(new RowStyle(SizeType.Absolute, 36F));
-            searchField.Size = new Size(560, 64);
-            searchField.TabIndex = 11;
-            // 
-            // searchFieldLabel
-            // 
-            searchFieldLabel.AutoEllipsis = true;
-            searchFieldLabel.Dock = DockStyle.Fill;
-            searchFieldLabel.Font = new Font("Tahoma", 9F);
-            searchFieldLabel.ForeColor = Color.FromArgb(94, 110, 132);
-            searchFieldLabel.Location = new Point(0, 0);
-            searchFieldLabel.Margin = new Padding(0);
-            searchFieldLabel.Name = "searchFieldLabel";
-            searchFieldLabel.Padding = new Padding(4, 0, 4, 0);
-            searchFieldLabel.RightToLeft = RightToLeft.Yes;
-            searchFieldLabel.Size = new Size(560, 24);
-            searchFieldLabel.TabIndex = 12;
-            searchFieldLabel.Text = "جست‌وجوی کتاب";
-            searchFieldLabel.TextAlign = ContentAlignment.MiddleRight;
-            // 
+            footerLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            footerLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            footerLabel.AutoSize = false;
+            footerLabel.AutoEllipsis = true;
+            footerLabel.ForeColor = System.Drawing.Color.FromArgb(94, 110, 132);
+            footerLabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            footerLabel.Padding = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            footerLabel.TabIndex = 6;
+            //
+            // viewportPanel
+            //
+            viewportPanel.Name = "viewportPanel";
+            viewportPanel.Margin = new System.Windows.Forms.Padding(0);
+            viewportPanel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            viewportPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            viewportPanel.AutoScroll = true;
+            viewportPanel.AutoScrollMinSize = new System.Drawing.Size(0, 620);
+            viewportPanel.BackColor = System.Drawing.Color.FromArgb(242, 245, 249);
+            viewportPanel.TabIndex = 7;
+            //
+            // _errors
+            //
+            _errors.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            _errors.ContainerControl = this;
+            //
             // txt_search
-            // 
-            txt_search.BackColor = Color.White;
-            txt_search.BorderStyle = BorderStyle.FixedSingle;
-            txt_search.Dock = DockStyle.Fill;
-            txt_search.ForeColor = Color.FromArgb(25, 42, 66);
-            txt_search.Location = new Point(0, 27);
-            txt_search.Margin = new Padding(0, 3, 18, 3);
-            txt_search.MaxLength = 50;
+            //
             txt_search.Name = "txt_search";
+            txt_search.Margin = new System.Windows.Forms.Padding(0, 3, 18, 3);
+            txt_search.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            txt_search.Dock = System.Windows.Forms.DockStyle.Fill;
+            txt_search.MaxLength = 50;
             txt_search.PlaceholderText = "عنوان کتاب یا نام نویسنده…";
-            txt_search.RightToLeft = RightToLeft.Yes;
-            txt_search.Size = new Size(542, 28);
+            txt_search.ReadOnly = false;
+            txt_search.Multiline = false;
+            txt_search.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            txt_search.BackColor = System.Drawing.Color.White;
+            txt_search.ForeColor = System.Drawing.Color.FromArgb(25, 42, 66);
+            txt_search.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            txt_search.TabIndex = 0;
             txt_search.TabIndex = 8;
-            txt_search.TextAlign = HorizontalAlignment.Right;
-            txt_search.TextChanged += txt_search_TextChanged;
-            // 
+            //
             // btn_refresh
-            // 
-            btn_refresh.Anchor = AnchorStyles.Right;
-            btn_refresh.BackColor = Color.White;
-            btn_refresh.Cursor = Cursors.Hand;
-            btn_refresh.FlatAppearance.BorderColor = Color.FromArgb(222, 230, 239);
-            btn_refresh.FlatStyle = FlatStyle.Flat;
-            btn_refresh.ForeColor = Color.FromArgb(25, 42, 66);
-            btn_refresh.Location = new Point(580, 17);
-            btn_refresh.Margin = new Padding(4);
-            btn_refresh.MinimumSize = new Size(112, 38);
+            //
             btn_refresh.Name = "btn_refresh";
-            btn_refresh.RightToLeft = RightToLeft.Yes;
-            btn_refresh.Size = new Size(128, 40);
-            btn_refresh.TabIndex = 9;
+            btn_refresh.Margin = new System.Windows.Forms.Padding(4);
+            btn_refresh.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             btn_refresh.Text = "تازه‌سازی";
+            btn_refresh.Size = new System.Drawing.Size(128, 40);
+            btn_refresh.MinimumSize = new System.Drawing.Size(112, 38);
+            btn_refresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btn_refresh.BackColor = System.Drawing.Color.White;
+            btn_refresh.ForeColor = System.Drawing.Color.FromArgb(25, 42, 66);
             btn_refresh.UseVisualStyleBackColor = false;
-            btn_refresh.Click += RefreshBooks_Click;
-            // 
+            btn_refresh.Cursor = System.Windows.Forms.Cursors.Hand;
+            btn_refresh.AutoSize = false;
+            btn_refresh.FlatAppearance.BorderSize = 1;
+            btn_refresh.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(222, 230, 239);
+            btn_refresh.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            btn_refresh.TabIndex = 9;
+            //
+            // searchLayout
+            //
+            searchLayout.Name = "searchLayout";
+            searchLayout.Margin = new System.Windows.Forms.Padding(0);
+            searchLayout.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            searchLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            searchLayout.ColumnCount = 2;
+            searchLayout.RowCount = 1;
+            searchLayout.Padding = new System.Windows.Forms.Padding(0);
+            searchLayout.BackColor = System.Drawing.Color.White;
+            searchLayout.TabIndex = 10;
+            searchLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            searchLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 144F));
+            searchLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 68F));
+            //
+            // searchField
+            //
+            searchField.Name = "searchField";
+            searchField.Margin = new System.Windows.Forms.Padding(4, 0, 4, 8);
+            searchField.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            searchField.Dock = System.Windows.Forms.DockStyle.Top;
+            searchField.ColumnCount = 1;
+            searchField.RowCount = 2;
+            searchField.Padding = new System.Windows.Forms.Padding(0);
+            searchField.BackColor = System.Drawing.Color.White;
+            searchField.Size = new System.Drawing.Size(280, 64);
+            searchField.TabIndex = 11;
+            searchField.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            searchField.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            searchField.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            //
+            // searchFieldLabel
+            //
+            searchFieldLabel.Name = "searchFieldLabel";
+            searchFieldLabel.Margin = new System.Windows.Forms.Padding(0);
+            searchFieldLabel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            searchFieldLabel.Text = "جست‌وجوی کتاب";
+            searchFieldLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            searchFieldLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            searchFieldLabel.AutoSize = false;
+            searchFieldLabel.AutoEllipsis = true;
+            searchFieldLabel.ForeColor = System.Drawing.Color.FromArgb(94, 110, 132);
+            searchFieldLabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            searchFieldLabel.Padding = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            searchFieldLabel.TabIndex = 12;
+            //
             // dataGrid_books
-            // 
+            //
+            dataGrid_books.Name = "dataGrid_books";
+            dataGrid_books.Margin = new System.Windows.Forms.Padding(0);
+            dataGrid_books.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            dataGrid_books.Dock = System.Windows.Forms.DockStyle.Fill;
+            dataGrid_books.AutoGenerateColumns = false;
+            dataGrid_books.ReadOnly = true;
             dataGrid_books.AllowUserToAddRows = false;
             dataGrid_books.AllowUserToDeleteRows = false;
             dataGrid_books.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(249, 251, 253);
-            dataGrid_books.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dataGrid_books.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGrid_books.BackgroundColor = Color.White;
-            dataGrid_books.BorderStyle = BorderStyle.None;
-            dataGrid_books.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGrid_books.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(242, 245, 249);
-            dataGridViewCellStyle2.Font = new Font("Tahoma", 9F, FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = Color.FromArgb(25, 42, 66);
-            dataGridViewCellStyle2.Padding = new Padding(6);
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dataGrid_books.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            dataGrid_books.ColumnHeadersHeight = 42;
-            dataGrid_books.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.BackColor = Color.White;
-            dataGridViewCellStyle3.Font = new Font("Tahoma", 10F);
-            dataGridViewCellStyle3.ForeColor = Color.FromArgb(25, 42, 66);
-            dataGridViewCellStyle3.NullValue = "—";
-            dataGridViewCellStyle3.Padding = new Padding(6);
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(219, 242, 238);
-            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(25, 42, 66);
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dataGrid_books.DefaultCellStyle = dataGridViewCellStyle3;
-            dataGrid_books.Dock = DockStyle.Fill;
-            dataGrid_books.EnableHeadersVisualStyles = false;
-            dataGrid_books.GridColor = Color.FromArgb(222, 230, 239);
-            dataGrid_books.Location = new Point(0, 74);
-            dataGrid_books.Margin = new Padding(0);
             dataGrid_books.MultiSelect = false;
-            dataGrid_books.Name = "dataGrid_books";
-            dataGrid_books.ReadOnly = true;
-            dataGrid_books.RightToLeft = RightToLeft.Yes;
+            dataGrid_books.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             dataGrid_books.RowHeadersVisible = false;
-            dataGrid_books.RowHeadersWidth = 51;
+            dataGrid_books.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGrid_books.ColumnHeadersHeight = 42;
+            dataGrid_books.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGrid_books.BackgroundColor = System.Drawing.Color.White;
+            dataGrid_books.GridColor = System.Drawing.Color.FromArgb(222, 230, 239);
+            dataGrid_books.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGrid_books.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGrid_books.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGrid_books.EnableHeadersVisualStyles = false;
             dataGrid_books.RowTemplate.Height = 36;
-            dataGrid_books.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGrid_books.Size = new Size(712, 408);
-            dataGrid_books.TabIndex = 13;
             dataGrid_books.Tag = "books";
-            dataGrid_books.CellClick += dataGrid_books_CellClick;
-            // 
+            dataGrid_books.ColumnHeadersDefaultCellStyle = dataGrid_booksColumnHeadersDefaultCellStyle;
+            dataGrid_books.DefaultCellStyle = dataGrid_booksDefaultCellStyle;
+            dataGrid_books.AlternatingRowsDefaultCellStyle = dataGrid_booksAlternatingRowsDefaultCellStyle;
+            dataGrid_books.TabIndex = 13;
+            //
+            // dataGrid_books_Id
+            //
+            dataGrid_books_Id.Name = "Id";
+            dataGrid_books_Id.DataPropertyName = "Id";
+            dataGrid_books_Id.HeaderText = "شناسه";
+            dataGrid_books_Id.MinimumWidth = 65;
+            dataGrid_books_Id.FillWeight = 65F;
+            dataGrid_books_Id.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            //
+            // dataGrid_books_Title
+            //
+            dataGrid_books_Title.Name = "Title";
+            dataGrid_books_Title.DataPropertyName = "Title";
+            dataGrid_books_Title.HeaderText = "عنوان کتاب";
+            dataGrid_books_Title.MinimumWidth = 100;
+            dataGrid_books_Title.FillWeight = 220F;
+            dataGrid_books_Title.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            //
+            // dataGrid_books_Author
+            //
+            dataGrid_books_Author.Name = "Author";
+            dataGrid_books_Author.DataPropertyName = "Author";
+            dataGrid_books_Author.HeaderText = "نویسنده";
+            dataGrid_books_Author.MinimumWidth = 100;
+            dataGrid_books_Author.FillWeight = 170F;
+            dataGrid_books_Author.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            //
+            // dataGrid_books_Language
+            //
+            dataGrid_books_Language.Name = "Language";
+            dataGrid_books_Language.DataPropertyName = "Language";
+            dataGrid_books_Language.HeaderText = "زبان";
+            dataGrid_books_Language.MinimumWidth = 90;
+            dataGrid_books_Language.FillWeight = 90F;
+            dataGrid_books_Language.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            //
             // _status
-            // 
-            _status.AutoEllipsis = true;
-            _status.Dock = DockStyle.Fill;
-            _status.Font = new Font("Tahoma", 9F);
-            _status.ForeColor = Color.FromArgb(94, 110, 132);
-            _status.Location = new Point(0, 482);
-            _status.Margin = new Padding(0);
+            //
             _status.Name = "_status";
-            _status.Padding = new Padding(4, 0, 4, 0);
-            _status.RightToLeft = RightToLeft.Yes;
-            _status.Size = new Size(712, 30);
-            _status.TabIndex = 14;
+            _status.Margin = new System.Windows.Forms.Padding(0);
+            _status.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             _status.Text = "برای شروع، کتاب تازه ثبت کنید یا یک ردیف را انتخاب کنید.";
-            _status.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // editorCard
-            // 
-            editorCard.BackColor = Color.White;
-            editorCard.ColumnCount = 1;
-            editorCard.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            editorCard.Controls.Add(editorCardTitle, 0, 0);
-            editorCard.Controls.Add(_editorHost, 0, 1);
-            editorCard.Dock = DockStyle.Fill;
-            editorCard.Location = new Point(754, 6);
-            editorCard.Margin = new Padding(6);
-            editorCard.Name = "editorCard";
-            editorCard.Padding = new Padding(12);
-            editorCard.RightToLeft = RightToLeft.No;
-            editorCard.RowCount = 2;
-            editorCard.RowStyles.Add(new RowStyle(SizeType.Absolute, 32F));
-            editorCard.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            editorCard.Size = new Size(328, 568);
-            editorCard.TabIndex = 39;
-            // 
-            // editorCardTitle
-            // 
-            editorCardTitle.AutoEllipsis = true;
-            editorCardTitle.Dock = DockStyle.Fill;
-            editorCardTitle.Font = new Font("Tahoma", 10F, FontStyle.Bold);
-            editorCardTitle.ForeColor = Color.FromArgb(25, 42, 66);
-            editorCardTitle.Location = new Point(12, 12);
-            editorCardTitle.Margin = new Padding(0);
-            editorCardTitle.Name = "editorCardTitle";
-            editorCardTitle.Padding = new Padding(4, 0, 4, 0);
-            editorCardTitle.RightToLeft = RightToLeft.Yes;
-            editorCardTitle.Size = new Size(304, 32);
-            editorCardTitle.TabIndex = 40;
-            editorCardTitle.Text = "مشخصات کتاب";
-            editorCardTitle.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // _editorHost
-            // 
-            _editorHost.AutoScroll = true;
-            _editorHost.BackColor = Color.White;
-            _editorHost.Controls.Add(_editor);
-            _editorHost.Dock = DockStyle.Fill;
-            _editorHost.Location = new Point(12, 44);
-            _editorHost.Margin = new Padding(0);
-            _editorHost.Name = "_editorHost";
-            _editorHost.Padding = new Padding(0, 0, 4, 0);
-            _editorHost.RightToLeft = RightToLeft.No;
-            _editorHost.Size = new Size(304, 512);
-            _editorHost.TabIndex = 38;
-            // 
+            _status.Dock = System.Windows.Forms.DockStyle.Fill;
+            _status.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            _status.AutoSize = false;
+            _status.AutoEllipsis = true;
+            _status.ForeColor = System.Drawing.Color.FromArgb(94, 110, 132);
+            _status.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            _status.Padding = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            _status.TabIndex = 14;
+            //
+            // listLayout
+            //
+            listLayout.Name = "listLayout";
+            listLayout.Margin = new System.Windows.Forms.Padding(0);
+            listLayout.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            listLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            listLayout.ColumnCount = 1;
+            listLayout.RowCount = 3;
+            listLayout.Padding = new System.Windows.Forms.Padding(0);
+            listLayout.BackColor = System.Drawing.Color.White;
+            listLayout.TabIndex = 15;
+            listLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            listLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 74F));
+            listLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            listLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            //
+            // booksCard
+            //
+            booksCard.Name = "booksCard";
+            booksCard.Margin = new System.Windows.Forms.Padding(6);
+            booksCard.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            booksCard.Dock = System.Windows.Forms.DockStyle.Fill;
+            booksCard.ColumnCount = 1;
+            booksCard.RowCount = 2;
+            booksCard.Padding = new System.Windows.Forms.Padding(12);
+            booksCard.BackColor = System.Drawing.Color.White;
+            booksCard.TabIndex = 16;
+            booksCard.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            booksCard.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            booksCard.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            //
+            // booksCardTitle
+            //
+            booksCardTitle.Name = "booksCardTitle";
+            booksCardTitle.Margin = new System.Windows.Forms.Padding(0);
+            booksCardTitle.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            booksCardTitle.Text = "فهرست کتاب‌ها";
+            booksCardTitle.Dock = System.Windows.Forms.DockStyle.Fill;
+            booksCardTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            booksCardTitle.AutoSize = false;
+            booksCardTitle.AutoEllipsis = true;
+            booksCardTitle.ForeColor = System.Drawing.Color.FromArgb(25, 42, 66);
+            booksCardTitle.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            booksCardTitle.Padding = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            booksCardTitle.TabIndex = 17;
+            //
+            // _mode
+            //
+            _mode.Name = "_mode";
+            _mode.Margin = new System.Windows.Forms.Padding(0);
+            _mode.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            _mode.Text = "کتاب جدید";
+            _mode.Dock = System.Windows.Forms.DockStyle.Fill;
+            _mode.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            _mode.AutoSize = false;
+            _mode.AutoEllipsis = true;
+            _mode.ForeColor = System.Drawing.Color.FromArgb(94, 110, 132);
+            _mode.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            _mode.Padding = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            _mode.TabIndex = 18;
+            //
+            // txt_name
+            //
+            txt_name.Name = "txt_name";
+            txt_name.Margin = new System.Windows.Forms.Padding(0, 3, 18, 3);
+            txt_name.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            txt_name.Dock = System.Windows.Forms.DockStyle.Fill;
+            txt_name.MaxLength = 50;
+            txt_name.PlaceholderText = "";
+            txt_name.ReadOnly = false;
+            txt_name.Multiline = false;
+            txt_name.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            txt_name.BackColor = System.Drawing.Color.White;
+            txt_name.ForeColor = System.Drawing.Color.FromArgb(25, 42, 66);
+            txt_name.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            txt_name.TabIndex = 0;
+            txt_name.TabIndex = 19;
+            //
+            // txt_nameField
+            //
+            txt_nameField.Name = "txt_nameField";
+            txt_nameField.Margin = new System.Windows.Forms.Padding(4, 0, 4, 8);
+            txt_nameField.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            txt_nameField.Dock = System.Windows.Forms.DockStyle.Top;
+            txt_nameField.ColumnCount = 1;
+            txt_nameField.RowCount = 2;
+            txt_nameField.Padding = new System.Windows.Forms.Padding(0);
+            txt_nameField.BackColor = System.Drawing.Color.White;
+            txt_nameField.Size = new System.Drawing.Size(280, 64);
+            txt_nameField.TabIndex = 20;
+            txt_nameField.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            txt_nameField.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            txt_nameField.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            //
+            // txt_nameFieldLabel
+            //
+            txt_nameFieldLabel.Name = "txt_nameFieldLabel";
+            txt_nameFieldLabel.Margin = new System.Windows.Forms.Padding(0);
+            txt_nameFieldLabel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            txt_nameFieldLabel.Text = "عنوان کتاب *";
+            txt_nameFieldLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            txt_nameFieldLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            txt_nameFieldLabel.AutoSize = false;
+            txt_nameFieldLabel.AutoEllipsis = true;
+            txt_nameFieldLabel.ForeColor = System.Drawing.Color.FromArgb(94, 110, 132);
+            txt_nameFieldLabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txt_nameFieldLabel.Padding = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            txt_nameFieldLabel.TabIndex = 21;
+            //
+            // txt_author
+            //
+            txt_author.Name = "txt_author";
+            txt_author.Margin = new System.Windows.Forms.Padding(0, 3, 18, 3);
+            txt_author.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            txt_author.Dock = System.Windows.Forms.DockStyle.Fill;
+            txt_author.MaxLength = 50;
+            txt_author.PlaceholderText = "";
+            txt_author.ReadOnly = false;
+            txt_author.Multiline = false;
+            txt_author.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            txt_author.BackColor = System.Drawing.Color.White;
+            txt_author.ForeColor = System.Drawing.Color.FromArgb(25, 42, 66);
+            txt_author.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            txt_author.TabIndex = 0;
+            txt_author.TabIndex = 22;
+            //
+            // txt_authorField
+            //
+            txt_authorField.Name = "txt_authorField";
+            txt_authorField.Margin = new System.Windows.Forms.Padding(4, 0, 4, 8);
+            txt_authorField.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            txt_authorField.Dock = System.Windows.Forms.DockStyle.Top;
+            txt_authorField.ColumnCount = 1;
+            txt_authorField.RowCount = 2;
+            txt_authorField.Padding = new System.Windows.Forms.Padding(0);
+            txt_authorField.BackColor = System.Drawing.Color.White;
+            txt_authorField.Size = new System.Drawing.Size(280, 64);
+            txt_authorField.TabIndex = 23;
+            txt_authorField.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            txt_authorField.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            txt_authorField.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            //
+            // txt_authorFieldLabel
+            //
+            txt_authorFieldLabel.Name = "txt_authorFieldLabel";
+            txt_authorFieldLabel.Margin = new System.Windows.Forms.Padding(0);
+            txt_authorFieldLabel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            txt_authorFieldLabel.Text = "نویسنده *";
+            txt_authorFieldLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            txt_authorFieldLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            txt_authorFieldLabel.AutoSize = false;
+            txt_authorFieldLabel.AutoEllipsis = true;
+            txt_authorFieldLabel.ForeColor = System.Drawing.Color.FromArgb(94, 110, 132);
+            txt_authorFieldLabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txt_authorFieldLabel.Padding = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            txt_authorFieldLabel.TabIndex = 24;
+            //
+            // txt_language
+            //
+            txt_language.Name = "txt_language";
+            txt_language.Margin = new System.Windows.Forms.Padding(0, 3, 18, 3);
+            txt_language.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            txt_language.Dock = System.Windows.Forms.DockStyle.Fill;
+            txt_language.MaxLength = 50;
+            txt_language.PlaceholderText = "";
+            txt_language.ReadOnly = false;
+            txt_language.Multiline = false;
+            txt_language.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            txt_language.BackColor = System.Drawing.Color.White;
+            txt_language.ForeColor = System.Drawing.Color.FromArgb(25, 42, 66);
+            txt_language.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            txt_language.TabIndex = 0;
+            txt_language.TabIndex = 25;
+            //
+            // txt_languageField
+            //
+            txt_languageField.Name = "txt_languageField";
+            txt_languageField.Margin = new System.Windows.Forms.Padding(4, 0, 4, 8);
+            txt_languageField.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            txt_languageField.Dock = System.Windows.Forms.DockStyle.Top;
+            txt_languageField.ColumnCount = 1;
+            txt_languageField.RowCount = 2;
+            txt_languageField.Padding = new System.Windows.Forms.Padding(0);
+            txt_languageField.BackColor = System.Drawing.Color.White;
+            txt_languageField.Size = new System.Drawing.Size(280, 64);
+            txt_languageField.TabIndex = 26;
+            txt_languageField.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            txt_languageField.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            txt_languageField.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            //
+            // txt_languageFieldLabel
+            //
+            txt_languageFieldLabel.Name = "txt_languageFieldLabel";
+            txt_languageFieldLabel.Margin = new System.Windows.Forms.Padding(0);
+            txt_languageFieldLabel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            txt_languageFieldLabel.Text = "زبان *";
+            txt_languageFieldLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            txt_languageFieldLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            txt_languageFieldLabel.AutoSize = false;
+            txt_languageFieldLabel.AutoEllipsis = true;
+            txt_languageFieldLabel.ForeColor = System.Drawing.Color.FromArgb(94, 110, 132);
+            txt_languageFieldLabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txt_languageFieldLabel.Padding = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            txt_languageFieldLabel.TabIndex = 27;
+            //
+            // photoCaption
+            //
+            photoCaption.Name = "photoCaption";
+            photoCaption.Margin = new System.Windows.Forms.Padding(0);
+            photoCaption.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            photoCaption.Text = "تصویر کتاب؛ اختیاری";
+            photoCaption.Dock = System.Windows.Forms.DockStyle.Fill;
+            photoCaption.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            photoCaption.AutoSize = false;
+            photoCaption.AutoEllipsis = true;
+            photoCaption.ForeColor = System.Drawing.Color.FromArgb(94, 110, 132);
+            photoCaption.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            photoCaption.Padding = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            photoCaption.TabIndex = 28;
+            //
+            // picture_book
+            //
+            picture_book.Name = "picture_book";
+            picture_book.Margin = new System.Windows.Forms.Padding(4);
+            picture_book.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            picture_book.Dock = System.Windows.Forms.DockStyle.Fill;
+            picture_book.Size = new System.Drawing.Size(220, 140);
+            picture_book.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            picture_book.BackColor = System.Drawing.Color.FromArgb(242, 245, 249);
+            picture_book.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            picture_book.Cursor = System.Windows.Forms.Cursors.Hand;
+            picture_book.TabStop = false;
+            picture_book.TabIndex = 29;
+            //
+            // btn_choose_photo
+            //
+            btn_choose_photo.Name = "btn_choose_photo";
+            btn_choose_photo.Margin = new System.Windows.Forms.Padding(4);
+            btn_choose_photo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            btn_choose_photo.Text = "انتخاب تصویر";
+            btn_choose_photo.Size = new System.Drawing.Size(128, 40);
+            btn_choose_photo.MinimumSize = new System.Drawing.Size(112, 38);
+            btn_choose_photo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btn_choose_photo.BackColor = System.Drawing.Color.White;
+            btn_choose_photo.ForeColor = System.Drawing.Color.FromArgb(25, 42, 66);
+            btn_choose_photo.UseVisualStyleBackColor = false;
+            btn_choose_photo.Cursor = System.Windows.Forms.Cursors.Hand;
+            btn_choose_photo.AutoSize = false;
+            btn_choose_photo.FlatAppearance.BorderSize = 1;
+            btn_choose_photo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(222, 230, 239);
+            btn_choose_photo.TabIndex = 30;
+            //
+            // photoActions
+            //
+            photoActions.Name = "photoActions";
+            photoActions.Margin = new System.Windows.Forms.Padding(0);
+            photoActions.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            photoActions.Dock = System.Windows.Forms.DockStyle.Top;
+            photoActions.AutoSize = true;
+            photoActions.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            photoActions.WrapContents = true;
+            photoActions.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            photoActions.Padding = new System.Windows.Forms.Padding(0, 4, 0, 4);
+            photoActions.MaximumSize = new System.Drawing.Size(288, 0);
+            photoActions.TabIndex = 31;
+            //
+            // btn_save
+            //
+            btn_save.Name = "btn_save";
+            btn_save.Margin = new System.Windows.Forms.Padding(4);
+            btn_save.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            btn_save.Text = "ثبت کتاب";
+            btn_save.Size = new System.Drawing.Size(128, 40);
+            btn_save.MinimumSize = new System.Drawing.Size(112, 38);
+            btn_save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btn_save.BackColor = System.Drawing.Color.FromArgb(12, 120, 113);
+            btn_save.ForeColor = System.Drawing.Color.White;
+            btn_save.UseVisualStyleBackColor = false;
+            btn_save.Cursor = System.Windows.Forms.Cursors.Hand;
+            btn_save.AutoSize = false;
+            btn_save.FlatAppearance.BorderSize = 0;
+            btn_save.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(222, 230, 239);
+            btn_save.TabIndex = 32;
+            //
+            // btn_edite
+            //
+            btn_edite.Name = "btn_edite";
+            btn_edite.Margin = new System.Windows.Forms.Padding(4);
+            btn_edite.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            btn_edite.Text = "ذخیرهٔ تغییرات";
+            btn_edite.Size = new System.Drawing.Size(128, 40);
+            btn_edite.MinimumSize = new System.Drawing.Size(112, 38);
+            btn_edite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btn_edite.BackColor = System.Drawing.Color.FromArgb(12, 120, 113);
+            btn_edite.ForeColor = System.Drawing.Color.White;
+            btn_edite.UseVisualStyleBackColor = false;
+            btn_edite.Cursor = System.Windows.Forms.Cursors.Hand;
+            btn_edite.AutoSize = false;
+            btn_edite.FlatAppearance.BorderSize = 0;
+            btn_edite.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(222, 230, 239);
+            btn_edite.TabIndex = 33;
+            //
+            // btn_delete
+            //
+            btn_delete.Name = "btn_delete";
+            btn_delete.Margin = new System.Windows.Forms.Padding(4);
+            btn_delete.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            btn_delete.Text = "حذف کتاب";
+            btn_delete.Size = new System.Drawing.Size(128, 40);
+            btn_delete.MinimumSize = new System.Drawing.Size(112, 38);
+            btn_delete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btn_delete.BackColor = System.Drawing.Color.FromArgb(169, 49, 60);
+            btn_delete.ForeColor = System.Drawing.Color.White;
+            btn_delete.UseVisualStyleBackColor = false;
+            btn_delete.Cursor = System.Windows.Forms.Cursors.Hand;
+            btn_delete.AutoSize = false;
+            btn_delete.FlatAppearance.BorderSize = 0;
+            btn_delete.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(222, 230, 239);
+            btn_delete.TabIndex = 34;
+            //
+            // btn_new
+            //
+            btn_new.Name = "btn_new";
+            btn_new.Margin = new System.Windows.Forms.Padding(4);
+            btn_new.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            btn_new.Text = "کتاب جدید";
+            btn_new.Size = new System.Drawing.Size(128, 40);
+            btn_new.MinimumSize = new System.Drawing.Size(112, 38);
+            btn_new.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btn_new.BackColor = System.Drawing.Color.White;
+            btn_new.ForeColor = System.Drawing.Color.FromArgb(25, 42, 66);
+            btn_new.UseVisualStyleBackColor = false;
+            btn_new.Cursor = System.Windows.Forms.Cursors.Hand;
+            btn_new.AutoSize = false;
+            btn_new.FlatAppearance.BorderSize = 1;
+            btn_new.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(222, 230, 239);
+            btn_new.TabIndex = 35;
+            //
+            // _actions
+            //
+            _actions.Name = "_actions";
+            _actions.Margin = new System.Windows.Forms.Padding(0);
+            _actions.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            _actions.Dock = System.Windows.Forms.DockStyle.Top;
+            _actions.AutoSize = true;
+            _actions.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            _actions.WrapContents = true;
+            _actions.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            _actions.Padding = new System.Windows.Forms.Padding(0, 4, 0, 4);
+            _actions.MaximumSize = new System.Drawing.Size(288, 0);
+            _actions.TabIndex = 36;
+            //
             // _editor
-            // 
-            _editor.AutoSize = true;
-            _editor.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            _editor.BackColor = Color.White;
+            //
+            _editor.Name = "_editor";
+            _editor.Margin = new System.Windows.Forms.Padding(0);
+            _editor.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            _editor.Dock = System.Windows.Forms.DockStyle.Top;
             _editor.ColumnCount = 1;
-            _editor.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            _editor.RowCount = 8;
+            _editor.Padding = new System.Windows.Forms.Padding(4);
+            _editor.BackColor = System.Drawing.Color.White;
+            _editor.AutoSize = true;
+            _editor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            _editor.MaximumSize = new System.Drawing.Size(300, 0);
+            _editor.TabIndex = 37;
+            _editor.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            _editor.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            _editor.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 72F));
+            _editor.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 72F));
+            _editor.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 72F));
+            _editor.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            _editor.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 148F));
+            _editor.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize, 0F));
+            _editor.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize, 0F));
+            //
+            // _editorHost
+            //
+            _editorHost.Name = "_editorHost";
+            _editorHost.Margin = new System.Windows.Forms.Padding(0);
+            _editorHost.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            _editorHost.Dock = System.Windows.Forms.DockStyle.Fill;
+            _editorHost.AutoScroll = true;
+            _editorHost.BackColor = System.Drawing.Color.White;
+            _editorHost.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            _editorHost.TabIndex = 38;
+            //
+            // editorCard
+            //
+            editorCard.Name = "editorCard";
+            editorCard.Margin = new System.Windows.Forms.Padding(6);
+            editorCard.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            editorCard.Dock = System.Windows.Forms.DockStyle.Fill;
+            editorCard.ColumnCount = 1;
+            editorCard.RowCount = 2;
+            editorCard.Padding = new System.Windows.Forms.Padding(12);
+            editorCard.BackColor = System.Drawing.Color.White;
+            editorCard.TabIndex = 39;
+            editorCard.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            editorCard.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            editorCard.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            //
+            // editorCardTitle
+            //
+            editorCardTitle.Name = "editorCardTitle";
+            editorCardTitle.Margin = new System.Windows.Forms.Padding(0);
+            editorCardTitle.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            editorCardTitle.Text = "مشخصات کتاب";
+            editorCardTitle.Dock = System.Windows.Forms.DockStyle.Fill;
+            editorCardTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            editorCardTitle.AutoSize = false;
+            editorCardTitle.AutoEllipsis = true;
+            editorCardTitle.ForeColor = System.Drawing.Color.FromArgb(25, 42, 66);
+            editorCardTitle.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            editorCardTitle.Padding = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            editorCardTitle.TabIndex = 40;
+            //
+            // bodyLayout
+            //
+            bodyLayout.Name = "bodyLayout";
+            bodyLayout.Margin = new System.Windows.Forms.Padding(0);
+            bodyLayout.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            bodyLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            bodyLayout.ColumnCount = 2;
+            bodyLayout.RowCount = 1;
+            bodyLayout.Padding = new System.Windows.Forms.Padding(0);
+            bodyLayout.BackColor = System.Drawing.Color.FromArgb(242, 245, 249);
+            bodyLayout.TabIndex = 41;
+            bodyLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            bodyLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 340F));
+            bodyLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            headingLayout.Controls.Add(headingLabel, 0, 0);
+            headingLayout.Controls.Add(subtitleLabel, 0, 1);
+            headerLayout.Controls.Add(userProfile1, 0, 0);
+            headerLayout.Controls.Add(headingLayout, 1, 0);
+            rootLayout.Controls.Add(headerLayout, 0, 0);
+            rootLayout.Controls.Add(footerLabel, 0, 2);
+            viewportPanel.Controls.Add(rootLayout);
+            Controls.Add(viewportPanel);
+            searchField.Controls.Add(searchFieldLabel, 0, 0);
+            searchField.Controls.Add(txt_search, 0, 1);
+            searchLayout.Controls.Add(searchField, 0, 0);
+            searchLayout.Controls.Add(btn_refresh, 1, 0);
+            listLayout.Controls.Add(searchLayout, 0, 0);
+            listLayout.Controls.Add(dataGrid_books, 0, 1);
+            listLayout.Controls.Add(_status, 0, 2);
+            booksCard.Controls.Add(booksCardTitle, 0, 0);
+            booksCard.Controls.Add(listLayout, 0, 1);
+            txt_nameField.Controls.Add(txt_nameFieldLabel, 0, 0);
+            txt_nameField.Controls.Add(txt_name, 0, 1);
+            txt_authorField.Controls.Add(txt_authorFieldLabel, 0, 0);
+            txt_authorField.Controls.Add(txt_author, 0, 1);
+            txt_languageField.Controls.Add(txt_languageFieldLabel, 0, 0);
+            txt_languageField.Controls.Add(txt_language, 0, 1);
+            photoActions.Controls.Add(btn_choose_photo);
+            _actions.Controls.Add(btn_save);
+            _actions.Controls.Add(btn_edite);
+            _actions.Controls.Add(btn_delete);
+            _actions.Controls.Add(btn_new);
             _editor.Controls.Add(_mode, 0, 0);
             _editor.Controls.Add(txt_nameField, 0, 1);
             _editor.Controls.Add(txt_authorField, 0, 2);
@@ -496,412 +851,79 @@ namespace LibraryManagementWindowsForm
             _editor.Controls.Add(picture_book, 0, 5);
             _editor.Controls.Add(photoActions, 0, 6);
             _editor.Controls.Add(_actions, 0, 7);
-            _editor.Dock = DockStyle.Top;
-            _editor.Location = new Point(0, 0);
-            _editor.Margin = new Padding(0);
-            _editor.MaximumSize = new Size(300, 0);
-            _editor.Name = "_editor";
-            _editor.Padding = new Padding(4);
-            _editor.RightToLeft = RightToLeft.No;
-            _editor.RowCount = 8;
-            _editor.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
-            _editor.RowStyles.Add(new RowStyle(SizeType.Absolute, 72F));
-            _editor.RowStyles.Add(new RowStyle(SizeType.Absolute, 72F));
-            _editor.RowStyles.Add(new RowStyle(SizeType.Absolute, 72F));
-            _editor.RowStyles.Add(new RowStyle(SizeType.Absolute, 28F));
-            _editor.RowStyles.Add(new RowStyle(SizeType.Absolute, 148F));
-            _editor.RowStyles.Add(new RowStyle());
-            _editor.RowStyles.Add(new RowStyle());
-            _editor.Size = new Size(279, 686);
-            _editor.TabIndex = 37;
-            // 
-            // _mode
-            // 
-            _mode.AutoEllipsis = true;
-            _mode.Dock = DockStyle.Fill;
-            _mode.Font = new Font("Tahoma", 9F);
-            _mode.ForeColor = Color.FromArgb(94, 110, 132);
-            _mode.Location = new Point(4, 4);
-            _mode.Margin = new Padding(0);
-            _mode.Name = "_mode";
-            _mode.Padding = new Padding(4, 0, 4, 0);
-            _mode.RightToLeft = RightToLeft.Yes;
-            _mode.Size = new Size(271, 30);
-            _mode.TabIndex = 18;
-            _mode.Text = "کتاب جدید";
-            _mode.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // txt_nameField
-            // 
-            txt_nameField.BackColor = Color.White;
-            txt_nameField.ColumnCount = 1;
-            txt_nameField.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            txt_nameField.Controls.Add(txt_nameFieldLabel, 0, 0);
-            txt_nameField.Controls.Add(txt_name, 0, 1);
-            txt_nameField.Dock = DockStyle.Top;
-            txt_nameField.Location = new Point(8, 34);
-            txt_nameField.Margin = new Padding(4, 0, 4, 8);
-            txt_nameField.Name = "txt_nameField";
-            txt_nameField.RightToLeft = RightToLeft.No;
-            txt_nameField.RowCount = 2;
-            txt_nameField.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            txt_nameField.RowStyles.Add(new RowStyle(SizeType.Absolute, 36F));
-            txt_nameField.Size = new Size(263, 64);
-            txt_nameField.TabIndex = 20;
-            // 
-            // txt_nameFieldLabel
-            // 
-            txt_nameFieldLabel.AutoEllipsis = true;
-            txt_nameFieldLabel.Dock = DockStyle.Fill;
-            txt_nameFieldLabel.Font = new Font("Tahoma", 9F);
-            txt_nameFieldLabel.ForeColor = Color.FromArgb(94, 110, 132);
-            txt_nameFieldLabel.Location = new Point(0, 0);
-            txt_nameFieldLabel.Margin = new Padding(0);
-            txt_nameFieldLabel.Name = "txt_nameFieldLabel";
-            txt_nameFieldLabel.Padding = new Padding(4, 0, 4, 0);
-            txt_nameFieldLabel.RightToLeft = RightToLeft.Yes;
-            txt_nameFieldLabel.Size = new Size(263, 24);
-            txt_nameFieldLabel.TabIndex = 21;
-            txt_nameFieldLabel.Text = "عنوان کتاب *";
-            txt_nameFieldLabel.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // txt_name
-            // 
-            txt_name.BackColor = Color.White;
-            txt_name.BorderStyle = BorderStyle.FixedSingle;
-            txt_name.Dock = DockStyle.Fill;
-            txt_name.ForeColor = Color.FromArgb(25, 42, 66);
-            txt_name.Location = new Point(0, 27);
-            txt_name.Margin = new Padding(0, 3, 18, 3);
-            txt_name.MaxLength = 50;
-            txt_name.Name = "txt_name";
-            txt_name.RightToLeft = RightToLeft.Yes;
-            txt_name.Size = new Size(245, 28);
-            txt_name.TabIndex = 19;
-            txt_name.TextAlign = HorizontalAlignment.Right;
-            // 
-            // txt_authorField
-            // 
-            txt_authorField.BackColor = Color.White;
-            txt_authorField.ColumnCount = 1;
-            txt_authorField.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            txt_authorField.Controls.Add(txt_authorFieldLabel, 0, 0);
-            txt_authorField.Controls.Add(txt_author, 0, 1);
-            txt_authorField.Dock = DockStyle.Top;
-            txt_authorField.Location = new Point(8, 106);
-            txt_authorField.Margin = new Padding(4, 0, 4, 8);
-            txt_authorField.Name = "txt_authorField";
-            txt_authorField.RightToLeft = RightToLeft.No;
-            txt_authorField.RowCount = 2;
-            txt_authorField.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            txt_authorField.RowStyles.Add(new RowStyle(SizeType.Absolute, 36F));
-            txt_authorField.Size = new Size(263, 64);
-            txt_authorField.TabIndex = 23;
-            // 
-            // txt_authorFieldLabel
-            // 
-            txt_authorFieldLabel.AutoEllipsis = true;
-            txt_authorFieldLabel.Dock = DockStyle.Fill;
-            txt_authorFieldLabel.Font = new Font("Tahoma", 9F);
-            txt_authorFieldLabel.ForeColor = Color.FromArgb(94, 110, 132);
-            txt_authorFieldLabel.Location = new Point(0, 0);
-            txt_authorFieldLabel.Margin = new Padding(0);
-            txt_authorFieldLabel.Name = "txt_authorFieldLabel";
-            txt_authorFieldLabel.Padding = new Padding(4, 0, 4, 0);
-            txt_authorFieldLabel.RightToLeft = RightToLeft.Yes;
-            txt_authorFieldLabel.Size = new Size(263, 24);
-            txt_authorFieldLabel.TabIndex = 24;
-            txt_authorFieldLabel.Text = "نویسنده *";
-            txt_authorFieldLabel.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // txt_author
-            // 
-            txt_author.BackColor = Color.White;
-            txt_author.BorderStyle = BorderStyle.FixedSingle;
-            txt_author.Dock = DockStyle.Fill;
-            txt_author.ForeColor = Color.FromArgb(25, 42, 66);
-            txt_author.Location = new Point(0, 27);
-            txt_author.Margin = new Padding(0, 3, 18, 3);
-            txt_author.MaxLength = 50;
-            txt_author.Name = "txt_author";
-            txt_author.RightToLeft = RightToLeft.Yes;
-            txt_author.Size = new Size(245, 28);
-            txt_author.TabIndex = 22;
-            txt_author.TextAlign = HorizontalAlignment.Right;
-            // 
-            // txt_languageField
-            // 
-            txt_languageField.BackColor = Color.White;
-            txt_languageField.ColumnCount = 1;
-            txt_languageField.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            txt_languageField.Controls.Add(txt_languageFieldLabel, 0, 0);
-            txt_languageField.Controls.Add(txt_language, 0, 1);
-            txt_languageField.Dock = DockStyle.Top;
-            txt_languageField.Location = new Point(8, 178);
-            txt_languageField.Margin = new Padding(4, 0, 4, 8);
-            txt_languageField.Name = "txt_languageField";
-            txt_languageField.RightToLeft = RightToLeft.No;
-            txt_languageField.RowCount = 2;
-            txt_languageField.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            txt_languageField.RowStyles.Add(new RowStyle(SizeType.Absolute, 36F));
-            txt_languageField.Size = new Size(263, 64);
-            txt_languageField.TabIndex = 26;
-            // 
-            // txt_languageFieldLabel
-            // 
-            txt_languageFieldLabel.AutoEllipsis = true;
-            txt_languageFieldLabel.Dock = DockStyle.Fill;
-            txt_languageFieldLabel.Font = new Font("Tahoma", 9F);
-            txt_languageFieldLabel.ForeColor = Color.FromArgb(94, 110, 132);
-            txt_languageFieldLabel.Location = new Point(0, 0);
-            txt_languageFieldLabel.Margin = new Padding(0);
-            txt_languageFieldLabel.Name = "txt_languageFieldLabel";
-            txt_languageFieldLabel.Padding = new Padding(4, 0, 4, 0);
-            txt_languageFieldLabel.RightToLeft = RightToLeft.Yes;
-            txt_languageFieldLabel.Size = new Size(263, 24);
-            txt_languageFieldLabel.TabIndex = 27;
-            txt_languageFieldLabel.Text = "زبان *";
-            txt_languageFieldLabel.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // txt_language
-            // 
-            txt_language.BackColor = Color.White;
-            txt_language.BorderStyle = BorderStyle.FixedSingle;
-            txt_language.Dock = DockStyle.Fill;
-            txt_language.ForeColor = Color.FromArgb(25, 42, 66);
-            txt_language.Location = new Point(0, 27);
-            txt_language.Margin = new Padding(0, 3, 18, 3);
-            txt_language.MaxLength = 50;
-            txt_language.Name = "txt_language";
-            txt_language.RightToLeft = RightToLeft.Yes;
-            txt_language.Size = new Size(245, 28);
-            txt_language.TabIndex = 25;
-            txt_language.TextAlign = HorizontalAlignment.Right;
-            // 
-            // photoCaption
-            // 
-            photoCaption.AutoEllipsis = true;
-            photoCaption.Dock = DockStyle.Fill;
-            photoCaption.Font = new Font("Tahoma", 9F);
-            photoCaption.ForeColor = Color.FromArgb(94, 110, 132);
-            photoCaption.Location = new Point(4, 250);
-            photoCaption.Margin = new Padding(0);
-            photoCaption.Name = "photoCaption";
-            photoCaption.Padding = new Padding(4, 0, 4, 0);
-            photoCaption.RightToLeft = RightToLeft.Yes;
-            photoCaption.Size = new Size(271, 28);
-            photoCaption.TabIndex = 28;
-            photoCaption.Text = "تصویر کتاب؛ اختیاری";
-            photoCaption.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // picture_book
-            // 
-            picture_book.BackColor = Color.FromArgb(242, 245, 249);
-            picture_book.BorderStyle = BorderStyle.FixedSingle;
-            picture_book.Cursor = Cursors.Hand;
-            picture_book.Dock = DockStyle.Fill;
-            picture_book.Location = new Point(8, 282);
-            picture_book.Margin = new Padding(4);
-            picture_book.Name = "picture_book";
-            picture_book.RightToLeft = RightToLeft.Yes;
-            picture_book.Size = new Size(263, 140);
-            picture_book.SizeMode = PictureBoxSizeMode.Zoom;
-            picture_book.TabIndex = 29;
-            picture_book.TabStop = false;
+            _editorHost.Controls.Add(_editor);
+            editorCard.Controls.Add(editorCardTitle, 0, 0);
+            editorCard.Controls.Add(_editorHost, 0, 1);
+            bodyLayout.Controls.Add(booksCard, 0, 0);
+            bodyLayout.Controls.Add(editorCard, 1, 0);
+            rootLayout.Controls.Add(bodyLayout, 0, 1);
+            dataGrid_books.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { dataGrid_books_Id, dataGrid_books_Title, dataGrid_books_Author, dataGrid_books_Language });
+            btn_refresh.Click += RefreshBooks_Click;
             picture_book.Click += picture_book_Click;
-            // 
-            // photoActions
-            // 
-            photoActions.AutoSize = true;
-            photoActions.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            photoActions.Controls.Add(btn_choose_photo);
-            photoActions.Dock = DockStyle.Top;
-            photoActions.FlowDirection = FlowDirection.RightToLeft;
-            photoActions.Location = new Point(4, 426);
-            photoActions.Margin = new Padding(0);
-            photoActions.MaximumSize = new Size(288, 0);
-            photoActions.Name = "photoActions";
-            photoActions.Padding = new Padding(0, 4, 0, 4);
-            photoActions.RightToLeft = RightToLeft.No;
-            photoActions.Size = new Size(271, 56);
-            photoActions.TabIndex = 31;
-            // 
-            // btn_choose_photo
-            // 
-            btn_choose_photo.BackColor = Color.White;
-            btn_choose_photo.Cursor = Cursors.Hand;
-            btn_choose_photo.FlatAppearance.BorderColor = Color.FromArgb(222, 230, 239);
-            btn_choose_photo.FlatStyle = FlatStyle.Flat;
-            btn_choose_photo.ForeColor = Color.FromArgb(25, 42, 66);
-            btn_choose_photo.Location = new Point(139, 8);
-            btn_choose_photo.Margin = new Padding(4);
-            btn_choose_photo.MinimumSize = new Size(112, 38);
-            btn_choose_photo.Name = "btn_choose_photo";
-            btn_choose_photo.RightToLeft = RightToLeft.Yes;
-            btn_choose_photo.Size = new Size(128, 40);
-            btn_choose_photo.TabIndex = 30;
-            btn_choose_photo.Text = "انتخاب تصویر";
-            btn_choose_photo.UseVisualStyleBackColor = false;
             btn_choose_photo.Click += picture_book_Click;
-            // 
-            // _actions
-            // 
-            _actions.AutoSize = true;
-            _actions.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            _actions.Controls.Add(btn_save);
-            _actions.Controls.Add(btn_edite);
-            _actions.Controls.Add(btn_delete);
-            _actions.Controls.Add(btn_new);
-            _actions.Dock = DockStyle.Top;
-            _actions.FlowDirection = FlowDirection.RightToLeft;
-            _actions.Location = new Point(4, 482);
-            _actions.Margin = new Padding(0);
-            _actions.MaximumSize = new Size(288, 0);
-            _actions.Name = "_actions";
-            _actions.Padding = new Padding(0, 4, 0, 4);
-            _actions.RightToLeft = RightToLeft.No;
-            _actions.Size = new Size(271, 200);
-            _actions.TabIndex = 36;
-            // 
-            // btn_save
-            // 
-            btn_save.BackColor = Color.FromArgb(12, 120, 113);
-            btn_save.Cursor = Cursors.Hand;
-            btn_save.FlatAppearance.BorderColor = Color.FromArgb(222, 230, 239);
-            btn_save.FlatAppearance.BorderSize = 0;
-            btn_save.FlatStyle = FlatStyle.Flat;
-            btn_save.ForeColor = Color.White;
-            btn_save.Location = new Point(139, 8);
-            btn_save.Margin = new Padding(4);
-            btn_save.MinimumSize = new Size(112, 38);
-            btn_save.Name = "btn_save";
-            btn_save.RightToLeft = RightToLeft.Yes;
-            btn_save.Size = new Size(128, 40);
-            btn_save.TabIndex = 32;
-            btn_save.Text = "ثبت کتاب";
-            btn_save.UseVisualStyleBackColor = false;
             btn_save.Click += button1_Click;
-            // 
-            // btn_edite
-            // 
-            btn_edite.BackColor = Color.FromArgb(12, 120, 113);
-            btn_edite.Cursor = Cursors.Hand;
-            btn_edite.FlatAppearance.BorderColor = Color.FromArgb(222, 230, 239);
-            btn_edite.FlatAppearance.BorderSize = 0;
-            btn_edite.FlatStyle = FlatStyle.Flat;
-            btn_edite.ForeColor = Color.White;
-            btn_edite.Location = new Point(139, 56);
-            btn_edite.Margin = new Padding(4);
-            btn_edite.MinimumSize = new Size(112, 38);
-            btn_edite.Name = "btn_edite";
-            btn_edite.RightToLeft = RightToLeft.Yes;
-            btn_edite.Size = new Size(128, 40);
-            btn_edite.TabIndex = 33;
-            btn_edite.Text = "ذخیرهٔ تغییرات";
-            btn_edite.UseVisualStyleBackColor = false;
             btn_edite.Click += btn_edite_Click;
-            // 
-            // btn_delete
-            // 
-            btn_delete.BackColor = Color.FromArgb(169, 49, 60);
-            btn_delete.Cursor = Cursors.Hand;
-            btn_delete.FlatAppearance.BorderColor = Color.FromArgb(222, 230, 239);
-            btn_delete.FlatAppearance.BorderSize = 0;
-            btn_delete.FlatStyle = FlatStyle.Flat;
-            btn_delete.ForeColor = Color.White;
-            btn_delete.Location = new Point(139, 104);
-            btn_delete.Margin = new Padding(4);
-            btn_delete.MinimumSize = new Size(112, 38);
-            btn_delete.Name = "btn_delete";
-            btn_delete.RightToLeft = RightToLeft.Yes;
-            btn_delete.Size = new Size(128, 40);
-            btn_delete.TabIndex = 34;
-            btn_delete.Text = "حذف کتاب";
-            btn_delete.UseVisualStyleBackColor = false;
             btn_delete.Click += btn_delete_Click;
-            // 
-            // btn_new
-            // 
-            btn_new.BackColor = Color.White;
-            btn_new.Cursor = Cursors.Hand;
-            btn_new.FlatAppearance.BorderColor = Color.FromArgb(222, 230, 239);
-            btn_new.FlatStyle = FlatStyle.Flat;
-            btn_new.ForeColor = Color.FromArgb(25, 42, 66);
-            btn_new.Location = new Point(139, 152);
-            btn_new.Margin = new Padding(4);
-            btn_new.MinimumSize = new Size(112, 38);
-            btn_new.Name = "btn_new";
-            btn_new.RightToLeft = RightToLeft.Yes;
-            btn_new.Size = new Size(128, 40);
-            btn_new.TabIndex = 35;
-            btn_new.Text = "کتاب جدید";
-            btn_new.UseVisualStyleBackColor = false;
             btn_new.Click += NewBook_Click;
-            // 
-            // viewportPanel
-            // 
-            viewportPanel.AutoScroll = true;
-            viewportPanel.AutoScrollMinSize = new Size(0, 620);
-            viewportPanel.BackColor = Color.FromArgb(242, 245, 249);
-            viewportPanel.Controls.Add(rootLayout);
-            viewportPanel.Dock = DockStyle.Fill;
-            viewportPanel.Location = new Point(0, 0);
-            viewportPanel.Margin = new Padding(0);
-            viewportPanel.Name = "viewportPanel";
-            viewportPanel.RightToLeft = RightToLeft.No;
-            viewportPanel.Size = new Size(1120, 740);
-            viewportPanel.TabIndex = 7;
-            // 
-            // _errors
-            // 
-            _errors.BlinkStyle = ErrorBlinkStyle.NeverBlink;
-            _errors.ContainerControl = this;
-            // 
-            // FrmBook
-            // 
-            AcceptButton = btn_save;
-            AutoScaleDimensions = new SizeF(9F, 21F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(242, 245, 249);
-            ClientSize = new Size(1120, 740);
-            Controls.Add(viewportPanel);
-            Font = new Font("Tahoma", 10F);
-            ForeColor = Color.FromArgb(25, 42, 66);
-            MinimumSize = new Size(860, 560);
-            Name = "FrmBook";
-            RightToLeft = RightToLeft.Yes;
-            ShowIcon = false;
-            StartPosition = FormStartPosition.CenterParent;
-            Text = "مدیریت کتاب‌ها";
+            txt_search.TextChanged += txt_search_TextChanged;
+            dataGrid_books.CellClick += dataGrid_books_CellClick;
             Load += FrmBook_Load;
-            rootLayout.ResumeLayout(false);
-            rootLayout.PerformLayout();
-            headerLayout.ResumeLayout(false);
-            headingLayout.ResumeLayout(false);
+            //
+            // FrmBook
+            //
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackColor = System.Drawing.Color.FromArgb(242, 245, 249);
+            ForeColor = System.Drawing.Color.FromArgb(25, 42, 66);
+            Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            Name = "FrmBook";
+            ClientSize = new System.Drawing.Size(1120, 740);
+            MinimumSize = new System.Drawing.Size(860, 560);
+            Text = "مدیریت کتاب‌ها";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            RightToLeftLayout = false;
+            ShowIcon = false;
+            AcceptButton = btn_save;
             bodyLayout.ResumeLayout(false);
-            booksCard.ResumeLayout(false);
-            listLayout.ResumeLayout(false);
-            searchLayout.ResumeLayout(false);
-            searchField.ResumeLayout(false);
-            searchField.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGrid_books).EndInit();
+            bodyLayout.PerformLayout();
             editorCard.ResumeLayout(false);
+            editorCard.PerformLayout();
             _editorHost.ResumeLayout(false);
             _editorHost.PerformLayout();
             _editor.ResumeLayout(false);
             _editor.PerformLayout();
-            txt_nameField.ResumeLayout(false);
-            txt_nameField.PerformLayout();
-            txt_authorField.ResumeLayout(false);
-            txt_authorField.PerformLayout();
+            _actions.ResumeLayout(false);
+            _actions.PerformLayout();
+            photoActions.ResumeLayout(false);
+            photoActions.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picture_book).EndInit();
             txt_languageField.ResumeLayout(false);
             txt_languageField.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)picture_book).EndInit();
-            photoActions.ResumeLayout(false);
-            _actions.ResumeLayout(false);
-            viewportPanel.ResumeLayout(false);
+            txt_authorField.ResumeLayout(false);
+            txt_authorField.PerformLayout();
+            txt_nameField.ResumeLayout(false);
+            txt_nameField.PerformLayout();
+            booksCard.ResumeLayout(false);
+            booksCard.PerformLayout();
+            listLayout.ResumeLayout(false);
+            listLayout.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGrid_books).EndInit();
+            searchField.ResumeLayout(false);
+            searchField.PerformLayout();
+            searchLayout.ResumeLayout(false);
+            searchLayout.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)_errors).EndInit();
+            viewportPanel.ResumeLayout(false);
+            viewportPanel.PerformLayout();
+            headingLayout.ResumeLayout(false);
+            headingLayout.PerformLayout();
+            headerLayout.ResumeLayout(false);
+            headerLayout.PerformLayout();
+            rootLayout.ResumeLayout(false);
+            rootLayout.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
         #endregion
 
