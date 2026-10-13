@@ -1,72 +1,71 @@
-﻿namespace LibraryManagementWindowsForm
+#nullable disable
+namespace LibraryManagementWindowsForm
 {
     partial class UserProfile
     {
-        /// <summary> 
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
+            if (disposing && components != null) components.Dispose();
             base.Dispose(disposing);
         }
 
-        #region Component Designer generated code
-
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
-        /// the contents of this method with the code editor.
-        /// </summary>
+        #region Windows Form Designer generated code
         private void InitializeComponent()
         {
-            lblTitle = new Label();
-            label1 = new Label();
+            components = new System.ComponentModel.Container();
+            statusDot = new System.Windows.Forms.Label();
+            lblTitle = new System.Windows.Forms.Label();
             SuspendLayout();
-            // 
+            //
+            // statusDot
+            //
+            statusDot.Name = "statusDot";
+            statusDot.Margin = new System.Windows.Forms.Padding(0);
+            statusDot.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            statusDot.Text = "●";
+            statusDot.Dock = System.Windows.Forms.DockStyle.Left;
+            statusDot.Size = new System.Drawing.Size(26, 40);
+            statusDot.ForeColor = System.Drawing.Color.FromArgb(12, 120, 113);
+            statusDot.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            statusDot.TabIndex = 0;
+            //
             // lblTitle
-            // 
-            lblTitle.AutoSize = true;
-            lblTitle.BackColor = SystemColors.ActiveCaption;
-            lblTitle.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblTitle.Location = new Point(8, 13);
+            //
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(0, 28);
+            lblTitle.Margin = new System.Windows.Forms.Padding(0);
+            lblTitle.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            lblTitle.Text = "کاربر  •  آنلاین";
+            lblTitle.Dock = System.Windows.Forms.DockStyle.Fill;
+            lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            lblTitle.AutoSize = false;
+            lblTitle.AutoEllipsis = true;
+            lblTitle.ForeColor = System.Drawing.Color.FromArgb(12, 120, 113);
+            lblTitle.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            lblTitle.Padding = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblTitle.TabIndex = 1;
-            lblTitle.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(130, 173);
-            label1.Name = "label1";
-            label1.Size = new Size(0, 20);
-            label1.TabIndex = 2;
-            label1.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // UserProfile
-            // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(label1);
             Controls.Add(lblTitle);
-            Name = "UserProfile";
-            Size = new Size(399, 327);
+            Controls.Add(statusDot);
             Load += UserProfile_Load;
+            //
+            // UserProfile
+            //
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackColor = System.Drawing.Color.White;
+            ForeColor = System.Drawing.Color.FromArgb(25, 42, 66);
+            Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            Name = "UserProfile";
+            Size = new System.Drawing.Size(220, 40);
+            MinimumSize = new System.Drawing.Size(160, 32);
             ResumeLayout(false);
             PerformLayout();
         }
-
         #endregion
-        private Label lblTitle;
-        private Label label1;
+
+        private System.Windows.Forms.Label statusDot;
+        private System.Windows.Forms.Label lblTitle;
     }
 }

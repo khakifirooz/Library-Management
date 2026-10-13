@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
@@ -36,4 +36,39 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="FrmBook.cs"><SubType>Form</SubType></Compile>
+    <Compile Update="FrmBook.Designer.cs"><DependentUpon>FrmBook.cs</DependentUpon></Compile>
+    <EmbeddedResource Update="FrmBook.resx"><DependentUpon>FrmBook.cs</DependentUpon></EmbeddedResource>
+    <Compile Update="FrmRegisterMember.cs"><SubType>Form</SubType></Compile>
+    <Compile Update="FrmRegisterMember.Designer.cs"><DependentUpon>FrmRegisterMember.cs</DependentUpon></Compile>
+    <EmbeddedResource Update="FrmRegisterMember.resx"><DependentUpon>FrmRegisterMember.cs</DependentUpon></EmbeddedResource>
+    <Compile Update="FrmUpdateMember.cs"><SubType>Form</SubType></Compile>
+    <Compile Update="FrmUpdateMember.Designer.cs"><DependentUpon>FrmUpdateMember.cs</DependentUpon></Compile>
+    <EmbeddedResource Update="FrmUpdateMember.resx"><DependentUpon>FrmUpdateMember.cs</DependentUpon></EmbeddedResource>
+    <Compile Update="FrmManageMembers.cs"><SubType>Form</SubType></Compile>
+    <Compile Update="FrmManageMembers.Designer.cs"><DependentUpon>FrmManageMembers.cs</DependentUpon></Compile>
+    <EmbeddedResource Update="FrmManageMembers.resx"><DependentUpon>FrmManageMembers.cs</DependentUpon></EmbeddedResource>
+    <Compile Update="FrmLoan.cs"><SubType>Form</SubType></Compile>
+    <Compile Update="FrmLoan.Designer.cs"><DependentUpon>FrmLoan.cs</DependentUpon></Compile>
+    <EmbeddedResource Update="FrmLoan.resx"><DependentUpon>FrmLoan.cs</DependentUpon></EmbeddedResource>
+    <Compile Update="FrmAdminManagement.cs"><SubType>Form</SubType></Compile>
+    <Compile Update="FrmAdminManagement.Designer.cs"><DependentUpon>FrmAdminManagement.cs</DependentUpon></Compile>
+    <EmbeddedResource Update="FrmAdminManagement.resx"><DependentUpon>FrmAdminManagement.cs</DependentUpon></EmbeddedResource>
+    <Compile Update="FrmCreateAdmin.cs"><SubType>Form</SubType></Compile>
+    <Compile Update="FrmCreateAdmin.Designer.cs"><DependentUpon>FrmCreateAdmin.cs</DependentUpon></Compile>
+    <EmbeddedResource Update="FrmCreateAdmin.resx"><DependentUpon>FrmCreateAdmin.cs</DependentUpon></EmbeddedResource>
+    <Compile Update="FrmMain.cs"><SubType>Form</SubType></Compile>
+    <Compile Update="FrmMain.Designer.cs"><DependentUpon>FrmMain.cs</DependentUpon></Compile>
+    <EmbeddedResource Update="FrmMain.resx"><DependentUpon>FrmMain.cs</DependentUpon></EmbeddedResource>
+    <Compile Update="LoginForm.cs"><SubType>Form</SubType></Compile>
+    <Compile Update="LoginForm.Designer.cs"><DependentUpon>LoginForm.cs</DependentUpon></Compile>
+    <EmbeddedResource Update="LoginForm.resx"><DependentUpon>LoginForm.cs</DependentUpon></EmbeddedResource>
+    <Compile Update="UserProfile.cs"><SubType>UserControl</SubType></Compile>
+    <Compile Update="UserProfile.Designer.cs"><DependentUpon>UserProfile.cs</DependentUpon></Compile>
+    <EmbeddedResource Update="UserProfile.resx"><DependentUpon>UserProfile.cs</DependentUpon></EmbeddedResource>
+    <Compile Update="PersianDatePicker.cs"><SubType>UserControl</SubType></Compile>
+    <Compile Update="PersianDatePicker.Designer.cs"><DependentUpon>PersianDatePicker.cs</DependentUpon></Compile>
+    <EmbeddedResource Update="PersianDatePicker.resx"><DependentUpon>PersianDatePicker.cs</DependentUpon></EmbeddedResource>
+  </ItemGroup>
 </Project>

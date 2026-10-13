@@ -7,34 +7,24 @@ namespace LibraryManagementWindowsForm;
 
 public partial class FrmLoan : Form
 {
-    private readonly IMemberService _memberService;
-    private readonly IBookService _bookService;
-    private readonly ILoanService _loanService;
+    private readonly IMemberService _memberService = null!;
+    private readonly IBookService _bookService = null!;
+    private readonly ILoanService _loanService = null!;
     private MemberViewModel? _member;
     private LoanViewModel? _selectedLoan;
-    private readonly Label _loanStatus = UiTheme.Status();
-    private readonly Label _bookStatus = UiTheme.Status();
     private bool _bindingLoans;
 
-    public FrmLoan(IMemberService memberService, IBookService bookService, ILoanService loanService)
+    public FrmLoan() { InitializeComponent(); }
+
+    public FrmLoan(IMemberService memberService, IBookService bookService, ILoanService loanService) : this()
     {
         _memberService = memberService; _bookService = bookService; _loanService = loanService;
-        InitializeComponent();
-        dataGridView_loans.ReadOnly = true;
-        dataGridView_loans.AllowUserToAddRows = false;
-        dataGridView_loans.AllowUserToDeleteRows = false;
-        dataGridView_loans.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-        dataGridView_loans.MultiSelect = false;
-        dataGridView_loans.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        UiGrids.AttachFormatting(dataGridView_loans, "loans");
         dataGridView_loans.SelectionChanged += (_, _) => ShowSelectedLoan();
-        comboBox_books.DropDownStyle = ComboBoxStyle.DropDownList;
-        comboBox_Book_return.Enabled = false;
-        dateTimePicker_ExpiredTime.ReadOnly = true;
+        txt_search_id.TextChanged += (_, _) => ClearMember();
         dateTimePicker_loan.Value = DateTime.Today;
         dateTimePicker_return.Value = DateTime.Today.AddDays(14);
         dateTimePicker_returnBack.Value = DateTime.Today;
-        txt_search_id.TextChanged += (_, _) => ClearMember();
-        BuildUi();
         ClearMember();
     }
 
@@ -122,6 +112,7 @@ public partial class FrmLoan : Form
 
     private async void FrmLoan_Load(object sender, EventArgs e) => await UiActions.RunAsync(this, async () =>
     {
+        if (_bookService is null || UiDesigner.IsDesignMode(this)) return;
         await LoadBooksAsync();
         if (!string.IsNullOrEmpty(GlobalUser.Username)) userProfile1.ShowOnline(GlobalUser.Username);
     });
@@ -158,42 +149,13 @@ public partial class FrmLoan : Form
     private void dateTimePicker_ExpiredTime_ValueChanged(object sender, EventArgs e) { }
     private void userProfile1_Load(object sender, EventArgs e) { }
 
-    private void BuildUi()
-    {
-        txt_family.ReadOnly = true; txt_search_id.MaxLength = 10;
-        checkBox_status.Enabled = false; checkBox_isSpecial.Enabled = false;
-        checkBox_status.Text = "عضو فعال"; checkBox_isSpecial.Text = "عضویت ویژه";
-        comboBox_Book_return.DropDownStyle = ComboBoxStyle.DropDownList;
-        var refresh = UiTheme.NewButton("تازه‌سازی کتاب‌ها", async (_, _) =>
-            await UiActions.RunAsync(this, LoadBooksAsync, "بارگذاری کتاب‌های آزاد"));
-        var memberSearch = UiLayout.Across(UiLayout.Field("شماره عضویت", txt_search_id),
-            UiLayout.Field("نام عضو", txt_family), UiLayout.Actions(btn_reneview, checkBox_status, checkBox_isSpecial));
-        var memberPanel = new TableLayoutPanel { ColumnCount = 2, RowCount = 1, Dock = DockStyle.Fill,
-            RightToLeft = RightToLeft.No };
-        memberPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 95));
-        memberPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
-        pictureBox_member.Dock = DockStyle.Fill;
-        memberPanel.Controls.Add(pictureBox_member, 0, 0); memberPanel.Controls.Add(memberSearch, 1, 0);
-        var issueFields = UiLayout.Across(UiLayout.Field("کتاب قابل امانت", comboBox_books),
-            UiLayout.Field("تاریخ امانت", dateTimePicker_loan), UiLayout.Field("موعد تحویل", dateTimePicker_return));
-        issueFields.Height = 76;
-        var returnFields = UiLayout.Across(UiLayout.Field("کتاب انتخاب‌شده", comboBox_Book_return),
-            UiLayout.Field("موعد تحویل", dateTimePicker_ExpiredTime), UiLayout.Field("برگشت واقعی", dateTimePicker_returnBack));
-        returnFields.Height = 76;
-        var issue = UiLayout.Card("ثبت امانت جدید", UiLayout.Stack(issueFields, _bookStatus, UiLayout.Actions(btn_save, refresh)));
-        var returned = UiLayout.Card("برگشت کتاب", UiLayout.Stack(returnFields, UiLayout.Actions(btn_return_save)));
-        var body = new TableLayoutPanel { ColumnCount = 1, RowCount = 3, Dock = DockStyle.Fill,
-            RightToLeft = RightToLeft.No };
-        body.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
-        body.RowStyles.Add(new RowStyle(SizeType.Absolute, 138));
-        body.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
-        body.RowStyles.Add(new RowStyle(SizeType.Absolute, 250));
-        body.Controls.Add(UiLayout.Card("بازیابی عضو", memberPanel), 0, 0);
-        body.Controls.Add(UiLayout.Card("تاریخچهٔ امانت‌ها", UiLayout.GridArea(dataGridView_loans, _loanStatus)), 0, 1);
-        body.Controls.Add(UiLayout.Across(issue, returned), 0, 2);
-        UiLayout.Install(this, "امانت و برگشت کتاب", "تاریخچهٔ کامل، تاریخ شمسی و کتاب‌های قابل امانت",
-            body, userProfile1, 1280, 850, 1120, 760);
-        UiTheme.Button(refresh, false); UiGrids.Loans(dataGridView_loans);
-    }
 
+
+    private async void RefreshBooks_Click(object sender, EventArgs e)
+        => await UiActions.RunAsync(this, LoadBooksAsync, "بارگذاری کتاب‌های آزاد");
+    protected override void OnShown(EventArgs e)
+    {
+        base.OnShown(e);
+        UiDesigner.FitToScreen(this);
+    }
 }

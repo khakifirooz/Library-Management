@@ -5,11 +5,8 @@ using FrameworkApplication;
 namespace LibraryManagementWindowsForm;
 
 // Persian input and month calendar; Value remains a Gregorian DateTime for EF.
-public sealed class PersianDatePicker : UserControl
+public sealed partial class PersianDatePicker : UserControl
 {
-    private readonly TextBox _input = new() { Name = "PersianDateInput", Dock = DockStyle.Fill, TextAlign = HorizontalAlignment.Center,
-        RightToLeft = RightToLeft.No, MaxLength = 10 };
-    private readonly Button _open = new() { Name = "PersianCalendarOpen", Dock = DockStyle.Right, Width = 30, Text = "▾", TabStop = false };
     private readonly PersianCalendar _calendar = new();
     private ToolStripDropDown? _popup;
     private DateTime _visibleMonth;
@@ -17,18 +14,11 @@ public sealed class PersianDatePicker : UserControl
 
     public PersianDatePicker()
     {
-        MinimumSize = new Size(140, 32);
-        Height = 36;
-        _open.AccessibleName = "باز کردن تقویم شمسی";
-        _open.FlatStyle = FlatStyle.Flat;
-        _open.FlatAppearance.BorderSize = 0;
-        _open.BackColor = UiTheme.Accent; _open.ForeColor = Color.White;
-        Controls.Add(_input); Controls.Add(_open);
+        InitializeComponent();
         _input.TextChanged += (_, _) => ValueChanged?.Invoke(this, EventArgs.Empty);
         _input.Validated += (_, _) => { if (TryGetValue(out var date)) Value = date; };
         _open.Click += (_, _) => ShowCalendar();
-        Value = DateTime.Today;
-        AccessibleName = "تاریخ شمسی با قالب سال/ماه/روز";
+        if (!UiDesigner.IsDesignMode(this)) Value = DateTime.Today;
     }
 
     [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -112,7 +102,7 @@ public sealed class PersianDatePicker : UserControl
     }
     protected override void Dispose(bool disposing)
     {
-        if (disposing) _popup?.Dispose();
+        if (disposing) { _popup?.Dispose(); components?.Dispose(); }
         base.Dispose(disposing);
     }
 }

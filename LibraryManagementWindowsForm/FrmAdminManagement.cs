@@ -5,16 +5,23 @@ namespace LibraryManagementWindowsForm;
 
 public partial class FrmAdminManagement : Form
 {
-    private readonly IMemberService _memberService;
+    private readonly IMemberService _memberService = null!;
     private int _selectedAdminId;
     private List<AdminViewModel> _admins = [];
-    private readonly Label _status = UiTheme.Status();
-    public FrmAdminManagement(IMemberService memberService)
+    public FrmAdminManagement() { InitializeComponent(); }
+
+    public FrmAdminManagement(IMemberService memberService) : this()
     {
-        InitializeComponent(); BuildUi(); _memberService = memberService;
-        dgvAdmins.ReadOnly = true; dgvAdmins.AllowUserToAddRows = false;
-        dgvAdmins.MultiSelect = false; dgvAdmins.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-        txtPassword.PasswordChar = '*'; txtPassword.PlaceholderText = "خالی = حفظ رمز فعلی";
+        _memberService = memberService;
+        UiGrids.AttachFormatting(dgvAdmins, "admins");
+        btnUpdate.Enabled = false; btnDisable.Enabled = false; btnEnable.Enabled = false;
+        dgvAdmins.SelectionChanged += (_, _) =>
+        {
+            if (dgvAdmins.SelectedRows.Count == 0 ||
+                dgvAdmins.SelectedRows[0].DataBoundItem is not AdminViewModel admin) return;
+            _selectedAdminId = admin.Id; txtUserName.Text = admin.UserName; txtPassword.Clear();
+            btnUpdate.Enabled = true; btnDisable.Enabled = admin.IsActive; btnEnable.Enabled = !admin.IsActive;
+        };
     }
     private async Task LoadData()
     {
@@ -31,7 +38,7 @@ public partial class FrmAdminManagement : Form
         _status.Text = rows.Count == 0 ? "مدیری با این نام پیدا نشد." : $"{UiText.Digits(rows.Count)} حساب مدیر";
     }
     private async void FrmAdminManagement_Load(object sender, EventArgs e) => await UiActions.RunAsync(this, async () =>
-    { await LoadData(); userProfile1.ShowOnline(GlobalUser.Username); });
+    { if (_memberService is null || UiDesigner.IsDesignMode(this)) return; await LoadData(); userProfile1.ShowOnline(GlobalUser.Username); });
     private void dgvAdmins_CellClick(object sender, DataGridViewCellEventArgs e)
     {
         if (e.RowIndex < 0 || dgvAdmins.Rows[e.RowIndex].DataBoundItem is not AdminViewModel admin) return;
@@ -62,27 +69,11 @@ public partial class FrmAdminManagement : Form
     private void userProfile1_Load(object sender, EventArgs e) { }
     private void label2_Click(object sender, EventArgs e) { }
 
-    private void BuildUi()
-    {
-        txtUserName.MaxLength = 50; txtPassword.MaxLength = 128;
-        var search = UiLayout.Across(UiLayout.Field("جست‌وجوی نام کاربری", txt_search), UiLayout.Actions(btnRefresh, btnCreateAdmin));
-        var list = UiLayout.Card("حساب‌های مدیر", UiLayout.GridArea(dgvAdmins, _status, search));
-        var editor = UiLayout.Card("ویرایش حساب انتخاب‌شده", UiLayout.ScrollFields(
-            UiLayout.Field("نام کاربری", txtUserName), UiLayout.Field("رمز جدید؛ خالی یعنی حفظ رمز", txtPassword),
-            UiLayout.Actions(btnUpdate, btnEnable, btnDisable)));
-        UiLayout.Install(this, "مدیریت مدیران", "نمایش نقش و وضعیت حساب، بدون نمایش رمز عبور", UiLayout.Split(list, editor), userProfile1);
-        btnCreateAdmin.Text = "مدیر جدید"; btnRefresh.Text = "تازه‌سازی";
-        btnUpdate.Text = "ذخیرهٔ تغییرات"; btnEnable.Text = "فعال‌سازی"; btnDisable.Text = "غیرفعال‌سازی";
-        UiTheme.Button(btnRefresh, false); UiTheme.Button(btnEnable, false); UiTheme.Button(btnDisable, true, true);
-        UiGrids.Admins(dgvAdmins);
-        btnUpdate.Enabled = false; btnDisable.Enabled = false; btnEnable.Enabled = false;
-        dgvAdmins.SelectionChanged += (_, _) =>
-        {
-            if (dgvAdmins.SelectedRows.Count == 0) return;
-            if (dgvAdmins.SelectedRows[0].DataBoundItem is not AdminViewModel admin) return;
-            _selectedAdminId = admin.Id; txtUserName.Text = admin.UserName; txtPassword.Clear();
-            btnUpdate.Enabled = true; btnDisable.Enabled = admin.IsActive; btnEnable.Enabled = !admin.IsActive;
-        };
-    }
 
+
+    protected override void OnShown(EventArgs e)
+    {
+        base.OnShown(e);
+        UiDesigner.FitToScreen(this);
+    }
 }

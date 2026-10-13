@@ -5,9 +5,13 @@ namespace LibraryManagementWindowsForm;
 
 public partial class FrmCreateAdmin : Form
 {
-    private readonly IMemberService _memberService;
-    public FrmCreateAdmin(IMemberService memberService)
-    { InitializeComponent(); BuildUi(); _memberService = memberService; txtPassword.PasswordChar = '*'; }
+    private readonly IMemberService _memberService = null!;
+    public FrmCreateAdmin() { InitializeComponent(); }
+
+    public FrmCreateAdmin(IMemberService memberService) : this()
+    {
+        _memberService = memberService;
+    }
     private async void btnSave_Click(object sender, EventArgs e) => await UiActions.RunAsync(this, async () =>
     {
         var result = await _memberService.CreateAdminAsync(new CreateAdminModel
@@ -15,19 +19,16 @@ public partial class FrmCreateAdmin : Form
         MessageBox.Show(result.Message);
         if (result.Success) { DialogResult = DialogResult.OK; Close(); }
     });
-    private void FrmCreateAdmin_Load(object sender, EventArgs e) => userProfile1.ShowOnline(GlobalUser.Username);
+    private void FrmCreateAdmin_Load(object sender, EventArgs e) { if (!UiDesigner.IsDesignMode(this)) userProfile1.ShowOnline(GlobalUser.Username); }
     private void textBox1_TextChanged(object sender, EventArgs e) { }
     private void label1_Click(object sender, EventArgs e) { }
 
-    private void BuildUi()
-    {
-        txtUserName.MaxLength = 50; txtPassword.MaxLength = 128;
-        var cancel = UiTheme.NewButton("بازگشت", (_, _) => Close());
-        var fields = UiLayout.Card("حساب جدید", UiLayout.ScrollFields(UiLayout.Field("نام کاربری", txtUserName),
-            UiLayout.Field("رمز عبور", txtPassword), UiLayout.Actions(btnSave, cancel)));
-        UiLayout.Install(this, "ثبت مدیر جدید", "ایجاد حساب مدیریت کتابخانه", fields, userProfile1,
-            650, 500, 580, 450);
-        btnSave.Text = "ثبت مدیر"; UiTheme.Button(cancel, false); AcceptButton = btnSave; CancelButton = cancel;
-    }
 
+
+    private void Cancel_Click(object sender, EventArgs e) => Close();
+    protected override void OnShown(EventArgs e)
+    {
+        base.OnShown(e);
+        UiDesigner.FitToScreen(this);
+    }
 }

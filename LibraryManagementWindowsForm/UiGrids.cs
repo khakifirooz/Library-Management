@@ -4,6 +4,14 @@ namespace LibraryManagementWindowsForm;
 
 internal static class UiGrids
 {
+    // Preserve columns and styles created and edited in Visual Studio Designer.
+    public static void AttachFormatting(DataGridView grid, string kind)
+    {
+        grid.Tag = kind;
+        grid.CellFormatting -= FormatCell;
+        grid.CellFormatting += FormatCell;
+    }
+
     public static void Books(DataGridView grid) => Configure(grid, "books",
         ("Id", "شناسه", 70), ("Title", "عنوان کتاب", 220),
         ("Author", "نویسنده", 180), ("Language", "زبان", 95));

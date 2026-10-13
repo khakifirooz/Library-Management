@@ -5,15 +5,21 @@ namespace LibraryManagementWindowsForm;
 
 public partial class FrmManageMembers : Form
 {
-    private readonly IMemberService _memberService;
+    private readonly IMemberService _memberService = null!;
     private int _selectedMemberId;
-    private readonly Label _status = UiTheme.Status();
-    public FrmManageMembers(IMemberService memberService)
+    public FrmManageMembers() { InitializeComponent(); }
+
+    public FrmManageMembers(IMemberService memberService) : this()
     {
-        InitializeComponent(); BuildUi(); _memberService = memberService;
-        dataGrid_members.ReadOnly = true; dataGrid_members.AllowUserToAddRows = false;
-        dataGrid_members.MultiSelect = false; dataGrid_members.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-        userProfile1.ShowOnline(GlobalUser.Username);
+        _memberService = memberService;
+        UiGrids.AttachFormatting(dataGrid_members, "members");
+        dataGrid_members.SelectionChanged += (_, _) =>
+        {
+            var member = dataGrid_members.SelectedRows.Count > 0
+                ? dataGrid_members.SelectedRows[0].DataBoundItem as MemberViewModel : null;
+            _selectedMemberId = member?.Id ?? 0; btn_update.Enabled = member is not null;
+        };
+        btn_update.Enabled = false;
     }
     private async Task LoadMembersAsync()
     {
@@ -26,7 +32,7 @@ public partial class FrmManageMembers : Form
         _status.Text = rows.Count == 0 ? "عضوی با این مشخصات پیدا نشد." : $"{UiText.Digits(rows.Count)} عضو نمایش داده می‌شود";
         SetColumns(); dataGrid_members.ClearSelection(); _selectedMemberId = 0; btn_update.Enabled = false;
     }
-    private async void FrmManageMembers_Load(object sender, EventArgs e) => await UiActions.RunAsync(this, LoadMembersAsync);
+    private async void FrmManageMembers_Load(object sender, EventArgs e) => await UiActions.RunAsync(this, async () => { if (_memberService is null || UiDesigner.IsDesignMode(this)) return; await LoadMembersAsync(); });
     private async void btn_search_Click(object sender, EventArgs e) => await UiActions.RunAsync(this, LoadMembersAsync);
     private async void button2_Click(object sender, EventArgs e)
     { if (Program.ShowDialog<FrmRegisterMember>() == DialogResult.OK) await UiActions.RunAsync(this, LoadMembersAsync); }
@@ -43,23 +49,11 @@ public partial class FrmManageMembers : Form
     }
     private void SetColumns() { }
 
-    private void BuildUi()
-    {
-        txt_search_id.MaxLength = 10; txt_search_national_code.MaxLength = 10;
-        txt_search_id.PlaceholderText = "همهٔ اعضا"; txt_search_national_code.PlaceholderText = "همهٔ کدهای ملی";
-        var search = UiLayout.Across(UiLayout.Field("شماره عضویت", txt_search_id),
-            UiLayout.Field("کد ملی", txt_search_national_code), UiLayout.Actions(btn_search, button2, btn_update));
-        UiLayout.Install(this, "مدیریت اعضا", "جست‌وجوی عضو، ثبت‌نام و ویرایش اطلاعات",
-            UiLayout.Card("فهرست اعضا", UiLayout.GridArea(dataGrid_members, _status, search)), userProfile1);
-        btn_search.Text = "جست‌وجو"; button2.Text = "عضو جدید"; btn_update.Text = "ویرایش عضو";
-        UiTheme.Button(btn_search, false); UiTheme.Button(btn_update, false);
-        UiGrids.Members(dataGrid_members); btn_update.Enabled = false;
-        dataGrid_members.SelectionChanged += (_, _) =>
-        {
-            var member = dataGrid_members.SelectedRows.Count > 0
-                ? dataGrid_members.SelectedRows[0].DataBoundItem as MemberViewModel : null;
-            _selectedMemberId = member?.Id ?? 0; btn_update.Enabled = member is not null;
-        };
-    }
 
+
+    protected override void OnShown(EventArgs e)
+    {
+        base.OnShown(e);
+        UiDesigner.FitToScreen(this);
+    }
 }
